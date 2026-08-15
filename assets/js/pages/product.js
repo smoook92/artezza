@@ -2,7 +2,7 @@ import { getCatalogData } from '../data/catalog-data.js';
 
 import {
     addToCart,
-    getCartCount,
+    getCartQuantity,
 } from '../core/cart.js';
 
 document.addEventListener(
@@ -23,23 +23,32 @@ async function initProduct() {
         return;
     }
 
-    const catalogData = await getCatalogData();
+    try {
+        const catalogData = await getCatalogData();
 
-    const product = catalogData.products.find(
-        (item) => item.id === productId
-    );
+        const product = catalogData.products.find(
+            (item) => item.id === productId
+        );
 
-    if (!product) {
+        if (!product) {
+            renderProductNotFound();
+            return;
+        }
+
+        renderProduct(
+            product,
+            catalogData.categories
+        );
+
+        updateCartBadge();
+    } catch (error) {
+        console.error(
+            'Failed to load product data:',
+            error
+        );
+
         renderProductNotFound();
-        return;
     }
-
-    renderProduct(
-        product,
-        catalogData.categories
-    );
-
-    updateCartBadge();
 }
 
 /**
@@ -67,7 +76,7 @@ function renderProduct(product, categories) {
                 category.id === product.category
         )?.name ?? product.category;
 
-    document.title = product.title;
+    document.title = `${product.title} — ARTEZZA`;
 
     updateMetaDescription(product.description);
 
@@ -322,15 +331,13 @@ function initAddToCart(product) {
  * @returns {void}
  */
 function updateCartBadge() {
-    const badge = document.querySelector(
-        '.site-header__action--cart .site-header__action-badge'
-    );
+    const quantity = getCartQuantity();
 
-    if (!badge) {
-        return;
-    }
-
-    badge.textContent = getCartCount();
+    document
+        .querySelectorAll('[data-cart-count]')
+        .forEach((badge) => {
+            badge.textContent = String(quantity);
+        });
 }
 
 /**
@@ -410,5 +417,6 @@ function renderProductNotFound() {
         </div>
     `;
 
-    document.title = 'Товар не найден';
+    document.title =
+        'Товар не найден — ARTEZZA';
 }

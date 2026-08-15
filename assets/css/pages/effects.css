@@ -1,0 +1,196 @@
+/* =========================================================
+   EFFECTS PAGE
+   ========================================================= */
+
+.effects-page {
+    padding-bottom: 120px;
+}
+
+.effects-page__header {
+    max-width: 760px;
+    margin-bottom: 64px;
+}
+
+.effects-page__title {
+    margin: 0 0 20px;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 0.98;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.effects-page__description {
+    max-width: 620px;
+    margin: 0;
+    color: var(--color-text-muted, #777);
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   EFFECTS GRID
+   ========================================================= */
+
+.effects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+}
+
+
+/* =========================================================
+   EFFECT CARD
+   ========================================================= */
+
+.effect-card__anchor {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.effect-card__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 22px;
+    background: #e9e6df;
+}
+
+.effect-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+        transform 0.5s ease,
+        opacity 0.3s ease;
+}
+
+.effect-card__anchor:hover .effect-card__image {
+    transform: scale(1.035);
+}
+
+.effect-card__content {
+    padding-right: 20px;
+}
+
+.effect-card__title {
+    margin: 0 0 10px;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.effect-card__description {
+    margin: 0;
+    max-width: 480px;
+    color: var(--color-text-muted, #777);
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.effect-card__link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 18px;
+    color: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.effect-card__link::after {
+    content: '→';
+    margin-left: 8px;
+    transition: transform 0.25s ease;
+}
+
+.effect-card__anchor:hover .effect-card__link-text::after {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   EMPTY / NOT FOUND
+   ========================================================= */
+
+.effects-not-found,
+.effects-empty {
+    padding: 80px 0;
+}
+
+.effects-not-found h1,
+.effects-empty h2 {
+    margin: 0 0 16px;
+    font-size: 42px;
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.effects-not-found p,
+.effects-empty p {
+    margin: 0 0 28px;
+    color: var(--color-text-muted, #777);
+    line-height: 1.6;
+}
+
+.effects-not-found a,
+.effects-empty a {
+    color: inherit;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991px) {
+    .effects-page {
+        padding-bottom: 90px;
+    }
+
+    .effects-page__header {
+        margin-bottom: 48px;
+    }
+
+    .effects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .effects-page {
+        padding-bottom: 70px;
+    }
+
+    .effects-page__header {
+        margin-bottom: 36px;
+    }
+
+    .effects-page__title {
+        font-size: 44px;
+    }
+
+    .effects-page__description {
+        font-size: 15px;
+    }
+
+    .effects-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .effect-card__image-wrapper {
+        margin-bottom: 18px;
+    }
+
+    .effect-card__title {
+        font-size: 22px;
+    }
+}

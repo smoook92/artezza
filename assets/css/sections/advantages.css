@@ -1,0 +1,359 @@
+/* =========================================================
+   ADVANTAGES
+   ========================================================= */
+
+.advantages {
+    padding-block: clamp(90px, 11vw, 160px);
+
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.advantages__header {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.3fr)
+        minmax(280px, 0.7fr);
+
+    gap: clamp(40px, 8vw, 120px);
+
+    padding-bottom: clamp(50px, 7vw, 80px);
+}
+
+.advantages__eyebrow {
+    margin: 0 0 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    color: var(--color-primary);
+}
+
+.advantages__title {
+    max-width: 760px;
+
+    margin: 0;
+
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 500;
+    line-height: 1.02;
+
+    letter-spacing: -0.045em;
+
+    text-wrap: balance;
+}
+
+.advantages__intro {
+    align-self: end;
+
+    max-width: 460px;
+
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.65;
+
+    color: var(--color-text-muted);
+}
+
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.advantages__list {
+    border-top: 1px solid var(--color-border);
+}
+
+
+/* =========================================================
+   ADVANTAGE
+   ========================================================= */
+
+.advantage {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr) 42px;
+
+    align-items: center;
+
+    gap: 30px;
+
+    min-height: 150px;
+
+    padding-block: 28px;
+
+    border-bottom: 1px solid var(--color-border);
+
+    transition:
+        background-color var(--transition-base),
+        padding-inline var(--transition-base);
+}
+
+.advantage__number {
+    align-self: start;
+
+    padding-top: 5px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 0.1em;
+
+    color: var(--color-text-muted);
+}
+
+.advantage__content {
+    max-width: 680px;
+}
+
+.advantage__title {
+    margin: 0;
+
+    font-size: clamp(22px, 2.2vw, 30px);
+    font-weight: 500;
+    line-height: 1.15;
+
+    letter-spacing: -0.025em;
+}
+
+.advantage__text {
+    max-width: 600px;
+
+    margin: 10px 0 0;
+
+    font-size: 15px;
+    line-height: 1.6;
+
+    color: var(--color-text-muted);
+}
+
+.advantage__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+
+    font-size: 17px;
+
+    transition:
+        transform var(--transition-fast),
+        color var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+@media (hover: hover) {
+
+    .advantage:hover {
+        padding-inline: 18px;
+
+        background-color: var(--color-surface);
+    }
+
+    .advantage:hover .advantage__icon {
+        transform: translateX(4px);
+
+        color: #ffffff;
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+    }
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.advantages__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    margin-top: clamp(50px, 7vw, 80px);
+
+    padding: clamp(30px, 4vw, 50px);
+
+    background-color: var(--color-surface);
+}
+
+.advantages__cta-content {
+    max-width: 650px;
+}
+
+.advantages__cta-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: var(--color-primary);
+}
+
+.advantages__cta-text {
+    margin: 0;
+
+    font-size: clamp(20px, 2.2vw, 30px);
+    line-height: 1.25;
+
+    letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.advantage:focus-within {
+    outline: 2px solid var(--color-focus);
+    outline-offset: -2px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .advantages__header {
+        grid-template-columns: 1fr;
+
+        gap: 24px;
+    }
+
+    .advantages__intro {
+        align-self: auto;
+    }
+
+    .advantage {
+        grid-template-columns: 55px minmax(0, 1fr) 42px;
+
+        gap: 20px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .advantages {
+        padding-block: 72px;
+    }
+
+    .advantages__header {
+        padding-bottom: 44px;
+    }
+
+    .advantages__title {
+        font-size: clamp(36px, 10vw, 52px);
+    }
+
+    .advantage {
+        grid-template-columns: 38px minmax(0, 1fr);
+
+        gap: 16px;
+
+        min-height: auto;
+
+        padding-block: 26px;
+    }
+
+    .advantage__number {
+        padding-top: 3px;
+    }
+
+    .advantage__text {
+        font-size: 14px;
+    }
+
+    .advantage__icon {
+        display: none;
+    }
+
+    .advantages__cta {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 28px;
+
+        margin-top: 48px;
+
+        padding: 28px 24px;
+    }
+
+    .advantages__cta .button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 479px) {
+
+    .advantages {
+        padding-block: 60px;
+    }
+
+    .advantage {
+        grid-template-columns: 32px minmax(0, 1fr);
+
+        gap: 12px;
+    }
+
+    .advantage__number {
+        font-size: 11px;
+    }
+
+    .advantage__title {
+        font-size: 22px;
+    }
+
+    .advantages__cta-text {
+        font-size: 20px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .advantage,
+    .advantage__icon {
+        transition: none;
+    }
+}

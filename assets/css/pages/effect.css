@@ -1,0 +1,228 @@
+/* =========================================================
+   EFFECT PAGE
+   ========================================================= */
+
+.effect-page {
+    padding-bottom: 120px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.effect-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: 72px;
+    align-items: start;
+    margin-top: 48px;
+    margin-bottom: 120px;
+}
+
+.effect-hero__image-wrapper {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #e9e6df;
+}
+
+.effect__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.effect-hero__content {
+    padding-top: 12px;
+}
+
+.effect__title {
+    max-width: 650px;
+    margin: 0 0 24px;
+    font-size: clamp(48px, 5vw, 76px);
+    line-height: 0.98;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+}
+
+.effect__description {
+    max-width: 560px;
+    margin: 0;
+    color: var(--color-text-muted, #777);
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+.effect-products-section {
+    margin-top: 0;
+}
+
+.effect-products-section__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 48px;
+}
+
+.effect-products-section__title {
+    margin: 0;
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.effect-products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+}
+
+
+/* =========================================================
+   EFFECT PRODUCT CARD
+   ========================================================= */
+
+.effect-products .catalog-product {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.effect-products__empty {
+    grid-column: 1 / -1;
+    padding: 80px 0;
+    border-top: 1px solid var(--color-border, #dedbd5);
+    border-bottom: 1px solid var(--color-border, #dedbd5);
+}
+
+.effect-products__empty-title {
+    margin: 0 0 14px;
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.effect-products__empty-text {
+    margin: 0 0 24px;
+    max-width: 560px;
+    color: var(--color-text-muted, #777);
+    line-height: 1.6;
+}
+
+.effect-products__empty-link {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   NOT FOUND
+   ========================================================= */
+
+.effect-not-found {
+    padding: 100px 0;
+}
+
+.effect-not-found h1 {
+    margin: 0 0 18px;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.effect-not-found p {
+    margin: 0 0 28px;
+    color: var(--color-text-muted, #777);
+    line-height: 1.6;
+}
+
+.effect-not-found a {
+    color: inherit;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991px) {
+    .effect-page {
+        padding-bottom: 90px;
+    }
+
+    .effect-hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 36px;
+        margin-bottom: 90px;
+    }
+
+    .effect-hero__content {
+        padding-top: 0;
+    }
+
+    .effect-products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .effect-page {
+        padding-bottom: 70px;
+    }
+
+    .effect-hero {
+        gap: 30px;
+        margin-top: 24px;
+        margin-bottom: 70px;
+    }
+
+    .effect__title {
+        font-size: 44px;
+    }
+
+    .effect__description {
+        font-size: 15px;
+    }
+
+    .effect-products-section__header {
+        margin-bottom: 32px;
+    }
+
+    .effect-products-section__title {
+        font-size: 38px;
+    }
+
+    .effect-products {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .effect-products__empty {
+        padding: 60px 0;
+    }
+
+    .effect-products__empty-title {
+        font-size: 28px;
+    }
+
+    .effect-not-found {
+        padding: 70px 0;
+    }
+}

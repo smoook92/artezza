@@ -1,0 +1,245 @@
+:root {
+    /* =========================================================
+       COLORS
+       ========================================================= */
+
+    /* Brand */
+    --color-primary: #26352f;
+    --color-primary-hover: #1d2924;
+    --color-primary-light: #34463e;
+
+    /* Accent */
+    --color-accent: #b18a5a;
+    --color-accent-hover: #987448;
+    --color-accent-light: #d1b58b;
+
+    /* Backgrounds */
+    --color-background: #f7f5f1;
+    --color-background-light: #ffffff;
+    --color-background-muted: #eeece7;
+    --color-background-dark: #202521;
+
+    /* Text */
+    --color-text: #252724;
+    --color-text-secondary: #656761;
+    --color-text-muted: #8b8d86;
+    --color-text-light: #ffffff;
+
+    /* Borders */
+    --color-border: #deddd7;
+    --color-border-light: #ebe9e3;
+    --color-border-dark: #c8c6be;
+
+    /* States */
+    --color-success: #4f765e;
+    --color-error: #a34d4d;
+    --color-warning: #a17a3d;
+
+    /* Overlay */
+    --color-overlay: rgba(20, 24, 21, 0.45);
+    --color-overlay-dark: rgba(20, 24, 21, 0.7);
+
+
+    /* =========================================================
+       TYPOGRAPHY
+       ========================================================= */
+
+    --font-primary: "Inter", sans-serif;
+    --font-heading: "Manrope", sans-serif;
+
+    --font-size-xs: 0.75rem;       /* 12px */
+    --font-size-sm: 0.875rem;      /* 14px */
+    --font-size-md: 1rem;          /* 16px */
+    --font-size-lg: 1.125rem;      /* 18px */
+    --font-size-xl: 1.25rem;       /* 20px */
+    --font-size-2xl: 1.5rem;       /* 24px */
+    --font-size-3xl: 1.875rem;     /* 30px */
+    --font-size-4xl: 2.5rem;       /* 40px */
+    --font-size-5xl: 3.5rem;       /* 56px */
+    --font-size-6xl: 4.5rem;       /* 72px */
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.1;
+    --line-height-heading: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.7;
+
+    --letter-spacing-tight: -0.03em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.04em;
+
+
+    /* =========================================================
+       LAYOUT
+       ========================================================= */
+
+    --container-width: 1440px;
+    --container-padding: 32px;
+
+    --header-height: 88px;
+
+    --section-padding-y: 120px;
+    --section-padding-y-large: 160px;
+    --section-padding-y-small: 80px;
+
+
+    /* =========================================================
+       SPACING
+       ========================================================= */
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-7: 28px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-14: 56px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --space-30: 120px;
+    --space-40: 160px;
+
+
+    /* =========================================================
+       GRID
+       ========================================================= */
+
+    --grid-columns: 12;
+    --grid-gap: 24px;
+    --grid-gap-large: 32px;
+
+    --content-width-narrow: 720px;
+    --content-width-medium: 960px;
+
+
+    /* =========================================================
+       BORDER RADIUS
+       ========================================================= */
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+
+    --radius-button: 4px;
+    --radius-card: 12px;
+    --radius-image: 12px;
+
+    --radius-full: 9999px;
+
+
+    /* =========================================================
+       BORDERS
+       ========================================================= */
+
+    --border-width: 1px;
+    --border-style: solid;
+
+
+    /* =========================================================
+       SHADOWS
+       ========================================================= */
+
+    --shadow-sm:
+        0 2px 8px rgba(20, 24, 21, 0.06);
+
+    --shadow-md:
+        0 8px 24px rgba(20, 24, 21, 0.08);
+
+    --shadow-lg:
+        0 16px 48px rgba(20, 24, 21, 0.12);
+
+    --shadow-xl:
+        0 24px 64px rgba(20, 24, 21, 0.16);
+
+
+    /* =========================================================
+       TRANSITIONS
+       ========================================================= */
+
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 400ms ease;
+
+    --transition-transform:
+        transform 300ms ease;
+
+    --transition-opacity:
+        opacity 250ms ease;
+
+    --transition-colors:
+        color 250ms ease,
+        background-color 250ms ease,
+        border-color 250ms ease;
+
+    --transition-default:
+        color 250ms ease,
+        background-color 250ms ease,
+        border-color 250ms ease,
+        transform 300ms ease,
+        opacity 250ms ease;
+
+
+    /* =========================================================
+       Z-INDEX
+       ========================================================= */
+
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-header: 300;
+    --z-overlay: 400;
+    --z-modal: 500;
+    --z-toast: 600;
+
+
+    /* =========================================================
+       IMAGES / MEDIA
+       ========================================================= */
+
+    --image-transition: transform 600ms ease;
+
+    --aspect-square: 1 / 1;
+    --aspect-landscape: 4 / 3;
+    --aspect-wide: 16 / 9;
+    --aspect-portrait: 3 / 4;
+
+
+    /* =========================================================
+       FORM ELEMENTS
+       ========================================================= */
+
+    --input-height: 52px;
+    --input-padding-x: 16px;
+    --input-border-color: var(--color-border);
+    --input-background: var(--color-background-light);
+
+    --focus-outline-width: 2px;
+    --focus-outline-offset: 3px;
+
+	 /* Buttons */
+
+--color-button-primary-text: #ffffff;
+--color-button-primary-hover-text: #ffffff;
+
+--color-button-secondary-text: #111111;
+--color-button-secondary-hover-text: #111111;
+
+--color-button-secondary-bg: #ffffff;
+--color-button-secondary-hover-bg: #f2f2f2;
+
+--color-button-secondary-border: #ffffff;
+--color-button-secondary-hover-border: #f2f2f2;
+
+--color-focus: #1d4ed8;
+}

@@ -1,0 +1,20 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 40"
+    fill="none"
+    aria-hidden="true"
+>
+    <path
+        d="M16 38S29 27.2 29 15.8C29 8.73 23.18 3 16 3S3 8.73 3 15.8C3 27.2 16 38 16 38Z"
+        stroke="currentColor"
+        stroke-width="1.8"
+    />
+
+    <circle
+        cx="16"
+        cy="15"
+        r="5"
+        stroke="currentColor"
+        stroke-width="1.8"
+    />
+</svg>

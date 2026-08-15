@@ -1,0 +1,304 @@
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    position: relative;
+
+    min-height: min(
+        850px,
+        calc(100svh - var(--header-height))
+    );
+
+    overflow: hidden;
+
+    color: var(--color-text-light);
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   MEDIA
+   ========================================================= */
+
+.hero__media {
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+}
+
+.hero__media picture,
+.hero__image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+}
+
+.hero__image {
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgb(0 0 0 / 0.58) 0%,
+            rgb(0 0 0 / 0.34) 42%,
+            rgb(0 0 0 / 0.08) 75%,
+            rgb(0 0 0 / 0) 100%
+        );
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.hero__container {
+    display: flex;
+    align-items: center;
+
+    min-height: inherit;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.hero__content {
+    width: min(720px, 100%);
+
+    padding-block: clamp(90px, 12vh, 150px);
+}
+
+.hero__eyebrow {
+    margin: 0 0 22px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    color: rgb(255 255 255 / 0.78);
+}
+
+.hero__title {
+    max-width: 780px;
+
+    margin: 0;
+
+    font-size: clamp(42px, 5.2vw, 78px);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+
+    text-wrap: balance;
+}
+
+.hero__description {
+    max-width: 560px;
+
+    margin: 28px 0 0;
+
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.6;
+
+    color: rgb(255 255 255 / 0.86);
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 38px;
+}
+
+
+/* =========================================================
+   SCROLL INDICATOR
+   ========================================================= */
+
+.hero__scroll {
+    position: absolute;
+    right: clamp(24px, 4vw, 64px);
+    bottom: 34px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: rgb(255 255 255 / 0.75);
+
+    writing-mode: vertical-rl;
+}
+
+.hero__scroll-line {
+    width: 1px;
+    height: 52px;
+
+    background: currentColor;
+}
+
+.hero__scroll-text {
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+@media (hover: hover) {
+
+    .hero__image {
+        transition: transform 1.2s ease;
+    }
+
+    .hero:hover .hero__image {
+        transform: scale(1.015);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .hero {
+        min-height: 700px;
+    }
+
+    .hero__content {
+        width: min(650px, 100%);
+    }
+
+    .hero__title {
+        font-size: clamp(42px, 6vw, 64px);
+    }
+
+    .hero__scroll {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .hero {
+        min-height: 680px;
+    }
+
+    .hero__overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgb(0 0 0 / 0.15) 0%,
+                rgb(0 0 0 / 0.48) 65%,
+                rgb(0 0 0 / 0.7) 100%
+            );
+    }
+
+    .hero__container {
+        align-items: flex-end;
+    }
+
+    .hero__content {
+        padding-block: 64px 54px;
+    }
+
+    .hero__eyebrow {
+        margin-bottom: 16px;
+
+        font-size: 12px;
+    }
+
+    .hero__title {
+        font-size: clamp(38px, 10vw, 52px);
+        line-height: 1;
+
+        letter-spacing: -0.025em;
+    }
+
+    .hero__description {
+        margin-top: 20px;
+
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+
+        margin-top: 28px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 479px) {
+
+    .hero {
+        min-height: 640px;
+    }
+
+    .hero__content {
+        padding-bottom: 42px;
+    }
+
+    .hero__title {
+        font-size: 38px;
+    }
+
+    .hero__description {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero__image {
+        transition: none;
+    }
+}

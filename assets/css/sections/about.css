@@ -1,0 +1,375 @@
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.about {
+    padding-block: clamp(90px, 11vw, 160px);
+
+    color: var(--color-text-light);
+    background-color: var(--color-primary);
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.about__grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(380px, 0.78fr);
+
+    align-items: center;
+
+    gap: clamp(50px, 9vw, 140px);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.about__content {
+    max-width: 680px;
+}
+
+.about__eyebrow {
+    display: block;
+
+    margin: 0 0 22px;
+
+    color: rgb(255 255 255 / 62%);
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.about__title {
+    max-width: 680px;
+
+    margin: 0;
+
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 500;
+    line-height: 1.02;
+
+    letter-spacing: -0.045em;
+
+    text-wrap: balance;
+}
+
+.about__text {
+    max-width: 580px;
+
+    margin-top: 32px;
+
+    color: rgb(255 255 255 / 72%);
+}
+
+.about__text p {
+    margin: 0;
+}
+
+.about__text p + p {
+    margin-top: 16px;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.about__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 40px;
+}
+
+.about__actions .button--outline {
+    color: #ffffff;
+    border-color: rgb(255 255 255 / 40%);
+}
+
+.about__actions .button--outline:hover {
+    color: var(--color-primary);
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+
+/* =========================================================
+   VISUAL
+   ========================================================= */
+
+.about__visual {
+    position: relative;
+
+    width: 100%;
+    max-width: 560px;
+
+    justify-self: end;
+}
+
+.about__image {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 0.82;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    background-color: rgb(255 255 255 / 8%);
+}
+
+.about__image::after {
+    position: absolute;
+    inset: 0;
+
+    content: "";
+
+    background:
+        linear-gradient(
+            180deg,
+            rgb(0 0 0 / 0%) 55%,
+            rgb(0 0 0 / 22%) 100%
+        );
+
+    pointer-events: none;
+}
+
+.about__image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.about__badge {
+    position: absolute;
+    right: clamp(16px, 2vw, 28px);
+    bottom: clamp(24px, 4vw, 54px);
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    max-width: 230px;
+
+    padding: 18px 20px;
+
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+.about__badge-number {
+    flex: 0 0 auto;
+
+    color: var(--color-primary);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.about__badge-text {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.about__stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    margin-top: clamp(70px, 9vw, 120px);
+
+    border-top: 1px solid rgb(255 255 255 / 20%);
+}
+
+.about-stat {
+    padding: 28px 24px 0;
+
+    border-right: 1px solid rgb(255 255 255 / 20%);
+}
+
+.about-stat:first-child {
+    padding-left: 0;
+}
+
+.about-stat:last-child {
+    border-right: 0;
+}
+
+.about-stat__number {
+    display: block;
+
+    color: inherit;
+
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 500;
+    line-height: 1;
+
+    letter-spacing: -0.04em;
+}
+
+.about-stat__label {
+    display: block;
+
+    max-width: 180px;
+
+    margin-top: 12px;
+
+    color: rgb(255 255 255 / 58%);
+
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .about__grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(320px, 0.72fr);
+
+        gap: 60px;
+    }
+
+    .about__badge {
+        right: 16px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .about {
+        padding-block: 72px;
+    }
+
+    .about__grid {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .about__title {
+        font-size: clamp(36px, 10vw, 52px);
+    }
+
+    .about__text {
+        margin-top: 24px;
+    }
+
+    .about__actions {
+        margin-top: 30px;
+    }
+
+    .about__visual {
+        max-width: none;
+
+        justify-self: stretch;
+    }
+
+    .about__image {
+        aspect-ratio: 0.9;
+    }
+
+    .about__badge {
+        right: 16px;
+        bottom: 20px;
+    }
+
+    .about__stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        margin-top: 64px;
+    }
+
+    .about-stat {
+        min-height: 130px;
+
+        padding: 22px 18px 0;
+    }
+
+    .about-stat:first-child {
+        padding-left: 0;
+    }
+
+    .about-stat:nth-child(2) {
+        border-right: 0;
+    }
+
+    .about-stat:nth-child(-n + 2) {
+        border-bottom: 1px solid rgb(255 255 255 / 20%);
+    }
+
+    .about-stat:nth-child(3) {
+        padding-left: 0;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 479px) {
+    .about {
+        padding-block: 60px;
+    }
+
+    .about__actions {
+        flex-direction: column;
+    }
+
+    .about__actions .button {
+        width: 100%;
+    }
+
+    .about__badge {
+        right: 12px;
+        bottom: 12px;
+
+        max-width: 210px;
+
+        padding: 14px 16px;
+    }
+
+    .about-stat__number {
+        font-size: 34px;
+    }
+
+    .about-stat__label {
+        font-size: 12px;
+    }
+}

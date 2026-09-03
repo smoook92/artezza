@@ -54,10 +54,404 @@ function bindEvents() {
         '[data-cart-order-form]'
     );
 
-    form?.addEventListener(
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener(
         'submit',
         handleOrderSubmit
     );
+
+    initOrderForm(form);
+}
+
+
+/**
+ * Инициализирует форму заказа.
+ *
+ * @param {HTMLFormElement} form
+ * @returns {void}
+ */
+function initOrderForm(form) {
+    const nameInput = form.elements.name;
+    const phoneInput = form.elements.phone;
+    const emailInput = form.elements.email;
+    const commentInput = form.elements.comment;
+
+    if (nameInput) {
+        nameInput.addEventListener(
+            'blur',
+            () => validateField(form, 'name')
+        );
+
+        nameInput.addEventListener(
+            'input',
+            () => {
+                if (nameInput.getAttribute('aria-invalid') === 'true') {
+                    validateField(form, 'name');
+                }
+            }
+        );
+    }
+
+    if (phoneInput) {
+        phoneInput.addEventListener(
+            'input',
+            handlePhoneInput
+        );
+
+        phoneInput.addEventListener(
+            'blur',
+            () => validateField(form, 'phone')
+        );
+    }
+
+    if (emailInput) {
+        emailInput.addEventListener(
+            'blur',
+            () => validateField(form, 'email')
+        );
+
+        emailInput.addEventListener(
+            'input',
+            () => {
+                if (emailInput.getAttribute('aria-invalid') === 'true') {
+                    validateField(form, 'email');
+                }
+            }
+        );
+    }
+
+    if (commentInput) {
+        commentInput.addEventListener(
+            'input',
+            () => {
+                updateCommentCounter(form);
+
+                if (
+                    commentInput.getAttribute('aria-invalid') === 'true'
+                ) {
+                    validateField(form, 'comment');
+                }
+            }
+        );
+
+        updateCommentCounter(form);
+    }
+
+    const agreementInput =
+        form.elements.agreement;
+
+    if (agreementInput) {
+        agreementInput.addEventListener(
+            'change',
+            () => validateField(form, 'agreement')
+        );
+    }
+}
+
+
+/**
+ * Обрабатывает ввод телефона.
+ *
+ * @param {Event} event
+ * @returns {void}
+ */
+function handlePhoneInput(event) {
+    const input = event.currentTarget;
+
+    input.value = formatPhone(
+        input.value
+    );
+}
+
+
+/**
+ * Форматирует российский номер телефона.
+ *
+ * @param {string} value
+ * @returns {string}
+ */
+function formatPhone(value) {
+    let digits = value.replace(/\D/g, '');
+
+    if (!digits) {
+        return '';
+    }
+
+    if (digits.startsWith('8')) {
+        digits = `7${digits.slice(1)}`;
+    } else if (!digits.startsWith('7')) {
+        digits = `7${digits}`;
+    }
+
+    digits = digits.slice(0, 11);
+
+    const subscriber = digits.slice(1);
+
+    let result = '+7';
+
+    if (subscriber.length > 0) {
+        result += ` (${subscriber.slice(0, 3)}`;
+    }
+
+    if (subscriber.length >= 3) {
+        result += ')';
+    }
+
+    if (subscriber.length > 3) {
+        result += ` ${subscriber.slice(3, 6)}`;
+    }
+
+    if (subscriber.length > 6) {
+        result += `-${subscriber.slice(6, 8)}`;
+    }
+
+    if (subscriber.length > 8) {
+        result += `-${subscriber.slice(8, 10)}`;
+    }
+
+    return result;
+}
+
+
+/**
+ * Валидирует отдельное поле.
+ *
+ * @param {HTMLFormElement} form
+ * @param {string} fieldName
+ * @returns {boolean}
+ */
+function validateField(form, fieldName) {
+    const input = form.elements[fieldName];
+
+    if (!input) {
+        return true;
+    }
+
+    const error = form.querySelector(
+        `[data-field-error="${fieldName}"]`
+    );
+
+    if (!error) {
+        return true;
+    }
+
+    let message = '';
+
+    switch (fieldName) {
+        case 'name':
+            message = validateName(input);
+            break;
+
+        case 'phone':
+            message = validatePhone(input);
+            break;
+
+        case 'email':
+            message = validateEmail(input);
+            break;
+
+        case 'comment':
+            message = validateComment(input);
+            break;
+
+        case 'agreement':
+            message = validateAgreement(input);
+            break;
+    }
+
+    input.setAttribute(
+        'aria-invalid',
+        message ? 'true' : 'false'
+    );
+
+    error.textContent = message;
+
+    return !message;
+}
+
+
+/**
+ * Валидирует имя.
+ *
+ * @param {HTMLInputElement} input
+ * @returns {string}
+ */
+function validateName(input) {
+    const value = input.value.trim();
+
+    input.value = value;
+
+    if (!value) {
+        return 'Введите ваше имя.';
+    }
+
+    if (value.length < 2) {
+        return 'Имя должно содержать минимум 2 символа.';
+    }
+
+    if (value.length > 50) {
+        return 'Имя должно содержать не более 50 символов.';
+    }
+
+    return '';
+}
+
+
+/**
+ * Валидирует телефон.
+ *
+ * @param {HTMLInputElement} input
+ * @returns {string}
+ */
+function validatePhone(input) {
+    const digits = input.value.replace(
+        /\D/g,
+        ''
+    );
+
+    if (!digits) {
+        return 'Введите номер телефона.';
+    }
+
+    if (
+        digits.length !== 11 ||
+        !digits.startsWith('7')
+    ) {
+        return 'Введите корректный номер телефона.';
+    }
+
+    return '';
+}
+
+
+/**
+ * Валидирует email.
+ *
+ * @param {HTMLInputElement} input
+ * @returns {string}
+ */
+function validateEmail(input) {
+    const value = input.value.trim();
+
+    input.value = value;
+
+    if (!value) {
+        return 'Введите адрес электронной почты.';
+    }
+
+    if (!input.validity.valid) {
+        return 'Введите корректный адрес электронной почты.';
+    }
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    if (!emailPattern.test(value)) {
+        return 'Введите полный адрес электронной почты.';
+    }
+
+    return '';
+}
+
+
+/**
+ * Валидирует комментарий.
+ *
+ * @param {HTMLTextAreaElement} input
+ * @returns {string}
+ */
+function validateComment(input) {
+    const value = input.value.trim();
+
+    if (value.length > 1000) {
+        return 'Комментарий не должен превышать 1000 символов.';
+    }
+
+    return '';
+}
+
+
+/**
+ * Валидирует согласие.
+ *
+ * @param {HTMLInputElement} input
+ * @returns {string}
+ */
+function validateAgreement(input) {
+    if (!input.checked) {
+        return 'Необходимо согласиться на обработку персональных данных.';
+    }
+
+    return '';
+}
+
+
+/**
+ * Валидирует всю форму.
+ *
+ * @param {HTMLFormElement} form
+ * @returns {boolean}
+ */
+function validateOrderForm(form) {
+    const fields = [
+        'name',
+        'phone',
+        'email',
+        'comment',
+        'agreement',
+    ];
+
+    let isValid = true;
+    let firstInvalidField = null;
+
+    fields.forEach((fieldName) => {
+        const valid = validateField(
+            form,
+            fieldName
+        );
+
+        if (!valid) {
+            isValid = false;
+
+            if (!firstInvalidField) {
+                firstInvalidField =
+                    form.elements[fieldName];
+            }
+        }
+    });
+
+    if (firstInvalidField) {
+        firstInvalidField.focus();
+    }
+
+    return isValid;
+}
+
+
+/**
+ * Обновляет счётчик комментария.
+ *
+ * @param {HTMLFormElement} form
+ * @returns {void}
+ */
+function updateCommentCounter(form) {
+    const comment =
+        form.elements.comment;
+
+    const counter =
+        form.querySelector(
+            '[data-comment-counter]'
+        );
+
+    if (!comment || !counter) {
+        return;
+    }
+
+    counter.textContent =
+        `${comment.value.length} / 1000`;
 }
 
 
@@ -384,7 +778,16 @@ function handleOrderSubmit(event) {
 
     const form = event.currentTarget;
 
-    if (!form.reportValidity()) {
+    clearOrderMessages(form);
+
+    if (!validateOrderForm(form)) {
+        return;
+    }
+
+    const website =
+        form.elements.website?.value.trim();
+
+    if (website) {
         return;
     }
 
@@ -393,6 +796,16 @@ function handleOrderSubmit(event) {
     if (!cart.length) {
         return;
     }
+
+    const submitButton =
+        form.querySelector(
+            '[type="submit"]'
+        );
+
+    setSubmitLoading(
+        submitButton,
+        true
+    );
 
     const data = new FormData(form);
 
@@ -431,6 +844,66 @@ function handleOrderSubmit(event) {
 
     window.location.href =
         'order-success.html';
+}
+
+
+/**
+ * Очищает сообщения формы.
+ *
+ * @param {HTMLFormElement} form
+ * @returns {void}
+ */
+function clearOrderMessages(form) {
+    const generalError =
+        form.querySelector(
+            '[data-cart-order-error]'
+        );
+
+    const success =
+        form.querySelector(
+            '[data-cart-order-success]'
+        );
+
+    if (generalError) {
+        generalError.textContent = '';
+        generalError.hidden = true;
+    }
+
+    if (success) {
+        success.textContent = '';
+        success.hidden = true;
+    }
+}
+
+
+/**
+ * Переключает состояние кнопки отправки.
+ *
+ * @param {HTMLButtonElement|null} button
+ * @param {boolean} loading
+ * @returns {void}
+ */
+function setSubmitLoading(button, loading) {
+    if (!button) {
+        return;
+    }
+
+    if (loading) {
+        button.disabled = true;
+        button.dataset.defaultText =
+            button.textContent.trim();
+        button.textContent =
+            'Оформление...';
+
+        return;
+    }
+
+    button.disabled = false;
+
+    if (button.dataset.defaultText) {
+        button.textContent =
+            button.dataset.defaultText;
+    }
 }
 
 

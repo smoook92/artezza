@@ -835,126 +835,247 @@
                      ORDER FORM
                      ================================================= -->
 
-                <form
-                    class="cart-order"
-                    data-cart-order-form
-                    novalidate
-                >
+                <!-- =================================================
+     ORDER FORM
+     ================================================= -->
 
-                    <h3 class="cart-order__title">
-                        Оформить заказ
-                    </h3>
+					<form
+						class="cart-order"
+						data-cart-order-form
+						novalidate
+					>
 
-                    <p class="cart-order__description">
-                        Оставьте контактные данные,
-                        и мы свяжемся с вами для подтверждения заказа.
-                    </p>
+						<h3 class="cart-order__title">
+							Оформить заказ
+						</h3>
 
-
-                    <div class="cart-order__fields">
-
-                        <label class="cart-order__field">
-
-                            <span>
-                                Имя
-                            </span>
-
-                            <input
-                                class="cart-order__input"
-                                type="text"
-                                name="name"
-                                placeholder="Ваше имя"
-                                autocomplete="name"
-                                required
-                                minlength="2"
-                            >
-
-                        </label>
+						<p class="cart-order__description">
+							Оставьте контактные данные,
+							и мы свяжемся с вами для подтверждения заказа.
+						</p>
 
 
-                        <label class="cart-order__field">
+						<div class="cart-order__fields">
 
-                            <span>
-                                Телефон
-                            </span>
+							<!-- NAME -->
+							<div class="cart-order__field">
 
-                            <input
-                                class="cart-order__input"
-                                type="tel"
-                                name="phone"
-                                placeholder="+7 (___) ___-__-__"
-                                autocomplete="tel"
-                                required
-                            >
+									<label
+										class="cart-order__label"
+										for="cart-order-name"
+									>
+										Имя
+									</label>
 
-                        </label>
+									<input
+										class="cart-order__input"
+										id="cart-order-name"
+										type="text"
+										name="name"
+										placeholder="Ваше имя"
+										autocomplete="name"
+										minlength="2"
+										maxlength="50"
+										required
+										aria-invalid="false"
+										aria-describedby="cart-order-name-error"
+									>
 
+									<p
+										class="cart-order__field-error"
+										id="cart-order-name-error"
+										data-field-error="name"
+										aria-live="polite"
+									></p>
 
-                        <label class="cart-order__field">
-
-                            <span>
-                                Email
-                            </span>
-
-                            <input
-                                class="cart-order__input"
-                                type="email"
-                                name="email"
-                                placeholder="example@mail.ru"
-                                autocomplete="email"
-                            >
-
-                        </label>
-
-
-                        <label class="cart-order__field">
-
-                            <span>
-                                Комментарий
-                            </span>
-
-                            <textarea
-                                class="cart-order__input cart-order__textarea"
-                                name="comment"
-                                placeholder="Дополнительная информация"
-                                rows="4"
-                            ></textarea>
-
-                        </label>
-
-                    </div>
+							</div>
 
 
-                    <label class="cart-order__agreement">
+							<!-- PHONE -->
+							<div class="cart-order__field">
 
-                        <input
-                            type="checkbox"
-                            name="agreement"
-                            required
-                        >
+									<label
+										class="cart-order__label"
+										for="cart-order-phone"
+									>
+										Телефон
+									</label>
 
-                        <span>
-                            Я согласен на обработку персональных данных
-                        </span>
+									<input
+										class="cart-order__input"
+										id="cart-order-phone"
+										type="tel"
+										name="phone"
+										placeholder="+7 (___) ___-__-__"
+										autocomplete="tel"
+										inputmode="numeric"
+										maxlength="18"
+										required
+										aria-invalid="false"
+										aria-describedby="cart-order-phone-error"
+									>
 
-                    </label>
+									<p
+										class="cart-order__field-error"
+										id="cart-order-phone-error"
+										data-field-error="phone"
+										aria-live="polite"
+									></p>
+
+							</div>
 
 
-                    <button
-                        class="button button--primary button--large cart-order__submit"
-                        type="submit"
-                    >
-                        Оформить заказ
-                    </button>
+							<!-- EMAIL -->
+							<div class="cart-order__field">
+
+									<label
+										class="cart-order__label"
+										for="cart-order-email"
+									>
+										Email
+									</label>
+
+									<input
+										class="cart-order__input"
+										id="cart-order-email"
+										type="email"
+										name="email"
+										placeholder="example@mail.ru"
+										autocomplete="email"
+										maxlength="254"
+										required
+										aria-invalid="false"
+										aria-describedby="cart-order-email-error"
+									>
+
+									<p
+										class="cart-order__field-error"
+										id="cart-order-email-error"
+										data-field-error="email"
+										aria-live="polite"
+									></p>
+
+							</div>
 
 
-                    <p
-                        class="cart-order__error"
-                        data-cart-order-error
-                        hidden
-                    ></p>
+							<!-- COMMENT -->
+							<div class="cart-order__field">
 
-                </form>
+									<label
+										class="cart-order__label"
+										for="cart-order-comment"
+									>
+										Комментарий
+									</label>
+
+									<textarea
+										class="cart-order__input cart-order__textarea"
+										id="cart-order-comment"
+										name="comment"
+										placeholder="Дополнительная информация"
+										rows="4"
+										maxlength="1000"
+										aria-invalid="false"
+										aria-describedby="cart-order-comment-error"
+									></textarea>
+
+									<div class="cart-order__field-meta">
+
+										<p
+											class="cart-order__field-error"
+											id="cart-order-comment-error"
+											data-field-error="comment"
+											aria-live="polite"
+										></p>
+
+										<span
+											class="cart-order__counter"
+											data-comment-counter
+										>
+											0 / 1000
+										</span>
+
+									</div>
+
+							</div>
+
+						</div>
+
+
+						<!-- HONEYPOT -->
+						<div
+							class="cart-order__honeypot"
+							aria-hidden="true"
+						>
+
+							<label for="cart-order-website">
+									Website
+							</label>
+
+							<input
+									id="cart-order-website"
+									type="text"
+									name="website"
+									tabindex="-1"
+									autocomplete="off"
+							>
+
+						</div>
+
+
+						<!-- AGREEMENT -->
+						<div class="cart-order__agreement">
+
+							<input
+									id="cart-order-agreement"
+									type="checkbox"
+									name="agreement"
+									required
+									aria-invalid="false"
+									aria-describedby="cart-order-agreement-error"
+							>
+
+							<label for="cart-order-agreement">
+									Я согласен на обработку персональных данных
+							</label>
+
+							<p
+									class="cart-order__field-error"
+									id="cart-order-agreement-error"
+									data-field-error="agreement"
+									aria-live="polite"
+							></p>
+
+						</div>
+
+
+						<!-- SUBMIT -->
+						<button
+							class="button button--primary button--large cart-order__submit"
+							type="submit"
+						>
+							Оформить заказ
+						</button>
+
+
+						<!-- GENERAL ERROR -->
+						<p
+							class="cart-order__error"
+							data-cart-order-error
+							aria-live="polite"
+							hidden
+						></p>
+
+
+						<!-- SUCCESS -->
+						<p
+							class="cart-order__success"
+							data-cart-order-success
+							aria-live="polite"
+							hidden
+						></p>
+
+					</form>
 
             </aside>
 

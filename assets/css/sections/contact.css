@@ -254,6 +254,228 @@ a.contact__detail-value {
     resize: vertical;
 }
 
+/* =========================================================
+   FORM VALIDATION
+   ========================================================= */
+
+.contact-form__field-error {
+    display: none;
+
+    margin: 0;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: #b54a43;
+}
+
+.contact-form__field-error:not(:empty) {
+    display: block;
+}
+
+
+/* =========================================================
+   TEXTAREA META
+   ========================================================= */
+
+.contact-form__textarea-meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: -2px;
+}
+
+.contact-form__counter {
+    flex: 0 0 auto;
+
+    font-size: 10px;
+    line-height: 1.5;
+
+    color: var(--color-text-muted);
+}
+
+
+/* =========================================================
+   INPUT STATES
+   ========================================================= */
+
+.contact-form__input.is-error {
+    border-bottom-color: #b54a43;
+}
+
+.contact-form__input.is-error:focus {
+    border-bottom-color: #b54a43;
+
+    box-shadow:
+        0 1px 0 #b54a43;
+}
+
+.contact-form__input.is-valid {
+    border-bottom-color: var(--color-primary);
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.contact-form__agreement {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.contact-form__checkbox {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    cursor: pointer;
+}
+
+.contact-form__checkbox input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    margin: -1px;
+    padding: 0;
+
+    overflow: hidden;
+
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+.contact-form__checkbox-mark {
+    position: relative;
+
+    flex: 0 0 16px;
+
+    width: 16px;
+    height: 16px;
+
+    margin-top: 1px;
+
+    border: 1px solid var(--color-border);
+
+    background-color: transparent;
+
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.contact-form__checkbox-mark::after {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 5px;
+
+    width: 4px;
+    height: 7px;
+
+    border-right: 1.5px solid #ffffff;
+    border-bottom: 1.5px solid #ffffff;
+
+    opacity: 0;
+
+    transform: rotate(45deg);
+
+    transition: opacity var(--transition-fast);
+}
+
+.contact-form__checkbox input:checked + .contact-form__checkbox-mark {
+    border-color: var(--color-primary);
+
+    background-color: var(--color-primary);
+}
+
+.contact-form__checkbox input:checked + .contact-form__checkbox-mark::after {
+    opacity: 1;
+}
+
+.contact-form__checkbox input:focus-visible + .contact-form__checkbox-mark {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.contact-form__checkbox-text {
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: var(--color-text-muted);
+}
+
+.contact-form__checkbox.is-error .contact-form__checkbox-mark {
+    border-color: #b54a43;
+}
+
+
+/* =========================================================
+   FORM MESSAGES
+   ========================================================= */
+
+.contact-form__error,
+.contact-form__success {
+    display: none;
+
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.contact-form__error {
+    color: #b54a43;
+}
+
+.contact-form__success {
+    color: var(--color-primary);
+}
+
+.contact-form.has-error .contact-form__error:not(:empty),
+.contact-form.is-success .contact-form__success {
+    display: block;
+}
+
+
+/* =========================================================
+   HONEYPOT
+   ========================================================= */
+
+.contact-form__honeypot {
+    position: absolute !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    margin: -1px !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+
+    white-space: nowrap !important;
+
+    border: 0 !important;
+}
 
 /* =========================================================
    FORM FOOTER

@@ -42,6 +42,37 @@
     min-height: 42px;
 }
 
+/* TOP BAR: новая компоновка */
+
+.site-header__top-inner {
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.site-header__top-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+}
+
+.site-header__top-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    margin-left: auto;
+    text-align: right;
+}
+
+.site-header__top-link img {
+    display: block;
+    width: 18px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
 .site-header__top-link,
 .site-header__top-phone {
     color: var(--header-text);

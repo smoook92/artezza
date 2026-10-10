@@ -9,11 +9,12 @@ export function initCatalogPanel() {
     const content = panel?.querySelector('.catalog-panel__content');
     const overlay = panel?.querySelector('.catalog-panel__overlay');
     const closeButton = panel?.querySelector('.catalog-panel__close');
-    const catalogLink = document.querySelector(
-        '.site-header__navigation .site-header__item:first-child > a'
+    const catalogLinks = document.querySelectorAll(
+        '.site-header__navigation .site-header__item:first-child > a, ' +
+        '.mobile-menu__navigation > a:first-child'
     );
 
-    if (!panel || !content || !catalogLink) {
+    if (!panel || !content || !catalogLinks.length) {
         return;
     }
 
@@ -63,13 +64,15 @@ export function initCatalogPanel() {
     };
 
     // Open the panel instead of navigating to catalog.html.
-    catalogLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        setPanelState(true);
-
-        if (categories.length) {
-            activateCategory(categories[0]);
-        }
+    catalogLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            setPanelState(true);
+    
+            if (categories.length) {
+                activateCategory(categories[0]);
+            }
+        });
     });
 
     // Switch categories on hover on desktop.

@@ -90,7 +90,22 @@ export function initCatalogPanel() {
             }
         });
 
-        // Mobile click behavior is intentionally not implemented yet.
+        // Open or collapse categories on mobile and tablet.
+        trigger?.addEventListener('click', () => {
+            if (desktopQuery.matches) {
+                activateCategory(category);
+                return;
+            }
+
+            const isActive = category.classList.contains('is-active');
+
+            if (isActive) {
+                category.classList.remove('is-active');
+                trigger.setAttribute('aria-expanded', 'false');
+            } else {
+                activateCategory(category);
+            }
+        });
     });
 
     closeButton?.addEventListener('click', () => {

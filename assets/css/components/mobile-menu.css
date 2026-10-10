@@ -233,7 +233,7 @@
 @media (max-width: 479px) {
 
     .mobile-menu {
-        inset-top: 64px;
+        top: 64px;
     }
 
     .mobile-menu__location a:first-child {

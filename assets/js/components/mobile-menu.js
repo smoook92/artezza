@@ -77,14 +77,27 @@ export function initMobileMenu() {
      *
      * @returns {void}
      */
-    const toggleMenu = () => {
-        if (isOpen) {
-            closeMenu();
-            return;
-        }
+    
+const toggleMenu = () => {
+    console.log('[mobile-menu] До переключения:', {
+        isOpen,
+        mediaQueryMatches: mediaQuery.matches,
+    });
 
+    if (isOpen) {
+        closeMenu();
+    } else {
         openMenu();
-    };
+    }
+
+    console.log('[mobile-menu] После переключения:', {
+        isOpen,
+        menuClasses: menu.className,
+        ariaHidden: menu.getAttribute('aria-hidden'),
+        headerClasses: header.className,
+    });
+};
+
 
     toggle.addEventListener('click', toggleMenu);
 

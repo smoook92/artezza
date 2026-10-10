@@ -1,4 +1,3 @@
-```javascript
 /**
  * Catalog side panel.
  *
@@ -111,4 +110,3 @@ export function initCatalogPanel() {
         }
     });
 }
-```

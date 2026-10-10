@@ -88,6 +88,20 @@ export function initMobileMenu() {
 
     toggle.addEventListener('click', toggleMenu);
 
+    // проверка
+console.log('[mobile-menu] Инициализирован', {
+    toggle,
+    menu,
+    mediaQueryMatches: mediaQuery.matches,
+});
+
+toggle.addEventListener('click', () => {
+    console.log('[mobile-menu] Клик по бургеру', {
+        mediaQueryMatches: mediaQuery.matches,
+    });
+});
+    //проверка
+
     document.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape' || !isOpen) {
             return;

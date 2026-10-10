@@ -78,42 +78,16 @@ export function initMobileMenu() {
      * @returns {void}
      */
     
-const toggleMenu = () => {
-    console.log('[mobile-menu] До переключения:', {
-        isOpen,
-        mediaQueryMatches: mediaQuery.matches,
-    });
 
-    if (isOpen) {
-        closeMenu();
-    } else {
-        openMenu();
-    }
-
-    console.log('[mobile-menu] После переключения:', {
-        isOpen,
-        menuClasses: menu.className,
-        ariaHidden: menu.getAttribute('aria-hidden'),
-        headerClasses: header.className,
-    });
-};
-
+    const toggleMenu = () => {
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    };
 
     toggle.addEventListener('click', toggleMenu);
-
-    // проверка
-console.log('[mobile-menu] Инициализирован', {
-    toggle,
-    menu,
-    mediaQueryMatches: mediaQuery.matches,
-});
-
-toggle.addEventListener('click', () => {
-    console.log('[mobile-menu] Клик по бургеру', {
-        mediaQueryMatches: mediaQuery.matches,
-    });
-});
-    //проверка
 
     document.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape' || !isOpen) {

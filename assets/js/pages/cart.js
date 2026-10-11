@@ -532,24 +532,12 @@ function handleQuantityChange(button) {
     );
 }
 
-
 /**
  * Рендерит корзину.
  *
  * @returns {void}
  */
 function renderCart() {
-    const cart = getCart();
-
-    const validCart = cart.filter(
-        (item) => getProduct(item.id)
-    );
-
-    if (validCart.length !== cart.length) {
-        saveCart(validCart);
-        return;
-    }
-
     const content = document.querySelector(
         '[data-cart-content]'
     );
@@ -562,19 +550,30 @@ function renderCart() {
         return;
     }
 
-    if (!validCart.length) {
+    const cart = getCart();
+
+    const validCart = cart.filter(
+        (item) => getProduct(item.id)
+    );
+
+    if (validCart.length !== cart.length) {
+        saveCart(validCart);
+    }
+
+    // Корзина пуста — показываем только пустое состояние.
+    if (validCart.length === 0) {
         content.hidden = true;
         empty.hidden = false;
         return;
     }
 
-    content.hidden = false;
+    // Есть товары — показываем корзину и скрываем пустое состояние.
     empty.hidden = true;
+    content.hidden = false;
 
     renderItems(validCart);
     renderSummary(validCart);
 }
-
 
 /**
  * Рендерит позиции корзины.

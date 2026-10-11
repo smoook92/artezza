@@ -82,7 +82,7 @@ function renderProduct(product, categories) {
                 category.id === product.category
         )?.name ?? product.category;
 
-    document.title = `${product.title} — ARTEZZA`;
+    document.title = `${product.title} — Краски и Лепнина`;
 
     updateMetaDescription(product.description);
 
@@ -424,5 +424,5 @@ function renderProductNotFound() {
     `;
 
     document.title =
-        'Товар не найден — ARTEZZA';
+        'Товар не найден — Краски и Лепнина';
 }

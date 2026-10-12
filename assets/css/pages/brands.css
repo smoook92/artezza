@@ -1,1 +1,312 @@
+/* =========================================================
+   BRANDS PAGE
+   ========================================================= */
 
+.brands-page {
+    padding-block: clamp(55px, 7vw, 100px);
+
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.brands-page__header {
+    max-width: 760px;
+    margin-bottom: clamp(35px, 5vw, 60px);
+}
+
+.brands-page__eyebrow {
+    margin: 0 0 18px;
+
+    color: var(--color-primary);
+
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.brands-page__title {
+    margin: 0;
+
+    font-size: clamp(44px, 6vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.05em;
+
+    text-wrap: balance;
+}
+
+.brands-page__description {
+    max-width: 620px;
+    margin: 22px 0 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   BRANDS GRID
+   ========================================================= */
+
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+/* =========================================================
+   BRAND CARD
+   ========================================================= */
+
+.brands-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+    min-height: 150px;
+    padding: 24px;
+
+    background-color: #fff;
+    border: 1px solid var(--color-border);
+
+    text-align: center;
+
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.brands-card__name {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: clamp(17px, 1.6vw, 23px);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.035em;
+
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   CALL TO ACTION
+   ========================================================= */
+
+.brands-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 35px;
+
+    margin-top: clamp(55px, 7vw, 90px);
+    padding: clamp(28px, 4vw, 48px);
+
+    background-color: #ebe8e2;
+}
+
+.brands-cta__content {
+    max-width: 570px;
+}
+
+.brands-cta__title {
+    margin: 0;
+
+    font-size: clamp(27px, 3vw, 38px);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+
+    text-wrap: balance;
+}
+
+.brands-cta__description {
+    margin: 16px 0 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.brands-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+.brands-cta__actions .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: 12px 18px;
+
+    font-size: 11px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Вторичная кнопка */
+.brands-cta__actions .button--secondary {
+    color: var(--color-text);
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+}
+
+/* =========================================================
+   HOVER AND FOCUS
+   ========================================================= */
+
+@media (hover: hover) {
+    .brands-card:hover {
+        border-color: var(--color-primary);
+        background-color: #fdfcf9;
+        transform: translateY(-2px);
+    }
+
+    .brands-cta__actions .button--secondary:hover {
+        border-color: var(--color-primary);
+    }
+}
+
+.brands-cta__actions a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+    .brands-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .brands-card {
+        min-height: 135px;
+        padding: 20px;
+    }
+
+    .brands-cta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 25px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+    .brands-page {
+        padding-block: 48px 65px;
+    }
+
+    .brands-page__header {
+        margin-bottom: 32px;
+    }
+
+    .brands-page__eyebrow {
+        margin-bottom: 14px;
+    }
+
+    .brands-page__title {
+        font-size: clamp(42px, 10vw, 58px);
+    }
+
+    .brands-page__description {
+        margin-top: 17px;
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .brands-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .brands-card {
+        min-height: 115px;
+        padding: 16px 12px;
+    }
+
+    .brands-card__name {
+        font-size: clamp(15px, 3.5vw, 19px);
+    }
+
+    .brands-cta {
+        gap: 22px;
+        margin-top: 48px;
+        padding: 26px 20px;
+    }
+
+    .brands-cta__title {
+        font-size: 29px;
+    }
+
+    .brands-cta__description {
+        font-size: 13px;
+    }
+
+    .brands-cta__actions {
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .brands-cta__actions .button {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+    .brands-grid {
+        gap: 8px;
+    }
+
+    .brands-card {
+        min-height: 100px;
+        padding: 12px 8px;
+    }
+
+    .brands-card__name {
+        font-size: 14px;
+    }
+
+    .brands-cta {
+        padding: 22px 16px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .brands-card {
+        transition: none;
+    }
+}

@@ -3,60 +3,46 @@
    ========================================================= */
 
 .categories {
-    padding-block: clamp(80px, 10vw, 150px);
-
+    padding-block: clamp(72px, 8vw, 120px);
     background-color: var(--color-background);
 }
 
-
 /* =========================================================
-   HEADING
+   SECTION HEADING
    ========================================================= */
 
 .section-heading {
     max-width: 760px;
-
-    margin-bottom: clamp(40px, 6vw, 72px);
+    margin-bottom: clamp(32px, 4vw, 56px);
 }
 
 .section-heading__eyebrow {
-    margin: 0 0 18px;
-
-    font-size: 12px;
+    margin: 0 0 16px;
+    font-size: 11px;
     font-weight: 600;
-    line-height: 1.4;
-
-    letter-spacing: 0.14em;
+    line-height: 1.5;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-
     color: var(--color-primary);
 }
 
 .section-heading__title {
-    max-width: 700px;
-
+    max-width: 680px;
     margin: 0;
-
-    font-size: clamp(34px, 4vw, 58px);
+    font-size: clamp(32px, 3.8vw, 52px);
     font-weight: 500;
-    line-height: 1.05;
-
-    letter-spacing: -0.035em;
-
+    line-height: 1.08;
+    letter-spacing: -0.04em;
     text-wrap: balance;
 }
 
 .section-heading__description {
-    max-width: 620px;
-
-    margin: 24px 0 0;
-
-    font-size: 17px;
-    line-height: 1.65;
-
+    max-width: 560px;
+    margin: 20px 0 0;
+    font-size: 16px;
+    line-height: 1.7;
     color: var(--color-text-muted);
 }
-
 
 /* =========================================================
    GRID
@@ -65,10 +51,8 @@
 .categories__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: clamp(16px, 2vw, 28px);
+    gap: clamp(12px, 1.5vw, 20px);
 }
-
 
 /* =========================================================
    CARD
@@ -76,52 +60,42 @@
 
 .category-card {
     position: relative;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-
-    min-height: 440px;
-
+    min-width: 0;
+    min-height: 400px;
     overflow: hidden;
-
-    color: var(--color-text-light);
-    background-color: #dedbd5;
-
+    color: #fff;
+    background-color: #343a35;
+    text-decoration: none;
     isolation: isolate;
 }
 
 .category-card--featured {
     grid-row: span 2;
-
-    min-height: 680px;
+    min-height: 620px;
 }
 
-
 /* =========================================================
-   MEDIA
+   IMAGE
    ========================================================= */
 
 .category-card__media {
     position: absolute;
     inset: 0;
-
     z-index: -2;
-
     overflow: hidden;
 }
 
 .category-card__media img {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
+    object-position: center;
     transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 
 /* =========================================================
    OVERLAY
@@ -130,125 +104,100 @@
 .category-card__overlay {
     position: absolute;
     inset: 0;
-
     z-index: -1;
-
     background:
         linear-gradient(
             180deg,
-            rgb(0 0 0 / 0.02) 20%,
-            rgb(0 0 0 / 0.12) 45%,
-            rgb(0 0 0 / 0.68) 100%
+            rgb(15 22 18 / 4%) 0%,
+            rgb(15 22 18 / 8%) 30%,
+            rgb(15 22 18 / 42%) 58%,
+            rgb(15 22 18 / 88%) 100%
         );
-
-    transition: background-color 300ms ease;
+    transition: opacity 300ms ease;
 }
-
 
 /* =========================================================
    CONTENT
    ========================================================= */
 
 .category-card__content {
-    padding: clamp(24px, 3vw, 42px);
+    padding: clamp(22px, 2.6vw, 36px);
 }
 
 .category-card__number {
     display: block;
-
-    margin-bottom: 20px;
-
-    font-size: 12px;
+    margin-bottom: 14px;
+    color: rgb(255 255 255 / 76%);
+    font-size: 11px;
     font-weight: 600;
-
-    letter-spacing: 0.12em;
-
-    color: rgb(255 255 255 / 0.68);
+    line-height: 1.4;
+    letter-spacing: 0.14em;
 }
 
 .category-card__title {
-    max-width: 500px;
-
+    max-width: 440px;
     margin: 0;
-
-    font-size: clamp(28px, 3vw, 42px);
+    color: #fff;
+    font-size: clamp(26px, 2.7vw, 38px);
     font-weight: 500;
-    line-height: 1.05;
-
-    letter-spacing: -0.025em;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
 }
 
 .category-card__description {
-    max-width: 460px;
-
-    margin: 14px 0 0;
-
-    font-size: 15px;
-    line-height: 1.55;
-
-    color: rgb(255 255 255 / 0.78);
+    max-width: 400px;
+    margin: 12px 0 0;
+    color: rgb(255 255 255 / 88%);
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .category-card__link {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-
-    margin-top: 28px;
-
-    font-size: 13px;
+    margin-top: 22px;
+    color: #fff;
+    font-size: 11px;
     font-weight: 600;
-
-    letter-spacing: 0.04em;
+    line-height: 1.5;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
-
-    color: #ffffff;
 }
 
 .category-card__arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
+    flex: 0 0 30px;
     width: 30px;
     height: 30px;
-
-    border: 1px solid rgb(255 255 255 / 0.45);
+    border: 1px solid rgb(255 255 255 / 58%);
     border-radius: 50%;
-
     transition:
         transform var(--transition-fast),
         background-color var(--transition-fast);
 }
-
 
 /* =========================================================
    HOVER
    ========================================================= */
 
 @media (hover: hover) {
-
     .category-card:hover .category-card__media img {
-        transform: scale(1.045);
+        transform: scale(1.04);
     }
 
     .category-card:hover .category-card__arrow {
         transform: translateX(4px);
-
-        background-color: rgb(255 255 255 / 0.14);
+        background-color: rgb(255 255 255 / 16%);
     }
 
     .category-card:hover .category-card__overlay {
-        background:
-            linear-gradient(
-                180deg,
-                rgb(0 0 0 / 0.04) 20%,
-                rgb(0 0 0 / 0.18) 45%,
-                rgb(0 0 0 / 0.74) 100%
-            );
+        opacity: 0.92;
     }
 }
-
 
 /* =========================================================
    FOCUS
@@ -259,7 +208,6 @@
     outline-offset: 4px;
 }
 
-
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -267,102 +215,156 @@
 .categories__footer {
     display: flex;
     justify-content: center;
-
-    margin-top: clamp(36px, 5vw, 56px);
+    margin-top: clamp(28px, 4vw, 44px);
 }
-
 
 /* =========================================================
    TABLET
    ========================================================= */
 
 @media (max-width: 1024px) {
-
     .category-card {
-        min-height: 380px;
+        min-height: 340px;
     }
 
     .category-card--featured {
-        min-height: 600px;
+        min-height: 540px;
+    }
+
+    .category-card__content {
+        padding: 26px;
+    }
+
+    .category-card__title {
+        font-size: clamp(25px, 3vw, 34px);
     }
 }
-
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
 @media (max-width: 767px) {
-
     .categories {
-        padding-block: 72px;
+        padding-block: 64px;
     }
 
     .section-heading {
-        margin-bottom: 36px;
+        margin-bottom: 30px;
+    }
+
+    .section-heading__title {
+        font-size: clamp(30px, 7vw, 40px);
+        line-height: 1.1;
     }
 
     .section-heading__description {
-        margin-top: 18px;
-
-        font-size: 16px;
+        margin-top: 16px;
+        font-size: 15px;
+        line-height: 1.65;
     }
 
     .categories__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
     }
 
     .category-card,
     .category-card--featured {
         grid-row: auto;
-
-        min-height: 420px;
+        min-height: 280px;
     }
 
     .category-card--featured {
-        min-height: 500px;
+        grid-column: 1 / -1;
+        min-height: 380px;
     }
 
     .category-card__content {
-        padding: 28px 24px;
+        padding: 20px 16px;
+    }
+
+    .category-card__number {
+        margin-bottom: 10px;
+        font-size: 10px;
+    }
+
+    .category-card__title {
+        font-size: clamp(19px, 4vw, 26px);
+        line-height: 1.12;
+    }
+
+    .category-card__description {
+        margin-top: 10px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .category-card__link {
+        gap: 7px;
+        margin-top: 16px;
+        font-size: 10px;
+        letter-spacing: 0.04em;
+    }
+
+    .category-card__arrow {
+        flex-basis: 26px;
+        width: 26px;
+        height: 26px;
     }
 }
-
 
 /* =========================================================
    SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 479px) {
-
     .categories {
-        padding-block: 60px;
+        padding-block: 52px;
     }
 
-    .category-card {
-        min-height: 360px;
+    .categories__grid {
+        gap: 8px;
+    }
+
+    .category-card,
+    .category-card--featured {
+        min-height: 240px;
     }
 
     .category-card--featured {
-        min-height: 440px;
+        min-height: 340px;
+    }
+
+    .category-card__content {
+        padding: 16px 12px;
     }
 
     .category-card__title {
-        font-size: 30px;
+        font-size: 19px;
     }
 
     .category-card__description {
-        font-size: 14px;
+        font-size: 12px;
+    }
+
+    .category-card__link {
+        margin-top: 12px;
+        font-size: 9px;
+    }
+
+    .category-card__arrow {
+        flex-basis: 24px;
+        width: 24px;
+        height: 24px;
     }
 }
-
 
 /* =========================================================
    REDUCED MOTION
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
     .category-card__media img,
     .category-card__arrow,
     .category-card__overlay {

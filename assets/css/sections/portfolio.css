@@ -303,6 +303,99 @@
 }
 
 /* =========================================================
+   PORTFOLIO — ACTUAL HOME PAGE GRID
+   ========================================================= */
+
+.portfolio__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+.portfolio__grid > .portfolio-card {
+    min-height: 340px;
+}
+
+.portfolio__grid > .portfolio-card--featured {
+    grid-column: 1 / -1;
+    min-height: 440px;
+}
+
+.portfolio__grid .portfolio-card__content {
+    padding: clamp(20px, 2.5vw, 32px);
+}
+
+.portfolio__grid .portfolio-card__title {
+    max-width: 520px;
+    font-size: clamp(22px, 2.2vw, 32px);
+}
+
+.portfolio__grid .portfolio-card__overlay {
+    background: linear-gradient(
+        180deg,
+        rgb(15 18 16 / 0%) 10%,
+        rgb(15 18 16 / 12%) 42%,
+        rgb(15 18 16 / 84%) 100%
+    );
+}
+
+@media (max-width: 767px) {
+    .portfolio__grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .portfolio__grid > .portfolio-card,
+    .portfolio__grid > .portfolio-card--featured {
+        grid-column: auto;
+        min-height: 300px;
+    }
+
+    .portfolio__grid > .portfolio-card--featured {
+        min-height: 360px;
+    }
+
+    .portfolio__grid .portfolio-card__content {
+        padding: 20px 18px;
+        gap: 14px;
+    }
+
+    .portfolio__grid .portfolio-card__title {
+        font-size: 23px;
+    }
+
+    .portfolio__grid .portfolio-card__description {
+        display: block;
+    }
+}
+
+@media (max-width: 479px) {
+    .portfolio__grid > .portfolio-card,
+    .portfolio__grid > .portfolio-card--featured {
+        min-height: 270px;
+    }
+
+    .portfolio__grid > .portfolio-card--featured {
+        min-height: 320px;
+    }
+
+    .portfolio__grid .portfolio-card__content {
+        padding: 17px 15px;
+    }
+
+    .portfolio__grid .portfolio-card__title {
+        font-size: 21px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio__grid .portfolio-card__media img {
+        transition: none;
+    }
+}
+
+/* =========================================================
    TABLET
    ========================================================= */
 

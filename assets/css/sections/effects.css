@@ -207,6 +207,22 @@
 }
 
 /* =========================================================
+   EFFECTS — FOOTER BUTTON
+   ========================================================= */
+
+.effects__footer .button--outline {
+    color: #fff;
+    background-color: rgb(255 255 255 / 5%);
+    border-color: rgb(255 255 255 / 65%);
+}
+
+.effects__footer .button--outline:hover {
+    color: var(--color-background-dark);
+    background-color: #fff;
+    border-color: #fff;
+}
+
+/* =========================================================
    TABLET
    ========================================================= */
 

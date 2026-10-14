@@ -247,6 +247,193 @@
     line-height: 1.45;
 }
 
+/* =========================================================
+   ABOUT — VISUAL REFINEMENTS
+   ========================================================= */
+
+.about__grid {
+    column-gap: clamp(48px, 7vw, 100px);
+}
+
+.about__content {
+    max-width: 640px;
+}
+
+.about__eyebrow {
+    margin-bottom: 18px;
+    letter-spacing: 0.16em;
+}
+
+.about__title {
+    max-width: 620px;
+    font-size: clamp(36px, 4.3vw, 60px);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+}
+
+.about__text {
+    max-width: 540px;
+    margin-top: 26px;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.about__text p + p {
+    margin-top: 14px;
+}
+
+.about__actions {
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.about__visual {
+    max-width: 520px;
+}
+
+.about__image {
+    aspect-ratio: 0.86;
+    background-color: rgb(255 255 255 / 8%);
+}
+
+.about__image img {
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+    .about__visual:hover .about__image img {
+        transform: scale(1.025);
+    }
+}
+
+.about__badge {
+    max-width: 240px;
+    gap: 14px;
+    padding: 17px 20px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
+}
+
+.about__badge-number {
+    font-size: 11px;
+}
+
+.about__badge-text {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Company facts */
+
+.about__stats {
+    margin-top: clamp(56px, 7vw, 88px);
+}
+
+.about-stat {
+    padding: 26px 20px 0;
+}
+
+.about-stat__number {
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.05;
+}
+
+.about-stat__label {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+/* Tablet */
+
+@media (max-width: 1100px) {
+    .about__grid {
+        column-gap: 40px;
+    }
+
+    .about__title {
+        font-size: clamp(34px, 4.5vw, 52px);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+    .about {
+        padding-block: 64px;
+    }
+
+    .about__grid {
+        gap: 36px;
+    }
+
+    .about__title {
+        font-size: clamp(34px, 8vw, 46px);
+        line-height: 1.08;
+    }
+
+    .about__text {
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .about__actions {
+        margin-top: 26px;
+    }
+
+    .about__visual {
+        width: 100%;
+    }
+
+    .about__image {
+        aspect-ratio: 1 / 1;
+    }
+
+    .about__badge {
+        right: 12px;
+        bottom: 12px;
+        max-width: 220px;
+        padding: 14px 16px;
+    }
+
+    .about__stats {
+        margin-top: 48px;
+    }
+
+    .about-stat {
+        padding-top: 20px;
+        padding-right: 14px;
+        padding-bottom: 18px;
+    }
+}
+
+/* Small mobile */
+
+@media (max-width: 479px) {
+    .about__actions {
+        flex-direction: column;
+    }
+
+    .about__actions .button {
+        width: 100%;
+    }
+
+    .about-stat__number {
+        font-size: 30px;
+    }
+
+    .about-stat__label {
+        font-size: 11px;
+    }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .about__image img {
+        transition: none;
+    }
+}
 
 /* =========================================================
    TABLET

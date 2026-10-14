@@ -179,6 +179,27 @@
     outline-offset: -2px;
 }
 
+/* SERVICES — HEADING CONTRAST FIX */
+
+.services .services__title,
+.services .service__title {
+    color: #f7f5f0;
+}
+
+.services .services__eyebrow {
+    color: rgb(255 255 255 / 72%);
+}
+
+.services .service__number,
+.services .service__meta {
+    color: rgb(255 255 255 / 70%);
+}
+
+.services .service__text,
+.services .services__intro {
+    color: rgb(255 255 255 / 82%);
+}
+
 /* =========================================================
    TABLET
    ========================================================= */

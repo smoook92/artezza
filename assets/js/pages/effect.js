@@ -58,7 +58,7 @@ function renderEffect(
     products,
     categories
 ) {
-    document.title = `${effect.name} — ARTEZZA`;
+    document.title = `${effect.name} — Краски и Лепнина`;
 
     updateMetaDescription(effect.description);
 
@@ -235,7 +235,7 @@ function renderEffectNotFound() {
     `;
 
     document.title =
-        'Эффект не найден — ARTEZZA';
+        'Эффект не найден — Краски и Лепнина';
 }
 
 function escapeHtml(value) {

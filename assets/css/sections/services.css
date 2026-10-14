@@ -200,6 +200,18 @@
     color: rgb(255 255 255 / 82%);
 }
 
+/* FIX: readable headings on the dark services section */
+
+.services h2.services__title,
+.services h3.service__title {
+    color: #f7f5f0 !important;
+}
+
+.services .service__text,
+.services .services__intro {
+    color: #e0e4e0 !important;
+}
+
 /* =========================================================
    TABLET
    ========================================================= */

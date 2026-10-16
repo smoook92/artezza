@@ -340,6 +340,290 @@
     );
 }
 
+/* =========================================================
+   PORTFOLIO PAGE — RESPONSIVE PROJECT CARDS
+   ========================================================= */
+
+.portfolio-page {
+    padding-block: 24px 96px;
+    background: var(--color-background);
+}
+
+.portfolio-breadcrumbs {
+    margin-bottom: clamp(36px, 5vw, 64px);
+}
+
+.portfolio-page__header {
+    max-width: 760px;
+    margin-bottom: clamp(44px, 6vw, 76px);
+}
+
+.portfolio-page__eyebrow {
+    margin: 0 0 14px;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.portfolio-page__title {
+    margin: 0;
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 500;
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+}
+
+.portfolio-page__description {
+    max-width: 560px;
+    margin: 22px 0 0;
+    color: var(--color-text-muted);
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+/* Use the available page width instead of a nested narrow container. */
+
+.portfolio-page > .container > .portfolio-projects > .container {
+    width: 100%;
+    max-width: none;
+    padding-inline: 0;
+}
+
+.portfolio-page .portfolio-projects {
+    margin-top: 0;
+}
+
+.portfolio-page .portfolio-projects__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.portfolio-page .portfolio-projects__eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.portfolio-page .portfolio-projects__title {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+}
+
+.portfolio-page .portfolio-projects__count {
+    color: var(--color-text-muted);
+    font-size: 13px;
+}
+
+/* Grid */
+
+.portfolio-page .portfolio-projects__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(16px, 2vw, 28px);
+}
+
+/* Card */
+
+.portfolio-page .portfolio-card {
+    display: block;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    transition:
+        transform 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.portfolio-page .portfolio-card__link {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Image */
+
+.portfolio-page .portfolio-card__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #e5e1da;
+}
+
+.portfolio-page .portfolio-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+}
+
+/* Text below image */
+
+.portfolio-page .portfolio-card__content {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: clamp(18px, 2vw, 26px);
+}
+
+.portfolio-page .portfolio-card__category {
+    margin-bottom: 12px;
+    color: var(--color-primary);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.portfolio-page .portfolio-card__title {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(20px, 1.7vw, 25px);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    overflow-wrap: anywhere;
+}
+
+.portfolio-page .portfolio-card__description {
+    margin: 12px 0 0;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.portfolio-page .portfolio-card__link-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: auto;
+    padding-top: 22px;
+    color: var(--color-text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.portfolio-page .portfolio-card__link-text span {
+    font-size: 17px;
+    transition: transform 250ms ease;
+}
+
+/* Hover and keyboard focus */
+
+@media (hover: hover) {
+    .portfolio-page .portfolio-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgb(0 0 0 / 8%);
+    }
+
+    .portfolio-page .portfolio-card:hover .portfolio-card__image {
+        transform: scale(1.035);
+    }
+
+    .portfolio-page .portfolio-card:hover .portfolio-card__link-text span {
+        transform: translate(3px, -3px);
+    }
+}
+
+.portfolio-page .portfolio-card__link:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: -3px;
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+    .portfolio-page .portfolio-projects__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+    .portfolio-page {
+        padding-block: 18px 64px;
+    }
+
+    .portfolio-breadcrumbs {
+        margin-bottom: 34px;
+    }
+
+    .portfolio-page__header {
+        margin-bottom: 42px;
+    }
+
+    .portfolio-page__title {
+        font-size: clamp(38px, 10vw, 52px);
+    }
+
+    .portfolio-page__description {
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .portfolio-page .portfolio-projects__header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .portfolio-page .portfolio-projects__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .portfolio-page .portfolio-card__image-wrapper {
+        aspect-ratio: 5 / 3;
+    }
+
+    .portfolio-page .portfolio-card__content {
+        padding: 20px;
+    }
+
+    .portfolio-page .portfolio-card__title {
+        font-size: 23px;
+    }
+
+    .portfolio-page .portfolio-card__description {
+        font-size: 13px;
+    }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-page .portfolio-card,
+    .portfolio-page .portfolio-card__image,
+    .portfolio-page .portfolio-card__link-text span {
+        transition: none;
+    }
+}
+
 @media (max-width: 767px) {
     .portfolio__grid {
         grid-template-columns: 1fr;

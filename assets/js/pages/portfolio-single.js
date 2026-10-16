@@ -81,29 +81,20 @@ function findRelatedProduct(productId) {
  * @param {Object|null} product
  * @returns {void}
  */
+
 function renderProject(project, product) {
     setText('.portfolio-single__category', project.category);
     setText('.portfolio-single__title', project.title);
     setText('.portfolio-single__description', project.description);
+    setText('.portfolio-single__breadcrumbs-current', project.title);
+    setText('.portfolio-single__text-content', project.description);
 
-    const image = document.querySelector(
-        '.portfolio-single__image'
-    );
+    const image = document.querySelector('.portfolio-single__image');
 
     if (image) {
         image.src = project.image;
         image.alt = project.title;
     }
-
-    setText(
-        '.portfolio-single__about-description',
-        project.description
-    );
-
-    setText(
-        '.portfolio-single__material',
-        project.category
-    );
 
     renderRelatedProduct(product);
 }
@@ -160,7 +151,7 @@ function renderRelatedProduct(product) {
  * @returns {void}
  */
 function updateMeta(project) {
-    document.title = `${project.title} — ARTEZZA`;
+    document.title = `${project.title} — Краски и Лепнина`;
 
     const meta = document.querySelector(
         'meta[name="description"]'
@@ -215,5 +206,5 @@ function renderNotFound() {
         </div>
     `;
 
-    document.title = 'Работа не найдена — ARTEZZA';
+    document.title = 'Работа не найдена — Краски и Лепнина';
 }

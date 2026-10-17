@@ -16,7 +16,7 @@
 .search-page__header {
     max-width: 800px;
 
-    padding-block: clamp(70px, 9vw, 120px) 65px;
+    padding-block: clamp(48px, 6vw, 76px) 32px;
 }
 
 .search-page__eyebrow {
@@ -63,7 +63,7 @@
 .search-form {
     max-width: 1000px;
 
-    padding: clamp(28px, 4vw, 45px);
+    padding: clamp(20px, 2.5vw, 28px);
 
     background-color: var(--color-surface);
 
@@ -73,7 +73,7 @@
 .search-form__label {
     display: block;
 
-    margin-bottom: 14px;
+    margin-bottom: 8px;
 
     font-size: 12px;
     font-weight: 600;
@@ -138,7 +138,7 @@
    ========================================================= */
 
 .search-results {
-    margin-top: clamp(70px, 8vw, 110px);
+    margin-top: clamp(40px, 5vw, 64px);
 }
 
 .search-results__header {
@@ -148,7 +148,7 @@
 
     gap: 30px;
 
-    margin-bottom: 38px;
+    margin-bottom: 28px;
 
     padding-bottom: 20px;
 
@@ -268,7 +268,7 @@
     }
 
     .search-page__header {
-        padding-block: 55px 45px;
+        padding-block: 36px 28px;
     }
 
     .search-page__title {
@@ -280,7 +280,7 @@
     }
 
     .search-form {
-        padding: 25px 20px;
+        padding: 20px 16px;
     }
 
     .search-form__field {
@@ -298,7 +298,7 @@
     }
 
     .search-results {
-        margin-top: 60px;
+        margin-top: 40px;
     }
 
     .search-results__header {
@@ -316,7 +316,7 @@
     }
 
     .search-results__empty {
-        padding: 60px 0;
+        padding: 40px 0;
     }
 
     .search-results__empty-title {
@@ -340,7 +340,7 @@
     }
 
     .search-form {
-        padding: 22px 18px;
+        padding: 18px 14px;
     }
 
     .search-results__title {

@@ -1,14 +1,13 @@
+
 /* =========================================================
    ABOUT
    ========================================================= */
 
 .about {
     padding-block: clamp(90px, 11vw, 160px);
-
     color: var(--color-text-light);
     background-color: var(--color-primary);
 }
-
 
 /* =========================================================
    GRID
@@ -16,61 +15,49 @@
 
 .about__grid {
     display: grid;
-
     grid-template-columns:
         minmax(0, 1fr)
         minmax(380px, 0.78fr);
-
     align-items: center;
-
-    gap: clamp(50px, 9vw, 140px);
+    column-gap: clamp(48px, 7vw, 100px);
 }
 
+.about__content {
+    max-width: 640px;
+}
 
 /* =========================================================
    CONTENT
    ========================================================= */
 
-.about__content {
-    max-width: 680px;
-}
-
 .about__eyebrow {
     display: block;
-
-    margin: 0 0 22px;
-
+    margin: 0 0 18px;
     color: rgb(255 255 255 / 62%);
-
     font-size: 12px;
     font-weight: 600;
     line-height: 1.4;
-
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
 }
 
 .about__title {
-    max-width: 680px;
-
+    max-width: 620px;
     margin: 0;
-
-    font-size: clamp(38px, 5vw, 68px);
-    font-weight: 500;
-    line-height: 1.02;
-
-    letter-spacing: -0.045em;
-
-    text-wrap: balance;
     color: #fff;
+    font-size: clamp(36px, 4.3vw, 60px);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
 }
 
 .about__text {
-    max-width: 580px;
-
-    margin-top: 32px;
-
+    max-width: 540px;
+    margin-top: 26px;
     color: rgb(255 255 255 / 72%);
+    font-size: 15px;
+    line-height: 1.75;
 }
 
 .about__text p {
@@ -78,9 +65,8 @@
 }
 
 .about__text p + p {
-    margin-top: 16px;
+    margin-top: 14px;
 }
-
 
 /* =========================================================
    ACTIONS
@@ -90,21 +76,19 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-
-    margin-top: 40px;
+    margin-top: 32px;
 }
 
 .about__actions .button--outline {
-    color: #ffffff;
+    color: #fff;
     border-color: rgb(255 255 255 / 40%);
 }
 
 .about__actions .button--outline:hover {
     color: var(--color-primary);
-    background-color: #ffffff;
-    border-color: #ffffff;
+    background-color: #fff;
+    border-color: #fff;
 }
-
 
 /* =========================================================
    VISUAL
@@ -112,51 +96,45 @@
 
 .about__visual {
     position: relative;
-
     width: 100%;
-    max-width: 560px;
-
+    max-width: 520px;
     justify-self: end;
 }
 
 .about__image {
     position: relative;
-
     width: 100%;
-    aspect-ratio: 0.82;
-
+    aspect-ratio: 0.86;
     margin: 0;
-
     overflow: hidden;
-
     background-color: rgb(255 255 255 / 8%);
 }
 
 .about__image::after {
     position: absolute;
     inset: 0;
-
     content: "";
-
-    background:
-        linear-gradient(
-            180deg,
-            rgb(0 0 0 / 0%) 55%,
-            rgb(0 0 0 / 22%) 100%
-        );
-
+    background: linear-gradient(
+        180deg,
+        rgb(0 0 0 / 0%) 55%,
+        rgb(0 0 0 / 22%) 100%
+    );
     pointer-events: none;
 }
 
 .about__image img {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+@media (hover: hover) {
+    .about__visual:hover .about__image img {
+        transform: scale(1.025);
+    }
+}
 
 /* =========================================================
    BADGE
@@ -166,52 +144,42 @@
     position: absolute;
     right: clamp(16px, 2vw, 28px);
     bottom: clamp(24px, 4vw, 54px);
-
     display: flex;
     align-items: center;
-    gap: 16px;
-
-    max-width: 230px;
-
-    padding: 18px 20px;
-
+    gap: 14px;
+    max-width: 240px;
+    padding: 17px 20px;
     color: var(--color-text);
     background-color: var(--color-background);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
 }
 
 .about__badge-number {
     flex: 0 0 auto;
-
     color: var(--color-primary);
-
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
 }
 
 .about__badge-text {
     font-size: 12px;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
-
 /* =========================================================
-   STATS
+   BENEFITS
    ========================================================= */
 
 .about__stats {
     display: grid;
-
     grid-template-columns: repeat(4, minmax(0, 1fr));
-
-    margin-top: clamp(70px, 9vw, 120px);
-
+    margin-top: clamp(56px, 7vw, 88px);
     border-top: 1px solid rgb(255 255 255 / 20%);
 }
 
 .about-stat {
-    padding: 28px 24px 0;
-
+    padding: 26px 20px 0;
     border-right: 1px solid rgb(255 255 255 / 20%);
 }
 
@@ -225,215 +193,20 @@
 
 .about-stat__number {
     display: block;
-
     color: inherit;
-
-    font-size: clamp(36px, 4vw, 58px);
+    font-size: clamp(32px, 3.5vw, 48px);
     font-weight: 500;
-    line-height: 1;
-
+    line-height: 1.05;
     letter-spacing: -0.04em;
 }
 
 .about-stat__label {
     display: block;
-
     max-width: 180px;
-
-    margin-top: 12px;
-
-    color: rgb(255 255 255 / 58%);
-
-    font-size: 13px;
-    line-height: 1.45;
-}
-
-/* =========================================================
-   ABOUT — VISUAL REFINEMENTS
-   ========================================================= */
-
-.about__grid {
-    column-gap: clamp(48px, 7vw, 100px);
-}
-
-.about__content {
-    max-width: 640px;
-}
-
-.about__eyebrow {
-    margin-bottom: 18px;
-    letter-spacing: 0.16em;
-}
-
-.about__title {
-    max-width: 620px;
-    font-size: clamp(36px, 4.3vw, 60px);
-    line-height: 1.06;
-    letter-spacing: -0.04em;
-}
-
-.about__text {
-    max-width: 540px;
-    margin-top: 26px;
-    font-size: 15px;
-    line-height: 1.75;
-}
-
-.about__text p + p {
-    margin-top: 14px;
-}
-
-.about__actions {
-    gap: 12px;
-    margin-top: 32px;
-}
-
-.about__visual {
-    max-width: 520px;
-}
-
-.about__image {
-    aspect-ratio: 0.86;
-    background-color: rgb(255 255 255 / 8%);
-}
-
-.about__image img {
-    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (hover: hover) {
-    .about__visual:hover .about__image img {
-        transform: scale(1.025);
-    }
-}
-
-.about__badge {
-    max-width: 240px;
-    gap: 14px;
-    padding: 17px 20px;
-    box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
-}
-
-.about__badge-number {
-    font-size: 11px;
-}
-
-.about__badge-text {
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-/* Company facts */
-
-.about__stats {
-    margin-top: clamp(56px, 7vw, 88px);
-}
-
-.about-stat {
-    padding: 26px 20px 0;
-}
-
-.about-stat__number {
-    font-size: clamp(32px, 3.5vw, 48px);
-    line-height: 1.05;
-}
-
-.about-stat__label {
     margin-top: 10px;
+    color: rgb(255 255 255 / 58%);
     font-size: 12px;
     line-height: 1.55;
-}
-
-/* Tablet */
-
-@media (max-width: 1100px) {
-    .about__grid {
-        column-gap: 40px;
-    }
-
-    .about__title {
-        font-size: clamp(34px, 4.5vw, 52px);
-    }
-}
-
-/* Mobile */
-
-@media (max-width: 767px) {
-    .about {
-        padding-block: 64px;
-    }
-
-    .about__grid {
-        gap: 36px;
-    }
-
-    .about__title {
-        font-size: clamp(34px, 8vw, 46px);
-        line-height: 1.08;
-    }
-
-    .about__text {
-        margin-top: 20px;
-        font-size: 14px;
-        line-height: 1.7;
-    }
-
-    .about__actions {
-        margin-top: 26px;
-    }
-
-    .about__visual {
-        width: 100%;
-    }
-
-    .about__image {
-        aspect-ratio: 1 / 1;
-    }
-
-    .about__badge {
-        right: 12px;
-        bottom: 12px;
-        max-width: 220px;
-        padding: 14px 16px;
-    }
-
-    .about__stats {
-        margin-top: 48px;
-    }
-
-    .about-stat {
-        padding-top: 20px;
-        padding-right: 14px;
-        padding-bottom: 18px;
-    }
-}
-
-/* Small mobile */
-
-@media (max-width: 479px) {
-    .about__actions {
-        flex-direction: column;
-    }
-
-    .about__actions .button {
-        width: 100%;
-    }
-
-    .about-stat__number {
-        font-size: 30px;
-    }
-
-    .about-stat__label {
-        font-size: 11px;
-    }
-}
-
-/* Reduced motion */
-
-@media (prefers-reduced-motion: reduce) {
-    .about__image img {
-        transition: none;
-    }
 }
 
 /* =========================================================
@@ -445,15 +218,17 @@
         grid-template-columns:
             minmax(0, 1fr)
             minmax(320px, 0.72fr);
-
         gap: 60px;
+    }
+
+    .about__title {
+        font-size: clamp(34px, 4.5vw, 52px);
     }
 
     .about__badge {
         right: 16px;
     }
 }
-
 
 /* =========================================================
    MOBILE
@@ -466,7 +241,6 @@
 
     .about__grid {
         grid-template-columns: 1fr;
-
         gap: 50px;
     }
 
@@ -476,6 +250,8 @@
 
     .about__text {
         margin-top: 24px;
+        font-size: 14px;
+        line-height: 1.7;
     }
 
     .about__actions {
@@ -484,7 +260,6 @@
 
     .about__visual {
         max-width: none;
-
         justify-self: stretch;
     }
 
@@ -499,17 +274,16 @@
 
     .about__stats {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-
         margin-top: 64px;
     }
 
     .about-stat {
         min-height: 130px;
-
         padding: 22px 18px 0;
     }
 
-    .about-stat:first-child {
+    .about-stat:first-child,
+    .about-stat:nth-child(3) {
         padding-left: 0;
     }
 
@@ -520,12 +294,7 @@
     .about-stat:nth-child(-n + 2) {
         border-bottom: 1px solid rgb(255 255 255 / 20%);
     }
-
-    .about-stat:nth-child(3) {
-        padding-left: 0;
-    }
 }
-
 
 /* =========================================================
    SMALL MOBILE
@@ -547,9 +316,7 @@
     .about__badge {
         right: 12px;
         bottom: 12px;
-
         max-width: 210px;
-
         padding: 14px 16px;
     }
 
@@ -559,5 +326,15 @@
 
     .about-stat__label {
         font-size: 12px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .about__image img {
+        transition: none;
     }
 }

@@ -69,6 +69,47 @@ function getProductId() {
 }
 
 /**
+ * Converts internal catalog values into readable Russian labels.
+ *
+ * @param {string} value
+ * @returns {string}
+ */
+function formatProductValue(value) {
+    const labels = {
+        water: 'Водная',
+        lime: 'Известковая',
+        cement: 'Цементная',
+        other: 'Другое',
+
+        walls: 'Стены',
+        floor: 'Пол',
+        ceiling: 'Потолок',
+        interior: 'Интерьер',
+        exterior: 'Экстерьер',
+
+        marble: 'Мрамор',
+        gloss: 'Глянец',
+        texture: 'Фактура',
+        concrete: 'Бетон',
+        decorative: 'Декоративный',
+    };
+
+    return labels[value] ?? value;
+}
+
+/**
+ * Formats a list of catalog values.
+ *
+ * @param {Array<string>} values
+ * @returns {string}
+ */
+function formatProductValues(values) {
+    return values
+        .map(formatProductValue)
+        .join(', ');
+}
+
+/**
  * Renders product data.
  *
  * @param {Object} product
@@ -108,17 +149,17 @@ function renderProduct(product, categories) {
 
     setText(
         '.product__base',
-        product.base
+        formatProductValue(product.base)
     );
-
+    
     setText(
         '.product__applications',
-        product.applications?.join(', ') || '—'
+        formatProductValues(product.applications ?? []) || '—'
     );
-
+    
     setText(
         '.product__effects',
-        product.effects?.join(', ') || '—'
+        formatProductValues(product.effects ?? []) || '—'
     );
 
     renderMainImage(product);

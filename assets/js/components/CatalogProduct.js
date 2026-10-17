@@ -22,6 +22,11 @@ export function createCatalogProduct(product) {
         product.category ??
         '';
 
+    const formattedPrice =
+        Number.isFinite(Number(product.price)) && Number(product.price) > 0
+            ? `${new Intl.NumberFormat('ru-RU').format(Number(product.price))} ₽`
+            : '';
+
     article.innerHTML = `
         <a
             class="catalog-product__media"
@@ -56,7 +61,17 @@ export function createCatalogProduct(product) {
             <p class="catalog-product__description">
                 ${escapeHtml(product.description)}
             </p>
-
+            
+            ${
+                formattedPrice
+                    ? `
+                        <p class="catalog-product__price">
+                            ${escapeHtml(formattedPrice)}
+                        </p>
+                    `
+                    : ''
+            }
+            
             <a
                 class="catalog-product__link"
                 href="${escapeHtml(product.url)}"

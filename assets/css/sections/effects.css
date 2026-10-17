@@ -267,6 +267,7 @@
         grid-column: 1 / -1;
         grid-row: auto;
         min-height: 320px;
+        margin-bottom: 14px;
     }
 
     .effect-card__content {
@@ -313,8 +314,9 @@
    }
 
     .effect-card--large {
-        min-height: 280px;
-    }
+       min-height: 280px;
+       margin-bottom: 12px;
+   }
 
     .effect-card__content {
         padding: 14px 8px;

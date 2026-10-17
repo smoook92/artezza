@@ -1,3 +1,8 @@
+import {
+    addToCart,
+    getCartQuantity,
+} from '../core/cart.js';
+
 /**
  * Создаёт карточку товара.
  *
@@ -72,6 +77,14 @@ export function createCatalogProduct(product) {
                     : ''
             }
             
+            <button
+                class="catalog-product__add-to-cart button button--primary button--small"
+                type="button"
+                data-product-id="${escapeHtml(product.id)}"
+            >
+                В корзину
+            </button>
+            
             <a
                 class="catalog-product__link"
                 href="${escapeHtml(product.url)}"
@@ -83,6 +96,28 @@ export function createCatalogProduct(product) {
         </div>
     `;
 
+    const addButton = article.querySelector(
+        '.catalog-product__add-to-cart'
+    );
+    
+    addButton?.addEventListener('click', () => {
+        addToCart(product.id);
+    
+        addButton.textContent = 'Добавлено в корзину';
+        addButton.classList.add('is-added');
+    
+        document
+            .querySelectorAll('[data-cart-count]')
+            .forEach((badge) => {
+                badge.textContent = String(getCartQuantity());
+            });
+    
+        window.setTimeout(() => {
+            addButton.textContent = 'В корзину';
+            addButton.classList.remove('is-added');
+        }, 1500);
+    });
+    
     return article;
 }
 

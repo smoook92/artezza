@@ -315,7 +315,7 @@
     }
 
     .effect-card__content {
-        padding: 14px 10px;
+        padding: 14px 8px;
     }
 
     .effect-card__title {
@@ -323,9 +323,11 @@
     }
 
     .effect-card__link {
-        margin-top: 10px;
-        font-size: 8px;
-    }
+       gap: 4px;
+       margin-top: 10px;
+       font-size: 8px;
+       letter-spacing: 0;
+   }
 
     .effect-card__arrow {
         flex-basis: 22px;

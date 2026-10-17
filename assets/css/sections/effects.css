@@ -312,12 +312,10 @@
        row-gap: 14px;
    }
 
-   .effects__grid > .effect-card:not(.effect-card--large) {
-       margin-top: 12px;
-   }
-
     .effect-card--large {
        min-height: 280px;
+       margin-bottom: 14px;
+       align-self: start;
    }
 
     .effect-card__content {

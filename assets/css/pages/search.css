@@ -178,12 +178,14 @@
    ========================================================= */
 
 .search-results__grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
 }
 
+/* Когда найдено два товара */
 .search-results__grid:has(> :nth-child(2):last-child) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 /* =========================================================
@@ -305,10 +307,13 @@
     }
 
     .search-results__grid {
-        grid-template-columns: 1fr;
-
-        gap: 30px;
-    }
+       grid-template-columns: 1fr;
+       gap: 30px;
+   }
+   
+   .search-results__grid:has(> :nth-child(2):last-child) {
+       grid-template-columns: 1fr;
+   }
 
     .search-results__empty {
         padding: 32px 0;

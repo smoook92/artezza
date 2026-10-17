@@ -307,15 +307,15 @@
     }
 
     .effects__grid {
-       grid-auto-rows: 220px;
+       grid-auto-rows: minmax(220px, auto);
        column-gap: 8px;
        row-gap: 14px;
    }
-
-    .effect-card--large {
+   
+   .effect-card--large {
        min-height: 280px;
-       margin-bottom: 14px;
-       align-self: start;
+       margin-bottom: 0;
+       align-self: stretch;
    }
 
     .effect-card__content {

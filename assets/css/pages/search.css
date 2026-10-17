@@ -22,7 +22,7 @@
 .search-page__eyebrow {
     display: block;
 
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 
     color: var(--color-primary);
 
@@ -47,7 +47,7 @@
 .search-page__description {
     max-width: 620px;
 
-    margin: 25px 0 0;
+    margin: 18px 0 0;
 
     color: var(--color-text-muted);
 
@@ -150,7 +150,7 @@
 
     margin-bottom: 28px;
 
-    padding-bottom: 20px;
+    padding-bottom: 16px;
 
     border-bottom: 1px solid var(--color-border);
 }
@@ -180,13 +180,14 @@
 
 .search-results__grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
 }
 
+/* Когда найдено два товара */
+.search-results__grid:has(> :nth-child(2):last-child) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 
 /* =========================================================
    EMPTY
@@ -302,7 +303,7 @@
     }
 
     .search-results__header {
-        margin-bottom: 28px;
+        margin-bottom: 22px;
     }
 
     .search-results__title {
@@ -312,7 +313,7 @@
     .search-results__grid {
         grid-template-columns: 1fr;
 
-        gap: 40px;
+        gap: 30px;
     }
 
     .search-results__empty {

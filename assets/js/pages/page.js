@@ -342,6 +342,11 @@ function getPageKey() {
  * @returns {void}
  */
 function renderPage(pageKey, pageData) {
+    document.querySelector('.page')?.classList.toggle(
+        'page--about',
+        pageKey === 'about'
+    );
+    
     document.title =
         `${pageData.title} — ARTEZZA`;
 

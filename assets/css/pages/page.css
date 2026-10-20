@@ -325,6 +325,240 @@
 
 
 /* =========================================================
+   ABOUT PAGE — EDITORIAL REDESIGN
+   Стили только для страницы «О компании»
+   ========================================================= */
+
+.page--about {
+    padding-bottom: clamp(72px, 9vw, 120px);
+}
+
+/* Первый экран */
+
+.page--about .page__header {
+    position: relative;
+    max-width: 100%;
+    padding-block: clamp(64px, 9vw, 112px) clamp(52px, 7vw, 84px);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.page--about .page__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.page--about .page__eyebrow::before {
+    width: 28px;
+    height: 1px;
+    content: "";
+    background-color: var(--color-primary);
+}
+
+.page--about .page__title {
+    max-width: 900px;
+    font-size: clamp(48px, 7.2vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+}
+
+.page--about .page__intro {
+    max-width: 680px;
+    margin-top: 30px;
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.75;
+}
+
+/* Основной контент */
+
+.page--about .page__content {
+    max-width: 100%;
+    padding-top: 0;
+}
+
+.page--about .page__section {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+    column-gap: clamp(32px, 7vw, 100px);
+    padding-block: clamp(48px, 7vw, 82px);
+}
+
+.page--about .page__section:first-child {
+    padding-top: clamp(48px, 7vw, 82px);
+}
+
+.page--about .page__section-title {
+    max-width: 480px;
+    font-size: clamp(28px, 3.2vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.045em;
+}
+
+.page--about .page__section-text {
+    max-width: 720px;
+    margin-top: 0;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.page--about .page__section-text + .page__section-text {
+    margin-top: 18px;
+}
+
+/* Третий блок — каталог направлений в виде сетки */
+
+.page--about .page__section:nth-child(3) {
+    display: block;
+    padding: clamp(36px, 5vw, 60px);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+}
+
+.page--about .page__section:nth-child(3) .page__section-title {
+    max-width: 650px;
+    margin-bottom: 28px;
+}
+
+.page--about .page__section:nth-child(3) .page__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 36px;
+    max-width: none;
+    margin-top: 0;
+}
+
+.page--about .page__section:nth-child(3) .page__list li {
+    padding: 20px 0 20px 22px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 15px;
+}
+
+.page--about .page__section:nth-child(3) .page__list li::before {
+    top: 29px;
+    width: 5px;
+    height: 5px;
+}
+
+/* Заключительный блок */
+
+.page--about .page__cta {
+    position: relative;
+    overflow: hidden;
+    gap: 36px;
+    margin-top: clamp(36px, 5vw, 60px);
+    padding: clamp(32px, 5vw, 64px);
+    background-color: var(--color-primary);
+}
+
+.page--about .page__cta-title {
+    max-width: 650px;
+    font-size: clamp(27px, 3.5vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+}
+
+.page--about .page__cta .button--outline {
+    flex-shrink: 0;
+    min-height: 48px;
+    padding-inline: 24px;
+}
+
+/* Планшеты и телефоны */
+
+@media (max-width: 767px) {
+    .page--about {
+        padding-bottom: 64px;
+    }
+
+    .page--about .page__header {
+        padding-block: 52px 42px;
+    }
+
+    .page--about .page__eyebrow {
+        margin-bottom: 20px;
+    }
+
+    .page--about .page__title {
+        font-size: clamp(42px, 10vw, 64px);
+        line-height: 1.02;
+    }
+
+    .page--about .page__intro {
+        margin-top: 22px;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .page--about .page__section,
+    .page--about .page__section:first-child {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding-block: 38px;
+    }
+
+    .page--about .page__section-title {
+        font-size: clamp(28px, 7vw, 36px);
+    }
+
+    .page--about .page__section-text {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .page--about .page__section:nth-child(3) {
+        padding: 26px 22px;
+    }
+
+    .page--about .page__section:nth-child(3) .page__section-title {
+        margin-bottom: 16px;
+    }
+
+    .page--about .page__section:nth-child(3) .page__list {
+        grid-template-columns: 1fr;
+    }
+
+    .page--about .page__section:nth-child(3) .page__list li {
+        padding-block: 16px;
+    }
+
+    .page--about .page__cta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 32px;
+        padding: 30px 24px;
+    }
+
+    .page--about .page__cta-title {
+        font-size: clamp(27px, 7vw, 36px);
+    }
+
+    .page--about .page__cta .button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 479px) {
+    .page--about .page__header {
+        padding-block: 42px 34px;
+    }
+
+    .page--about .page__title {
+        font-size: 40px;
+    }
+
+    .page--about .page__intro {
+        font-size: 15px;
+    }
+
+    .page--about .page__section:nth-child(3) {
+        padding: 24px 18px;
+    }
+}
+
+/* =========================================================
    MOBILE
    ========================================================= */
 

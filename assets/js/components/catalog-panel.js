@@ -10,11 +10,8 @@ export function initCatalogPanel() {
     const overlay = panel?.querySelector('.catalog-panel__overlay');
     const closeButton = panel?.querySelector('.catalog-panel__close');
     const catalogLinks = document.querySelectorAll(
-        '.site-header__navigation .catalog-panel__open, ' +
-        '.site-header__navigation .site-header__item:first-child > a, ' +
-        '.mobile-menu__navigation > a:first-child'
+        '.site-header__catalog-toggle.catalog-panel__open'
     );
-
 
     if (!panel || !content || !catalogLinks.length) {
         return;

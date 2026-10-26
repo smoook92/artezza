@@ -35,25 +35,41 @@
 }
 
 .site-header__top-inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    gap: 2rem;
-
-    min-height: 42px;
-}
-
-/* TOP BAR: новая компоновка */
-
-.site-header__top-inner {
-    justify-content: space-between;
-    gap: 2rem;
+    gap: 1.5rem;
+    min-height: 96px;
 }
 
 .site-header__top-info {
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex-shrink: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.site-header__top-info .site-header__top-link {
+    margin-left: 0;
+    text-align: left;
+}
+
+.site-header__top-info .site-header__top-hours {
+    color: var(--header-muted);
+    font-size: 0.875rem;
+    line-height: 1.2;
+}
+
+.site-header__top-inner > .site-header__logo {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.site-header__top-phone {
+    grid-column: 3;
+    justify-self: end;
+    white-space: nowrap;
 }
 
 .site-header__top-link {
@@ -134,6 +150,13 @@
     text-decoration: none;
 }
 
+.site-header__logo-text {
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
 .site-header__logo img {
     display: block;
     width: 220px;
@@ -189,6 +212,36 @@
     outline-offset: 3px;
 }
 
+.site-header__catalog-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    flex-shrink: 0;
+
+    border: 0;
+    background: transparent;
+    color: var(--header-text);
+    cursor: pointer;
+}
+
+.site-header__catalog-toggle span {
+    display: block;
+    width: 25px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.site-header__catalog-toggle:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
 
 /* ==========================================================================
    DESKTOP NAVIGATION
@@ -201,7 +254,7 @@
 .site-header__list {
     display: flex;
     align-items: stretch;
-    justify-content: flex-end;
+	justify-content: space-evenly;
     gap: clamp(1rem, 1.8vw, 2.25rem);
 
     margin: 0;
@@ -566,15 +619,34 @@ body.menu-open {
    ========================================================================== */
 
 @media (max-width: 991px) {
-    .site-header__top {
-        display: none;
-    }
-
-    .site-header__main-inner {
-        grid-template-columns: auto 1fr auto;
-
-        min-height: 70px;
-    }
+    .site-header__top-inner {
+	    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	    gap: 0.5rem;
+	    min-height: 64px;
+	}
+	
+	.site-header__top-info {
+	    display: none;
+	}
+	
+	.site-header__top-inner > .site-header__logo {
+	    grid-column: 2;
+	    justify-self: center;
+	}
+	
+	.site-header__logo-text {
+	    font-size: 1.35rem;
+	}
+	
+	.site-header__top-phone {
+	    grid-column: 3;
+	    justify-self: end;
+	    font-size: 0.8rem;
+	}
+	
+	.site-header__catalog-toggle {
+	    display: inline-flex;
+	}
 
     .site-header__menu-toggle {
         display: inline-flex;
@@ -879,10 +951,10 @@ body.menu-open {
         height: 44px;
     }
 
-    .site-header__menu-toggle {
-        width: 40px;
-        height: 40px;
-    }
+    .site-header__catalog-toggle {
+	    width: 40px;
+	    height: 40px;
+	}
 
     .site-header__actions {
         width: 40px;

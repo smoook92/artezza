@@ -115,14 +115,24 @@
 	<div class="site-header__top">
 	    <div class="container site-header__top-inner">
 	        <div class="site-header__top-info">
-	            <a class="site-header__top-phone" href="tel:+79661873202">
-	                8 966 187-32-02
-	            </a>
-	
-	            <span class="site-header__top-hours">
-	                Ежедневно с 9:00 до 18:00
-	            </span>
-	        </div>
+			    <a
+			        class="site-header__logo"
+			        href="index.html"
+			        aria-label="Краски и Лепнина — главная"
+			    >
+			        <span class="site-header__logo-text">
+			            Краски&amp;Лепнина
+			        </span>
+			    </a>
+			
+			    <a class="site-header__top-phone" href="tel:+79661873202">
+			        8 966 187-32-02
+			    </a>
+			
+			    <span class="site-header__top-hours">
+			        Ежедневно с 9:00 до 18:00
+			    </span>
+			</div>
 	
 	        <a
 	            class="site-header__top-link"
@@ -150,29 +160,18 @@
 
         <div class="container site-header__main-inner">
 
-            <!-- MOBILE MENU TOGGLE -->
-            <button
-                class="site-header__menu-toggle"
-                type="button"
-                aria-expanded="false"
-                aria-controls="mobile-menu"
-                aria-label="Открыть меню"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-			
-			<!-- LOGO -->
-			<a
-			    class="site-header__logo"
-			    href="index.html"
-			    aria-label="Краски и Лепнина — главная"
+            <!-- CATALOG MENU TOGGLE -->
+			<button
+			    class="site-header__menu-toggle catalog-panel__open"
+			    type="button"
+			    aria-expanded="false"
+			    aria-controls="catalog-panel"
+			    aria-label="Открыть каталог"
 			>
-			    <span class="site-header__logo-text">
-			        Краски&amp;Лепнина
-			    </span>
-			</a>
+			    <span></span>
+			    <span></span>
+			    <span></span>
+			</button>
 
 			<!-- DESKTOP NAVIGATION -->
 			<nav
@@ -181,15 +180,8 @@
 			>
 			    <ul class="site-header__list">
 			        <li class="site-header__item">
-			            <button
-			                class="catalog-panel__open"
-			                type="button"
-			                aria-controls="catalog-panel"
-			                aria-expanded="false"
-			            >
-			                Каталог
-			            </button>
-			        </li>
+					    <a href="catalog.html">Каталог</a>
+					</li>
 			
 			        <li class="site-header__item">
 			            <a href="brands.html">Бренды</a>

@@ -5,7 +5,7 @@
  */
 export function initMobileMenu() {
     const header = document.querySelector('.site-header');
-    const toggle = document.querySelector('.site-header__menu-toggle');
+    const toggle = document.querySelector('.mobile-menu__toggle');
     const menu = document.querySelector('#mobile-menu');
 
     if (!header || !toggle || !menu) {

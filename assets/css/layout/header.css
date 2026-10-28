@@ -1165,6 +1165,5 @@ body.menu-open {
 
     body.menu-open {
         overflow: hidden;
-        touch-action: none;
     }
 }

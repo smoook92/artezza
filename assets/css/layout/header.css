@@ -9,7 +9,7 @@
     --header-muted: #686868;
     --header-accent: #0b0d16;
 
-	 --header-top-height: 42px;
+    --header-top-height: 96px;
     --header-main-height: 74px;
     --header-total-height: calc(
         var(--header-top-height) + var(--header-main-height)
@@ -50,11 +50,6 @@
     min-width: 0;
 }
 
-.site-header__top-info .site-header__top-link {
-    margin-left: 0;
-    text-align: left;
-}
-
 .site-header__top-info .site-header__top-hours {
     color: var(--header-muted);
     font-size: 0.875rem;
@@ -66,20 +61,29 @@
     justify-self: center;
 }
 
-.site-header__top-phone {
+.site-header__top-link {
     grid-column: 3;
     justify-self: end;
+    max-width: 100%;
+    margin-left: 0;
+    text-align: left;
+}
+
+.site-header__top-link span {
+    max-width: 100%;
+}
+
+.site-header__top-phone {
     white-space: nowrap;
 }
 
 .site-header__top-link {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 0.5rem;
 
-    margin-left: auto;
-    text-align: right;
+    text-align: left;
 }
 
 .site-header__top-link img {
@@ -363,6 +367,33 @@
 
 @media (min-width: 992px) {
     /*
+     * На ПК верхняя полоса прокручивается вместе со страницей.
+     * Нижняя навигация фиксируется только после ухода верхней полосы.
+     */
+    .site-header {
+        position: static;
+        top: auto;
+        z-index: auto;
+    }
+
+    .site-header--nav-sticky {
+        padding-bottom: var(--header-main-height);
+    }
+
+    .site-header--nav-sticky .site-header__main {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .site-header--nav-sticky .site-header__dropdown {
+        top: var(--header-main-height);
+        max-height: calc(100vh - var(--header-main-height));
+    }
+
+    /*
      * Dropdown не должен позиционироваться относительно <li>.
      * Он является общим меню Header и всегда центрируется
      * относительно viewport.
@@ -625,9 +656,18 @@ body.menu-open {
 	    min-height: 64px;
 	}
 	
-	.site-header__top-info {
-	    display: none;
-	}
+    /*
+     * Сохраняем мобильную компоновку: часы и адрес скрыты,
+     * логотип остаётся по центру, телефон — справа.
+     */
+    .site-header__top-info {
+        display: contents;
+    }
+
+    .site-header__top-hours,
+    .site-header__top-link {
+        display: none;
+    }
 	
 	.site-header__top-inner > .site-header__logo {
 	    grid-column: 2;

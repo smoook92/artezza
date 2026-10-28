@@ -1,130 +1,135 @@
 /**
  * Mobile navigation menu.
  *
+ * The mobile menu and desktop catalog panel have separate triggers and
+ * cannot be open at the same time.
+ *
  * @returns {void}
  */
 export function initMobileMenu() {
     const header = document.querySelector('.site-header');
-    const toggle = document.querySelector('.mobile-menu__toggle');
-    const menu = document.querySelector('#mobile-menu');
+    const toggle = header?.querySelector('.site-header__menu-toggle');
+    const menu = header?.querySelector('#mobile-menu');
+    const closeButton = menu?.querySelector('.mobile-menu__close');
 
-    if (!header || !toggle || !menu) {
+    if (!header || !toggle || !menu || !closeButton) {
         return;
     }
 
-    const mediaQuery = window.matchMedia('(max-width: 1023px)');
+    const mediaQuery = window.matchMedia('(max-width: 991px)');
     const links = menu.querySelectorAll('a');
-
     let isOpen = false;
 
-    /**
-     * Open mobile menu.
-     *
-     * @returns {void}
-     */
     const openMenu = () => {
         if (!mediaQuery.matches || isOpen) {
             return;
         }
 
-        isOpen = true;
+        // Defensive: close the desktop catalog panel if it was left open
+        // before the viewport crossed the breakpoint.
+        const catalogPanel = document.querySelector('#catalog-panel');
+        if (catalogPanel?.getAttribute('aria-hidden') === 'false') {
+            catalogPanel.querySelector('.catalog-panel__close')?.click();
+        }
 
+        isOpen = true;
         header.classList.add('mobile-menu-is-open');
         menu.classList.add('is-open');
-
+        menu.setAttribute('aria-hidden', 'false');
         toggle.setAttribute('aria-expanded', 'true');
         toggle.setAttribute('aria-label', 'Закрыть меню');
-
-        menu.setAttribute('aria-hidden', 'false');
-
         document.body.classList.add('menu-open');
-
-        const firstLink = menu.querySelector('a, button');
-
-        firstLink?.focus();
+        closeButton.focus();
     };
 
-    /**
-     * Close mobile menu.
-     *
-     * @param {boolean} returnFocus
-     * @returns {void}
-     */
     const closeMenu = (returnFocus = true) => {
         if (!isOpen) {
             return;
         }
 
         isOpen = false;
-
         header.classList.remove('mobile-menu-is-open');
         menu.classList.remove('is-open');
-
+        menu.setAttribute('aria-hidden', 'true');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'Открыть меню');
-
-        menu.setAttribute('aria-hidden', 'true');
-
         document.body.classList.remove('menu-open');
 
-        if (returnFocus) {
+        if (returnFocus && mediaQuery.matches) {
             toggle.focus();
         }
     };
 
-    /**
-     * Toggle menu state.
-     *
-     * @returns {void}
-     */
-    
+    toggle.addEventListener('click', (event) => {
+        if (!mediaQuery.matches) {
+            return;
+        }
 
-    const toggleMenu = () => {
+        event.preventDefault();
         if (isOpen) {
             closeMenu();
         } else {
             openMenu();
         }
-    };
-
-    toggle.addEventListener('click', toggleMenu);
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key !== 'Escape' || !isOpen) {
-            return;
-        }
-
-        closeMenu();
     });
 
-    document.addEventListener('click', (event) => {
+    closeButton.addEventListener('click', () => closeMenu());
+
+    document.addEventListener('keydown', (event) => {
         if (!isOpen) {
             return;
         }
 
-        const target = event.target;
-
-        if (!(target instanceof Node)) {
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            closeMenu();
             return;
         }
 
-        if (!header.contains(target)) {
-            closeMenu();
+        if (event.key !== 'Tab') {
+            return;
+        }
+
+        const focusable = [...menu.querySelectorAll(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )].filter((element) => !element.hasAttribute('hidden'));
+
+        if (!focusable.length) {
+            event.preventDefault();
+            closeButton.focus();
+            return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!isOpen || !(event.target instanceof Node)) {
+            return;
+        }
+
+        if (!header.contains(event.target)) {
+            closeMenu(false);
         }
     });
 
     links.forEach((link) => {
-        link.addEventListener('click', () => {
-            closeMenu(false);
-        });
+        link.addEventListener('click', () => closeMenu(false));
     });
 
     const handleBreakpointChange = (event) => {
-        if (event.matches) {
-            return;
+        if (!event.matches) {
+            closeMenu(false);
         }
-
-        closeMenu(false);
     };
 
     if (typeof mediaQuery.addEventListener === 'function') {
@@ -136,4 +141,5 @@ export function initMobileMenu() {
     menu.setAttribute('aria-hidden', 'true');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Открыть меню');
+    document.body.classList.remove('menu-open');
 }

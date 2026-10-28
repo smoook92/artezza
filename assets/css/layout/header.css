@@ -73,13 +73,11 @@
 }
 
 .site-header__top-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.5rem;
-
-    margin-left: auto;
-    text-align: right;
+    grid-column: 3;
+    justify-self: end;
+    max-width: 100%;
+    margin-left: 0;
+    text-align: left;
 }
 
 .site-header__top-link img {
@@ -87,6 +85,10 @@
     width: 18px;
     height: 22px;
     flex-shrink: 0;
+}
+
+.site-header__top-link span {
+    max-width: 100%;
 }
 
 .site-header__top-link,
@@ -362,6 +364,29 @@
    ========================================================================== */
 
 @media (min-width: 992px) {
+	.site-header {
+	    position: static;
+	    top: auto;
+	    z-index: auto;
+	}
+	
+	.site-header--nav-sticky {
+	    padding-bottom: var(--header-main-height);
+	}
+	
+	.site-header--nav-sticky .site-header__main {
+	    position: fixed;
+	    top: 0;
+	    right: 0;
+	    left: 0;
+	    z-index: 1000;
+	}
+	
+	.site-header--nav-sticky .site-header__dropdown {
+	    top: var(--header-main-height);
+	    max-height: calc(100vh - var(--header-main-height));
+	}
+	
     /*
      * Dropdown не должен позиционироваться относительно <li>.
      * Он является общим меню Header и всегда центрируется

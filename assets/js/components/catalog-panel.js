@@ -1,8 +1,7 @@
 /**
  * Catalog side panel.
  *
- * Opens the catalog panel, switches categories on hover
- * and closes the panel on outside click or Escape.
+ * Opens only on desktop. The mobile menu uses its own toggle and content.
  */
 export function initCatalogPanel() {
     const panel = document.querySelector('#catalog-panel');
@@ -17,19 +16,20 @@ export function initCatalogPanel() {
         return;
     }
 
-    const categories = [
-        ...panel.querySelectorAll('.catalog-panel__category')
-    ];
-
+    const categories = [...panel.querySelectorAll('.catalog-panel__category')];
     const desktopQuery = window.matchMedia('(min-width: 992px)');
     let previousFocus = null;
 
-    /**
-     * Opens or closes the panel.
-     */
     const setPanelState = (open) => {
+        if (open && !desktopQuery.matches) {
+            return;
+        }
+
         panel.setAttribute('aria-hidden', String(!open));
         document.body.classList.toggle('catalog-panel-open', open);
+        catalogLinks.forEach((button) => {
+            button.setAttribute('aria-expanded', String(open));
+        });
 
         if (open) {
             previousFocus = document.activeElement;
@@ -37,71 +37,55 @@ export function initCatalogPanel() {
         } else {
             categories.forEach((category) => {
                 category.classList.remove('is-active');
-
-                category
-                    .querySelector('.catalog-panel__category-trigger')
+                category.querySelector('.catalog-panel__category-trigger')
                     ?.setAttribute('aria-expanded', 'false');
             });
 
-            previousFocus?.focus?.();
+            if (previousFocus && desktopQuery.matches) {
+                previousFocus.focus?.();
+            }
+            previousFocus = null;
         }
     };
 
-    /**
-     * Activates a category and its submenu.
-     */
     const activateCategory = (activeCategory) => {
         categories.forEach((category) => {
             const active = category === activeCategory;
-
             category.classList.toggle('is-active', active);
-
-            category
-                .querySelector('.catalog-panel__category-trigger')
+            category.querySelector('.catalog-panel__category-trigger')
                 ?.setAttribute('aria-expanded', String(active));
         });
     };
 
-    // Open the panel instead of navigating to catalog.html.
-    catalogLinks.forEach((link) => {
-        link.addEventListener('click', (event) => {
+    catalogLinks.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            if (!desktopQuery.matches) {
+                return;
+            }
+
             event.preventDefault();
-            setPanelState(true);
-    
-            if (categories.length) {
+            setPanelState(panel.getAttribute('aria-hidden') !== 'false');
+            if (panel.getAttribute('aria-hidden') === 'false' && categories.length) {
                 activateCategory(categories[0]);
             }
         });
     });
 
-    // Switch categories on hover on desktop.
     categories.forEach((category) => {
-        const trigger = category.querySelector(
-            '.catalog-panel__category-trigger'
-        );
+        const trigger = category.querySelector('.catalog-panel__category-trigger');
 
         trigger?.addEventListener('mouseenter', () => {
-            if (desktopQuery.matches) {
-                activateCategory(category);
-            }
+            if (desktopQuery.matches) activateCategory(category);
         });
 
         trigger?.addEventListener('focus', () => {
-            if (desktopQuery.matches) {
-                activateCategory(category);
-            }
+            if (desktopQuery.matches) activateCategory(category);
         });
 
-        // Open or collapse categories on mobile and tablet.
         trigger?.addEventListener('click', () => {
-            if (desktopQuery.matches) {
-                activateCategory(category);
-                return;
-            }
+            if (!desktopQuery.matches) return;
 
-            const isActive = category.classList.contains('is-active');
-
-            if (isActive) {
+            if (category.classList.contains('is-active')) {
                 category.classList.remove('is-active');
                 trigger.setAttribute('aria-expanded', 'false');
             } else {
@@ -110,20 +94,27 @@ export function initCatalogPanel() {
         });
     });
 
-    closeButton?.addEventListener('click', () => {
-        setPanelState(false);
-    });
-
-    overlay?.addEventListener('click', () => {
-        setPanelState(false);
-    });
+    closeButton?.addEventListener('click', () => setPanelState(false));
+    overlay?.addEventListener('click', () => setPanelState(false));
 
     document.addEventListener('keydown', (event) => {
-        if (
-            event.key === 'Escape' &&
-            panel.getAttribute('aria-hidden') === 'false'
-        ) {
+        if (event.key === 'Escape' && panel.getAttribute('aria-hidden') === 'false') {
             setPanelState(false);
         }
     });
+
+    const handleBreakpointChange = (event) => {
+        if (!event.matches && panel.getAttribute('aria-hidden') === 'false') {
+            setPanelState(false);
+        }
+    };
+
+    if (typeof desktopQuery.addEventListener === 'function') {
+        desktopQuery.addEventListener('change', handleBreakpointChange);
+    } else {
+        desktopQuery.addListener(handleBreakpointChange);
+    }
+
+    panel.setAttribute('aria-hidden', 'true');
+    catalogLinks.forEach((button) => button.setAttribute('aria-expanded', 'false'));
 }

@@ -271,3 +271,20 @@
     width: 30px;
     height: 30px;
 }
+
+
+@media (max-width: 991px) {
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-menu[aria-hidden="false"] {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+}

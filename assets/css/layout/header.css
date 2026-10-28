@@ -1098,3 +1098,72 @@ body.menu-open {
     outline: 2px solid currentColor;
     outline-offset: 4px;
 }
+
+
+/* Stage 2: responsive mobile-menu controls. */
+@media (max-width: 991px) {
+    .site-header__catalog-toggle {
+        display: none;
+    }
+
+    .site-header__menu-toggle {
+        display: inline-flex;
+    }
+
+    .mobile-menu__top {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 58px;
+        padding: 0 1.25rem;
+        border-bottom: 1px solid var(--header-border);
+        background: #ffffff;
+    }
+
+    .mobile-menu__title {
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .mobile-menu__close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--header-text);
+        cursor: pointer;
+    }
+
+    .mobile-menu__close span {
+        position: absolute;
+        width: 23px;
+        height: 1.5px;
+        background: currentColor;
+    }
+
+    .mobile-menu__close span:first-child {
+        transform: rotate(45deg);
+    }
+
+    .mobile-menu__close span:last-child {
+        transform: rotate(-45deg);
+    }
+
+    .mobile-menu__close:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+}

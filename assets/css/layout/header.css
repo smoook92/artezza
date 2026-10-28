@@ -657,15 +657,20 @@ body.menu-open {
 	}
 	
     /*
-     * Сохраняем мобильную компоновку: часы и адрес скрыты,
-     * логотип остаётся по центру, телефон — справа.
+     * Только для шапки главной страницы с логотипом в верхней полосе:
+     * часы и адрес скрыты, логотип по центру, телефон справа.
+     * Остальные страницы сохраняют прежнее мобильное поведение.
      */
-    .site-header__top-info {
+    .site-header--centered-contacts .site-header__top-info {
         display: contents;
     }
 
-    .site-header__top-hours,
-    .site-header__top-link {
+    .site-header--centered-contacts .site-header__top-hours,
+    .site-header--centered-contacts .site-header__top-link {
+        display: none;
+    }
+
+    .site-header:not(.site-header--centered-contacts) .site-header__top-info {
         display: none;
     }
 	

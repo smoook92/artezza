@@ -11,17 +11,45 @@
    PRODUCT
    ========================================================= */
 
+
 .product {
     display: grid;
     grid-template-columns:
-        minmax(0, 1.2fr)
-        minmax(360px, 0.8fr);
+        88px
+        minmax(0, 1fr)
+        minmax(250px, 0.65fr);
 
-    gap: clamp(48px, 7vw, 120px);
+    align-items: start;
+    gap: clamp(20px, 3vw, 48px);
 
     margin-top: var(--space-10);
 }
 
+.product__gallery {
+    min-width: 0;
+}
+
+.product__main-column {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.product__purchase {
+    position: sticky;
+    top: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    min-width: 0;
+    padding: 28px;
+
+    background-color: var(--color-background-muted);
+    border: 1px solid var(--color-border);
+}
 
 /* =========================================================
    GALLERY
@@ -31,7 +59,16 @@
     min-width: 0;
 }
 
+.product__thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+
+    margin: 0;
+}
+
 .product__main-image {
+    width: 100%;
     overflow: hidden;
 
     aspect-ratio: 4 / 3;
@@ -47,17 +84,6 @@
 
     object-fit: cover;
 }
-
-
-.product__thumbnails {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: var(--space-3);
-
-    margin-top: var(--space-3);
-}
-
 
 /* =========================================================
    THUMBNAIL
@@ -118,12 +144,13 @@
 .product__content {
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
 
-    padding-top: var(--space-4);
-}
+    width: 100%;
+    min-width: 0;
 
+    padding-top: var(--space-6);
+}
 
 .product__category {
     display: block;
@@ -138,21 +165,12 @@
 
 
 .product__title {
-    margin: 0;
-
-    max-width: 12ch;
-
-    font-size: clamp(
-        2.5rem,
-        5vw,
-        4.5rem
-    );
-
-    line-height: var(--line-height-tight);
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
-
 .product__description {
+    width: 100%;
     max-width: 560px;
 
     margin-top: var(--space-5);
@@ -162,7 +180,6 @@
     font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
 }
-
 
 .product__price {
     margin-top: var(--space-8);
@@ -191,6 +208,33 @@
     border-color: var(--color-success);
 }
 
+
+/* =========================================================
+   PURCHASE PANEL
+   ========================================================= */
+
+.product__purchase-label {
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.product__purchase .product__price {
+    margin-top: var(--space-4);
+
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+}
+
+.product__purchase .product__add-to-cart {
+    width: 100%;
+    min-width: 0;
+
+    margin-top: var(--space-6);
+}
 
 /* =========================================================
    META
@@ -238,11 +282,11 @@
    ========================================================= */
 
 .product-details {
-    max-width: 900px;
+    width: 100%;
+    max-width: none;
 
-    margin-top: var(--space-30);
+    margin-top: var(--space-12);
 }
-
 
 .product-details__title {
     margin: 0 0 var(--space-10);
@@ -254,29 +298,27 @@
     );
 }
 
-
 .product-details__list {
     display: grid;
 
     grid-template-columns:
-        minmax(180px, 0.5fr)
-        minmax(0, 1fr);
+        minmax(130px, 0.8fr)
+        minmax(0, 1.2fr);
 
     margin: 0;
 
-    border-top: 1px solid var(--color-border);
+    border-top: 1px dotted var(--color-border);
 }
-
 
 .product-details__list dt,
 .product-details__list dd {
+    min-width: 0;
     margin: 0;
 
     padding-block: var(--space-4);
 
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px dotted var(--color-border);
 }
-
 
 .product-details__list dt {
     color: var(--color-text-muted);
@@ -325,17 +367,24 @@
 /* =========================================================
    TABLET
    ========================================================= */
-
 @media (max-width: 1000px) {
 
     .product {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            76px
+            minmax(0, 1fr);
 
-        gap: var(--space-12);
+        gap: 24px;
+    }
+
+    .product__purchase {
+        position: static;
+
+        grid-column: 2;
     }
 
     .product__content {
-        max-width: 720px;
+        max-width: none;
     }
 
     .product__title {
@@ -343,25 +392,32 @@
     }
 }
 
-
 /* =========================================================
    MOBILE
    ========================================================= */
 
+
 @media (max-width: 767px) {
 
-    .product-page {
-        padding-block: var(--space-4) var(--space-12);
-    }
-
+    /* Основная сетка товара */
     .product {
+        grid-template-columns: 1fr;
         margin-top: var(--space-6);
-
         gap: var(--space-10);
     }
 
-    .product__main-image {
-        aspect-ratio: 4 / 3;
+    .product__main-column {
+        grid-row: 1;
+    }
+
+    .product__gallery {
+        grid-row: 2;
+    }
+
+    /* Галерея изображений */
+    .product__thumbnails {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     .product__thumbnail {
@@ -369,14 +425,15 @@
         height: 72px;
     }
 
-    .product__title {
-        max-width: none;
+    .product__main-image {
+        aspect-ratio: 4 / 3;
+    }
 
-        font-size: clamp(
-            2.25rem,
-            12vw,
-            3.5rem
-        );
+    /* Блок покупки */
+    .product__purchase {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 20px;
     }
 
     .product__price {
@@ -387,12 +444,19 @@
         width: 100%;
     }
 
+    /* Заголовок товара */
+    .product__title {
+        max-width: none;
+        font-size: clamp(2.25rem, 12vw, 3.5rem);
+    }
+
+    /* Характеристики товара */
     .product__meta-item {
         grid-template-columns: 1fr;
-
         gap: var(--space-2);
     }
 
+    /* Подробная информация о товаре */
     .product-details {
         margin-top: var(--space-16);
     }
@@ -407,11 +471,15 @@
 
     .product-details__list dt {
         padding-bottom: var(--space-1);
-
         border-bottom: 0;
     }
 
     .product-details__list dd {
         padding-top: 0;
+    }
+
+    /* Отступы страницы */
+    .product-page {
+        padding-block: var(--space-4) var(--space-12);
     }
 }

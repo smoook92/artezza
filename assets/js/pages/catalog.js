@@ -964,7 +964,8 @@ function readArrayParam(params, key) {
         : [];
 }
 
-// Генерация категорий
+
+// Генерация карточек категорий
 function renderCategories() {
     const container = document.querySelector(
         '.catalog__categories'
@@ -976,22 +977,61 @@ function renderCategories() {
 
     container.replaceChildren();
 
-    const allLink = document.createElement('a');
-
-    allLink.className = 'catalog__category';
-    allLink.href = 'catalog.html';
-    allLink.textContent = 'Все товары';
-
-    container.appendChild(allLink);
-
-    catalogData.categories.forEach((category) => {
+    const createCategoryCard = ({
+        id = '',
+        name,
+        image = '',
+    }) => {
         const link = document.createElement('a');
 
         link.className = 'catalog__category';
-        link.href = `catalog.html?category=${encodeURIComponent(category.id)}`;
-        link.textContent = category.name;
+        link.href = id
+            ? `catalog.html?category=${encodeURIComponent(id)}`
+            : 'catalog.html';
 
-        container.appendChild(link);
+        if (image) {
+            const img = document.createElement('img');
+
+            img.className = 'catalog__category-image';
+            img.src = image;
+            img.alt = '';
+            img.loading = 'lazy';
+
+            link.appendChild(img);
+        } else {
+            link.classList.add('catalog__category--no-image');
+        }
+
+        const title = document.createElement('span');
+
+        title.className = 'catalog__category-title';
+        title.textContent = name;
+
+        link.appendChild(title);
+
+        return link;
+    };
+
+    container.appendChild(
+        createCategoryCard({
+            name: 'Все товары',
+        })
+    );
+
+    catalogData.categories.forEach((category) => {
+        const product = catalogData.products.find(
+            (item) =>
+                item.category === category.id &&
+                item.image
+        );
+
+        container.appendChild(
+            createCategoryCard({
+                id: category.id,
+                name: category.name,
+                image: product?.image ?? '',
+            })
+        );
     });
 }
 

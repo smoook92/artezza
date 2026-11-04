@@ -131,13 +131,12 @@
 
 .site-header__main-inner {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 2rem;
 
     min-height: 74px;
 }
-
 
 /* ==========================================================================
    LOGO
@@ -153,7 +152,7 @@
 }
 
 .site-header__logo-text {
-    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-size: clamp(1.7rem, 2.2vw, 2.25rem);
     font-weight: 700;
     line-height: 1.1;
     white-space: nowrap;
@@ -250,15 +249,22 @@
    ========================================================================== */
 
 .site-header__navigation {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    width: 100%;
     min-width: 0;
 }
 
 .site-header__list {
     display: flex;
+    flex: 1;
     align-items: stretch;
-	justify-content: space-evenly;
-    gap: clamp(1rem, 1.8vw, 2.25rem);
+    justify-content: space-between;
+    gap: 1rem;
 
+    min-width: 0;
     margin: 0;
     padding: 0;
 

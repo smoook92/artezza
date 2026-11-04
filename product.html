@@ -250,82 +250,94 @@
             ></span>
         </nav>
 
-        <section class="product">
-
-            <div class="product__gallery">
-
-                <div class="product__main-image">
-                    <img
-                        class="product__image"
-                        src=""
-                        alt=""
-                        width="800"
-                        height="800"
-                    >
-                </div>
-
-                <div
-                    class="product__thumbnails"
-                    aria-label="Галерея товара"
-                ></div>
-
-            </div>
-
-            <div class="product__content">
-
-                <span class="product__category"></span>
-
-                <h1 class="product__title"></h1>
-
-                <p class="product__description"></p>
-
-                <div class="product__price"></div>
-
-               <button
-						class="product__add-to-cart button button--primary button--large"
-						type="button"
-					>
-						Добавить в корзину
-					</button>
-
-                <div class="product__meta">
-
-                    <div class="product__meta-item">
-                        <span>Основа</span>
-                        <strong
-                            class="product__base"
-                        ></strong>
-                    </div>
-
-                    <div class="product__meta-item">
-                        <span>Применение</span>
-                        <strong
-                            class="product__applications"
-                        ></strong>
-                    </div>
-
-                    <div class="product__meta-item">
-                        <span>Эффект</span>
-                        <strong
-                            class="product__effects"
-                        ></strong>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section class="product-details">
-
-            <h2 class="product-details__title">
-                Характеристики
-            </h2>
-
-            <dl class="product-details__list"></dl>
-
-        </section>
+        
+		<section class="product">
+		
+		    <!-- LEFT: GALLERY THUMBNAILS -->
+		    <div
+		        class="product__gallery"
+		        aria-label="Галерея товара"
+		    >
+		        <div
+		            class="product__thumbnails"
+		            aria-label="Миниатюры изображений товара"
+		        ></div>
+		    </div>
+		
+		    <!-- CENTER: PRODUCT INFORMATION -->
+		    <div class="product__main-column">
+		
+		        <div class="product__main-image">
+		            <img
+		                class="product__image"
+		                src=""
+		                alt=""
+		                width="800"
+		                height="800"
+		            >
+		        </div>
+		
+		        <div class="product__content">
+		
+		            <span class="product__category"></span>
+		
+		            <h1 class="product__title"></h1>
+		
+		            <p class="product__description"></p>
+		
+		            <div class="product__meta">
+		
+		                <div class="product__meta-item">
+		                    <span>Основа</span>
+		                    <strong class="product__base"></strong>
+		                </div>
+		
+		                <div class="product__meta-item">
+		                    <span>Применение</span>
+		                    <strong class="product__applications"></strong>
+		                </div>
+		
+		                <div class="product__meta-item">
+		                    <span>Эффект</span>
+		                    <strong class="product__effects"></strong>
+		                </div>
+		
+		            </div>
+		
+		        </div>
+		
+		        <!-- PRODUCT CHARACTERISTICS -->
+		        <section class="product-details">
+		
+		            <h2 class="product-details__title">
+		                Характеристики
+		            </h2>
+		
+		            <dl class="product-details__list"></dl>
+		
+		        </section>
+		
+		    </div>
+		
+		    <!-- RIGHT: PURCHASE -->
+		    <aside class="product__purchase">
+		
+		        <span class="product__purchase-label">
+		            Стоимость товара
+		        </span>
+		
+		        <div class="product__price"></div>
+		
+		        <button
+		            class="product__add-to-cart button button--primary button--large"
+		            type="button"
+		        >
+		            Добавить в корзину
+		        </button>
+		
+		    </aside>
+		
+		</section>
 
     </div>
 

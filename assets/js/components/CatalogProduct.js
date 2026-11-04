@@ -32,6 +32,7 @@ export function createCatalogProduct(product) {
             ? `${new Intl.NumberFormat('ru-RU').format(Number(product.price))} ₽`
             : '';
 
+    
     article.innerHTML = `
         <a
             class="catalog-product__media"
@@ -46,9 +47,9 @@ export function createCatalogProduct(product) {
                 height="600"
             >
         </a>
-
+    
         <div class="catalog-product__content">
-
+    
             ${
                 categoryName
                     ? `
@@ -58,33 +59,35 @@ export function createCatalogProduct(product) {
                     `
                     : ''
             }
-
+    
             <h2 class="catalog-product__title">
                 ${escapeHtml(product.title)}
             </h2>
-
+    
             <p class="catalog-product__description">
                 ${escapeHtml(product.description)}
             </p>
-            
-            ${
-                formattedPrice
-                    ? `
-                        <p class="catalog-product__price">
-                            ${escapeHtml(formattedPrice)}
-                        </p>
-                    `
-                    : ''
-            }
-            
-            <button
-                class="catalog-product__add-to-cart button button--primary button--small"
-                type="button"
-                data-product-id="${escapeHtml(product.id)}"
-            >
-                В корзину
-            </button>
-            
+    
+            <div class="catalog-product__purchase">
+                ${
+                    formattedPrice
+                        ? `
+                            <p class="catalog-product__price">
+                                ${escapeHtml(formattedPrice)}
+                            </p>
+                        `
+                        : ''
+                }
+    
+                <button
+                    class="catalog-product__add-to-cart button button--primary button--small"
+                    type="button"
+                    data-product-id="${escapeHtml(product.id)}"
+                >
+                    В корзину
+                </button>
+            </div>
+    
             <a
                 class="catalog-product__link"
                 href="${escapeHtml(product.url)}"
@@ -92,7 +95,7 @@ export function createCatalogProduct(product) {
                 Подробнее
                 <span aria-hidden="true">↗</span>
             </a>
-
+    
         </div>
     `;
 

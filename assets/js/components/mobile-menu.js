@@ -5,7 +5,7 @@
  */
 export function initMobileMenu() {
     const header = document.querySelector('.site-header');
-    const toggle = document.querySelector('.mobile-menu__toggle');
+    const toggle = header?.querySelector('.site-header__menu-toggle');
     const menu = document.querySelector('#mobile-menu');
 
     if (!header || !toggle || !menu) {
@@ -71,6 +71,12 @@ export function initMobileMenu() {
             toggle.focus();
         }
     };
+
+    const closeButton = menu.querySelector('.mobile-menu__close');
+    
+    closeButton?.addEventListener('click', () => {
+        closeMenu();
+    });
 
     /**
      * Toggle menu state.

@@ -249,11 +249,10 @@
                 class="product-breadcrumbs__current"
             ></span>
         </nav>
-
-        
+		
 		<section class="product">
 		
-		    <!-- LEFT: GALLERY THUMBNAILS -->
+		    <!-- 1. GALLERY THUMBNAILS -->
 		    <div
 		        class="product__gallery"
 		        aria-label="Галерея товара"
@@ -264,9 +263,8 @@
 		        ></div>
 		    </div>
 		
-		    <!-- CENTER: PRODUCT INFORMATION -->
-		    <div class="product__main-column">
-		
+		    <!-- 2. MAIN IMAGE -->
+		    <div class="product__visual">
 		        <div class="product__main-image">
 		            <img
 		                class="product__image"
@@ -276,6 +274,10 @@
 		                height="800"
 		            >
 		        </div>
+		    </div>
+		
+		    <!-- 3. PRODUCT INFORMATION -->
+		    <div class="product__main-column">
 		
 		        <div class="product__content">
 		
@@ -284,6 +286,39 @@
 		            <h1 class="product__title"></h1>
 		
 		            <p class="product__description"></p>
+		
+		            <!-- VOLUME OPTIONS: VISUAL ONLY -->
+		            <div class="product__volume">
+		                <span class="product__volume-label">
+		                    Объём
+		                </span>
+		
+		                <div class="product__volume-options">
+		                    <button
+		                        class="product__volume-option"
+		                        type="button"
+		                        aria-pressed="true"
+		                    >
+		                        0.9 л
+		                    </button>
+		
+		                    <button
+		                        class="product__volume-option"
+		                        type="button"
+		                        aria-pressed="false"
+		                    >
+		                        2.7 л
+		                    </button>
+		
+		                    <button
+		                        class="product__volume-option"
+		                        type="button"
+		                        aria-pressed="false"
+		                    >
+		                        9 л
+		                    </button>
+		                </div>
+		            </div>
 		
 		            <div class="product__meta">
 		
@@ -319,7 +354,7 @@
 		
 		    </div>
 		
-		    <!-- RIGHT: PURCHASE -->
+		    <!-- 4. PURCHASE -->
 		    <aside class="product__purchase">
 		
 		        <span class="product__purchase-label">

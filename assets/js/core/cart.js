@@ -50,6 +50,7 @@ export function saveCart(cart) {
     );
 }
 
+
 /**
  * Adds a product or its variant to cart.
  *
@@ -63,7 +64,25 @@ export function addToCart(
     quantity = 1,
     variant = null
 ) {
-    if (!productId || !Number.isInteger(quantity) || quantity <= 0) {
+    if (
+        typeof productId !== 'string' ||
+        !productId.trim() ||
+        !Number.isInteger(quantity) ||
+        quantity <= 0
+    ) {
+        return;
+    }
+
+    if (
+        variant !== null &&
+        (
+            typeof variant.volume !== 'string' ||
+            !variant.volume.trim() ||
+            typeof variant.unitPrice !== 'number' ||
+            !Number.isFinite(variant.unitPrice) ||
+            variant.unitPrice < 0
+        )
+    ) {
         return;
     }
 

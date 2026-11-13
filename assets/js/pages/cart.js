@@ -813,9 +813,18 @@ function handleOrderSubmit(event) {
     }
 
     const cart = getCart();
-
-    if (!cart.length) {
+    
+    const validCart = cart.filter(
+        (item) => getProduct(item.id)
+    );
+    
+    if (!validCart.length) {
+        clearCart();
         return;
+    }
+    
+    if (validCart.length !== cart.length) {
+        saveCart(validCart);
     }
 
     const submitButton =

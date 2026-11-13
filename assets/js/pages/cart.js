@@ -850,7 +850,7 @@ function handleOrderSubmit(event) {
             comment: data.get('comment')?.trim() ?? '',
         },
 
-        items: cart.map((item) => {
+        items: validCart.map((item) => {
             const product =
                 getProduct(item.id);
         
@@ -863,7 +863,7 @@ function handleOrderSubmit(event) {
             };
         }),
 
-        total: calculateTotal(cart),
+        total: calculateTotal(validCart),
     };
 
     try {

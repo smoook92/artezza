@@ -156,11 +156,94 @@ function renderProduct(product, categories) {
         formatProductValues(product.effects ?? []) || '—'
     );
 
+    renderVolumeOptions(product);
     renderMainImage(product);
     renderGallery(product);
     renderCharacteristics(product);
     updateBreadcrumb(product);
     initAddToCart(product);
+}
+
+
+/**
+ * Renders product volume options.
+ *
+ * @param {Object} product
+ * @returns {void}
+ */
+function renderVolumeOptions(product) {
+    const container = document.querySelector(
+        '.product__volume-options'
+    );
+
+    const volumeBlock = document.querySelector(
+        '.product__volume'
+    );
+
+    if (!container || !volumeBlock) {
+        return;
+    }
+
+    container.replaceChildren();
+
+    if (!product.volumeOptions?.length) {
+        volumeBlock.hidden = true;
+        return;
+    }
+
+    volumeBlock.hidden = false;
+
+    const priceElement = document.querySelector(
+        '.product__price'
+    );
+
+    product.volumeOptions.forEach((option, index) => {
+        const button = document.createElement('button');
+
+        button.type = 'button';
+        button.className = 'product__volume-option';
+        button.textContent = option.label;
+
+        button.setAttribute(
+            'aria-pressed',
+            String(index === 0)
+        );
+
+        if (index === 0) {
+            button.classList.add('is-active');
+        }
+
+        button.addEventListener('click', () => {
+            container
+                .querySelectorAll('.product__volume-option')
+                .forEach((item) => {
+                    const isActive = item === button;
+
+                    item.setAttribute(
+                        'aria-pressed',
+                        String(isActive)
+                    );
+
+                    item.classList.toggle(
+                        'is-active',
+                        isActive
+                    );
+                });
+
+            const price = product.price * option.multiplier;
+
+            priceElement.textContent =
+                `${price.toLocaleString('ru-RU')} ₽`;
+        });
+
+        container.appendChild(button);
+    });
+
+    const initialPrice = product.price *
+        product.volumeOptions[0].multiplier;
+
+    priceElement.textContent =
+        `${initialPrice.toLocaleString('ru-RU')} ₽`;
 }
 
 /**

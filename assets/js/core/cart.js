@@ -89,6 +89,8 @@ export function addToCart(
     if (
         variant !== null &&
         (
+            typeof variant !== 'object' ||
+            Array.isArray(variant) ||
             typeof variant.volume !== 'string' ||
             !variant.volume.trim() ||
             typeof variant.unitPrice !== 'number' ||

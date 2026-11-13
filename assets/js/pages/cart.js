@@ -234,10 +234,6 @@ function validateField(form, fieldName) {
         `[data-field-error="${fieldName}"]`
     );
 
-    if (!error) {
-        return true;
-    }
-
     let message = '';
 
     switch (fieldName) {
@@ -267,11 +263,12 @@ function validateField(form, fieldName) {
         message ? 'true' : 'false'
     );
 
-    error.textContent = message;
+    if (error) {
+        error.textContent = message;
+    }
 
     return !message;
 }
-
 
 /**
  * Валидирует имя.

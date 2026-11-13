@@ -1,10 +1,10 @@
+
 const CART_STORAGE_KEY = 'artezza_cart';
 
-
 /**
- * Возвращает содержимое корзины.
+ * Returns cart contents.
  *
- * @returns {Array<{id: string, quantity: number}>}
+ * @returns {Array}
  */
 export function getCart() {
     try {
@@ -18,11 +18,9 @@ export function getCart() {
 
         const cart = JSON.parse(stored);
 
-        if (!Array.isArray(cart)) {
-            return [];
-        }
-
-        return cart.filter(isValidCartItem);
+        return Array.isArray(cart)
+            ? cart.filter(isValidCartItem)
+            : [];
     } catch (error) {
         console.error(
             'Не удалось загрузить корзину:',
@@ -33,11 +31,10 @@ export function getCart() {
     }
 }
 
-
 /**
- * Сохраняет корзину.
+ * Saves cart contents.
  *
- * @param {Array<{id: string, quantity: number}>} cart
+ * @param {Array} cart
  * @returns {void}
  */
 export function saveCart(cart) {
@@ -48,33 +45,34 @@ export function saveCart(cart) {
 
     window.dispatchEvent(
         new CustomEvent('cart:updated', {
-            detail: {
-                cart,
-            },
+            detail: { cart },
         })
     );
 }
 
-
 /**
- * Добавляет товар в корзину.
+ * Adds a product or its variant to cart.
  *
  * @param {string} productId
  * @param {number} quantity
+ * @param {{volume: string, unitPrice: number}|null} variant
  * @returns {void}
  */
 export function addToCart(
     productId,
-    quantity = 1
+    quantity = 1,
+    variant = null
 ) {
-    if (!productId || quantity <= 0) {
+    if (!productId || !Number.isInteger(quantity) || quantity <= 0) {
         return;
     }
 
     const cart = getCart();
 
     const existingItem = cart.find(
-        (item) => item.id === productId
+        (item) =>
+            item.id === productId &&
+            item.volume === (variant?.volume ?? null)
     );
 
     if (existingItem) {
@@ -83,62 +81,72 @@ export function addToCart(
         cart.push({
             id: productId,
             quantity,
+            ...(variant ?? {}),
         });
     }
 
     saveCart(cart);
 }
 
-
 /**
- * Изменяет количество товара.
+ * Updates quantity of a cart item.
  *
  * @param {string} productId
  * @param {number} quantity
+ * @param {string|null} volume
  * @returns {void}
  */
 export function updateCartQuantity(
     productId,
-    quantity
+    quantity,
+    volume = null
 ) {
     const cart = getCart();
 
     const item = cart.find(
-        (cartItem) => cartItem.id === productId
+        (cartItem) =>
+            cartItem.id === productId &&
+            (cartItem.volume ?? null) === volume
     );
 
     if (!item) {
         return;
     }
 
-    if (quantity <= 0) {
-        removeFromCart(productId);
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+        removeFromCart(productId, volume);
         return;
     }
 
-    item.quantity = Math.floor(quantity);
+    item.quantity = quantity;
 
     saveCart(cart);
 }
 
-
 /**
- * Удаляет товар из корзины.
+ * Removes a product or its variant from cart.
  *
  * @param {string} productId
+ * @param {string|null} volume
  * @returns {void}
  */
-export function removeFromCart(productId) {
+export function removeFromCart(
+    productId,
+    volume = null
+) {
     const cart = getCart().filter(
-        (item) => item.id !== productId
+        (item) =>
+            !(
+                item.id === productId &&
+                (item.volume ?? null) === volume
+            )
     );
 
     saveCart(cart);
 }
 
-
 /**
- * Полностью очищает корзину.
+ * Clears cart.
  *
  * @returns {void}
  */
@@ -146,9 +154,8 @@ export function clearCart() {
     saveCart([]);
 }
 
-
 /**
- * Возвращает количество товаров.
+ * Returns total quantity of products.
  *
  * @returns {number}
  */
@@ -159,9 +166,8 @@ export function getCartQuantity() {
     );
 }
 
-
 /**
- * Проверяет структуру позиции корзины.
+ * Validates cart item structure.
  *
  * @param {unknown} item
  * @returns {boolean}
@@ -172,6 +178,15 @@ function isValidCartItem(item) {
         typeof item.id === 'string' &&
         item.id.length > 0 &&
         Number.isInteger(item.quantity) &&
-        item.quantity > 0
+        item.quantity > 0 &&
+        (
+            item.volume === undefined ||
+            (
+                typeof item.volume === 'string' &&
+                typeof item.unitPrice === 'number' &&
+                Number.isFinite(item.unitPrice) &&
+                item.unitPrice >= 0
+            )
+        )
     );
 }

@@ -139,7 +139,11 @@ export function updateCartQuantity(
         return;
     }
 
-    if (!Number.isInteger(quantity) || quantity <= 0) {
+    if (!Number.isInteger(quantity) || quantity < 0) {
+        return;
+    }
+    
+    if (quantity === 0) {
         removeFromCart(productId, volume);
         return;
     }

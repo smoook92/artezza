@@ -156,14 +156,17 @@ function renderProduct(product, categories) {
         formatProductValues(product.effects ?? []) || '—'
     );
 
-    renderVolumeOptions(product);
+    const volumeState = {
+        selected: product.volumeOptions?.[0] ?? null,
+    };
+    
+    renderVolumeOptions(product, volumeState);
     renderMainImage(product);
     renderGallery(product);
     renderCharacteristics(product);
     updateBreadcrumb(product);
-    initAddToCart(product);
+    initAddToCart(product, volumeState);
 }
-
 
 /**
  * Renders product volume options.
@@ -171,7 +174,7 @@ function renderProduct(product, categories) {
  * @param {Object} product
  * @returns {void}
  */
-function renderVolumeOptions(product) {
+function renderVolumeOptions(product, volumeState) {
     const container = document.querySelector(
         '.product__volume-options'
     );
@@ -218,20 +221,22 @@ function renderVolumeOptions(product) {
                 .querySelectorAll('.product__volume-option')
                 .forEach((item) => {
                     const isActive = item === button;
-
+        
                     item.setAttribute(
                         'aria-pressed',
                         String(isActive)
                     );
-
+        
                     item.classList.toggle(
                         'is-active',
                         isActive
                     );
                 });
-
+        
+            volumeState.selected = option;
+        
             const price = product.price * option.multiplier;
-
+        
             priceElement.textContent =
                 `${price.toLocaleString('ru-RU')} ₽`;
         });
@@ -421,7 +426,14 @@ function renderCharacteristics(product) {
  * @param {Object} product
  * @returns {void}
  */
-function initAddToCart(product) {
+/**
+ * Initializes add-to-cart button.
+ *
+ * @param {Object} product
+ * @param {{selected: Object|null}} volumeState
+ * @returns {void}
+ */
+function initAddToCart(product, volumeState) {
     const button = document.querySelector(
         '.product__add-to-cart'
     );
@@ -431,7 +443,17 @@ function initAddToCart(product) {
     }
 
     button.addEventListener('click', () => {
-        addToCart(product.id);
+        const selectedVolume = volumeState.selected;
+
+        const variant = selectedVolume
+            ? {
+                volume: selectedVolume.value,
+                unitPrice:
+                    product.price * selectedVolume.multiplier,
+            }
+            : null;
+
+        addToCart(product.id, 1, variant);
 
         button.textContent =
             'Добавлено в корзину';

@@ -172,6 +172,7 @@ function renderProduct(product, categories) {
  * Renders product volume options.
  *
  * @param {Object} product
+ * @param {{selected: Object|null}} volumeState
  * @returns {void}
  */
 function renderVolumeOptions(product, volumeState) {

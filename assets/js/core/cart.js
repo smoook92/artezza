@@ -31,6 +31,7 @@ export function getCart() {
     }
 }
 
+
 /**
  * Saves cart contents.
  *
@@ -38,18 +39,24 @@ export function getCart() {
  * @returns {void}
  */
 export function saveCart(cart) {
-    localStorage.setItem(
-        CART_STORAGE_KEY,
-        JSON.stringify(cart)
-    );
+    try {
+        localStorage.setItem(
+            CART_STORAGE_KEY,
+            JSON.stringify(cart)
+        );
 
-    window.dispatchEvent(
-        new CustomEvent('cart:updated', {
-            detail: { cart },
-        })
-    );
+        window.dispatchEvent(
+            new CustomEvent('cart:updated', {
+                detail: { cart },
+            })
+        );
+    } catch (error) {
+        console.error(
+            'Не удалось сохранить корзину:',
+            error
+        );
+    }
 }
-
 
 /**
  * Adds a product or its variant to cart.

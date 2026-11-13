@@ -1,15 +1,9 @@
-import { initHeader } from '../components/header.js';
 import { getCatalogData } from '../data/catalog-data.js';
 
 import {
     addToCart,
     getCartQuantity,
 } from '../core/cart.js';
-
-document.addEventListener(
-    'DOMContentLoaded',
-    initHeader
-);
 
 document.addEventListener(
     'DOMContentLoaded',

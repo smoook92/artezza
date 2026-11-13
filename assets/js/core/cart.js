@@ -202,13 +202,14 @@ function isValidCartItem(item) {
     return (
         item &&
         typeof item.id === 'string' &&
-        item.id.length > 0 &&
+        item.id.trim().length > 0 &&
         Number.isInteger(item.quantity) &&
         item.quantity > 0 &&
         (
             item.volume === undefined ||
             (
                 typeof item.volume === 'string' &&
+                item.volume.trim().length > 0 &&
                 typeof item.unitPrice === 'number' &&
                 Number.isFinite(item.unitPrice) &&
                 item.unitPrice >= 0

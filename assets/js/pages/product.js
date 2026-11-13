@@ -424,12 +424,6 @@ function renderCharacteristics(product) {
  * Initializes add-to-cart button.
  *
  * @param {Object} product
- * @returns {void}
- */
-/**
- * Initializes add-to-cart button.
- *
- * @param {Object} product
  * @param {{selected: Object|null}} volumeState
  * @returns {void}
  */

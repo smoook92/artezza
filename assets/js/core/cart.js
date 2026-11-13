@@ -72,7 +72,7 @@ export function addToCart(
     const existingItem = cart.find(
         (item) =>
             item.id === productId &&
-            item.volume === (variant?.volume ?? null)
+            (item.volume ?? null) === (variant?.volume ?? null)
     );
 
     if (existingItem) {

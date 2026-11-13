@@ -39,15 +39,21 @@ export function getCart() {
  * @returns {void}
  */
 export function saveCart(cart) {
+    if (!Array.isArray(cart)) {
+        return;
+    }
+
+    const validCart = cart.filter(isValidCartItem);
+
     try {
         localStorage.setItem(
             CART_STORAGE_KEY,
-            JSON.stringify(cart)
+            JSON.stringify(validCart)
         );
 
         window.dispatchEvent(
             new CustomEvent('cart:updated', {
-                detail: { cart },
+                detail: { cart: validCart },
             })
         );
     } catch (error) {

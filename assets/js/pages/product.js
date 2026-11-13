@@ -201,6 +201,11 @@ function renderVolumeOptions(product, volumeState) {
         '.product__price'
     );
 
+    if (!priceElement) {
+        volumeBlock.hidden = true;
+        return;
+    }
+
     product.volumeOptions.forEach((option, index) => {
         const button = document.createElement('button');
 

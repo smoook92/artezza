@@ -128,6 +128,24 @@ export const catalogProducts = [
 
         price: 3900,
 
+		volumeOptions: [
+		    {
+		        value: '0.9',
+		        label: '0.9 л',
+		        multiplier: 1,
+		    },
+		    {
+		        value: '2.7',
+		        label: '2.7 л',
+		        multiplier: 2.5,
+		    },
+		    {
+		        value: '9',
+		        label: '9 л',
+		        multiplier: 7,
+		    },
+		],
+
         image:
             'assets/images/catalog/marble.jpg',
 
@@ -238,6 +256,24 @@ export const catalogProducts = [
         base: 'water',
 
         price: 2800,
+
+		volumeOptions: [
+		    {
+		        value: '0.9',
+		        label: '0.9 л',
+		        multiplier: 1,
+		    },
+		    {
+		        value: '2.7',
+		        label: '2.7 л',
+		        multiplier: 2.5,
+		    },
+		    {
+		        value: '9',
+		        label: '9 л',
+		        multiplier: 7,
+		    },
+		],
 
         image:
             'assets/images/catalog/effect-paint.jpg',

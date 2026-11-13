@@ -860,13 +860,38 @@ function handleOrderSubmit(event) {
         total: calculateTotal(cart),
     };
 
-    localStorage.setItem(
-        'artezza_last_order',
-        JSON.stringify(order)
-    );
-
+    try {
+        localStorage.setItem(
+            'artezza_last_order',
+            JSON.stringify(order)
+        );
+    } catch (error) {
+        console.error(
+            'Не удалось сохранить заказ:',
+            error
+        );
+    
+        setSubmitLoading(
+            submitButton,
+            false
+        );
+    
+        const errorElement = form.querySelector(
+            '[data-cart-order-error]'
+        );
+    
+        if (errorElement) {
+            errorElement.textContent =
+                'Не удалось сохранить заказ. Попробуйте ещё раз.';
+    
+            errorElement.hidden = false;
+        }
+    
+        return;
+    }
+    
     clearCart();
-
+    
     window.location.href =
         'order-success.html';
 }

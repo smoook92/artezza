@@ -185,6 +185,7 @@ function renderVolumeOptions(product, volumeState) {
     );
 
     if (!container || !volumeBlock) {
+        volumeState.selected = null;
         return;
     }
 
@@ -202,6 +203,7 @@ function renderVolumeOptions(product, volumeState) {
     );
 
     if (!priceElement) {
+        volumeState.selected = null;
         volumeBlock.hidden = true;
         return;
     }

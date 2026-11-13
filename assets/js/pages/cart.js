@@ -482,7 +482,8 @@ function handleClick(event) {
 
     if (removeButton) {
         removeFromCart(
-            removeButton.dataset.cartRemove
+            removeButton.dataset.cartRemove,
+            removeButton.dataset.cartVolume || null
         );
 
         return;
@@ -509,12 +510,16 @@ function handleQuantityChange(button) {
     const productId =
         button.dataset.cartProduct;
 
+    const volume =
+        button.dataset.cartVolume || null;
+
     const action =
         button.dataset.cartQuantity;
 
     const item = getCart().find(
         (cartItem) =>
-            cartItem.id === productId
+            cartItem.id === productId &&
+            (cartItem.volume ?? null) === volume
     );
 
     if (!item) {
@@ -528,7 +533,8 @@ function handleQuantityChange(button) {
 
     updateCartQuantity(
         productId,
-        quantity
+        quantity,
+        volume
     );
 }
 
@@ -599,7 +605,7 @@ function renderItems(cart) {
 /**
  * Создаёт HTML позиции корзины.
  *
- * @param {{id: string, quantity: number}} item
+ * @param {Object} item
  * @returns {HTMLElement}
  */
 function createCartItem(item) {
@@ -613,8 +619,15 @@ function createCartItem(item) {
     const categoryName =
         getCategoryName(product.category);
 
+    const unitPrice =
+        item.unitPrice ?? product.price;
+
     const itemTotal =
-        product.price * item.quantity;
+        unitPrice * item.quantity;
+
+    const volumeLabel = item.volume
+        ? `${item.volume} л`
+        : '';
 
     article.innerHTML = `
         <a
@@ -649,6 +662,16 @@ function createCartItem(item) {
                 </a>
             </h3>
 
+            ${
+                volumeLabel
+                    ? `
+                        <p class="cart-item__volume">
+                            Объём: ${escapeHtml(volumeLabel)}
+                        </p>
+                    `
+                    : ''
+            }
+
             <p class="cart-item__description">
                 ${escapeHtml(product.shortDescription ?? product.description)}
             </p>
@@ -671,6 +694,7 @@ function createCartItem(item) {
                     type="button"
                     data-cart-quantity="decrease"
                     data-cart-product="${escapeHtml(item.id)}"
+                    data-cart-volume="${escapeHtml(item.volume ?? '')}"
                     aria-label="Уменьшить количество"
                 >
                     −
@@ -685,6 +709,7 @@ function createCartItem(item) {
                     type="button"
                     data-cart-quantity="increase"
                     data-cart-product="${escapeHtml(item.id)}"
+                    data-cart-volume="${escapeHtml(item.volume ?? '')}"
                     aria-label="Увеличить количество"
                 >
                     +
@@ -696,6 +721,7 @@ function createCartItem(item) {
                 class="cart-item__remove"
                 type="button"
                 data-cart-remove="${escapeHtml(item.id)}"
+                data-cart-volume="${escapeHtml(item.volume ?? '')}"
             >
                 Удалить
             </button>
@@ -705,7 +731,6 @@ function createCartItem(item) {
 
     return article;
 }
-
 
 /**
  * Рендерит итоговые значения.
@@ -725,7 +750,7 @@ function renderSummary(cart) {
         }
 
         quantity += item.quantity;
-        total += product.price * item.quantity;
+        total += (item.unitPrice ?? product.price) * item.quantity;
     });
 
     setText(
@@ -822,11 +847,12 @@ function handleOrderSubmit(event) {
         items: cart.map((item) => {
             const product =
                 getProduct(item.id);
-
+        
             return {
                 id: item.id,
                 title: product.title,
-                price: product.price,
+                volume: item.volume ?? null,
+                price: item.unitPrice ?? product.price,
                 quantity: item.quantity,
             };
         }),
@@ -950,8 +976,11 @@ function calculateTotal(cart) {
                 return total;
             }
 
+            const unitPrice =
+                item.unitPrice ?? product.price;
+
             return total +
-                product.price * item.quantity;
+                unitPrice * item.quantity;
         },
         0
     );

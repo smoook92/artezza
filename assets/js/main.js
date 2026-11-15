@@ -3,7 +3,20 @@ import { initCatalog } from './pages/catalog.js';
 import { initContactForm } from './sections/contact.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    initHeader();
-    initCatalog();
-    initContactForm();
+    const initializers = [
+        initHeader,
+        initCatalog,
+        initContactForm,
+    ];
+
+    initializers.forEach((initialize) => {
+        try {
+            initialize();
+        } catch (error) {
+            console.error(
+                `Ошибка инициализации ${initialize.name}:`,
+                error
+            );
+        }
+    });
 });

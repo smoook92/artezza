@@ -979,12 +979,16 @@ function readStateFromUrl() {
 
 function readArrayParam(params, key) {
     const value = params.get(key);
+    const options = catalogData.filters[key]?.options;
+
+    if (!value || !options) {
+        return [];
+    }
 
     return value
-        ? value.split(',').filter(Boolean)
-        : [];
+        .split(',')
+        .filter((item) => item in options);
 }
-
 
 // Генерация карточек категорий
 function renderCategories() {

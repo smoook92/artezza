@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     initializers.forEach((initialize) => {
-        try {
-            initialize();
-        } catch (error) {
-            console.error(
-                `Ошибка инициализации ${initialize.name}:`,
-                error
-            );
-        }
+        Promise.resolve()
+            .then(initialize)
+            .catch((error) => {
+                console.error(
+                    `Ошибка инициализации ${initialize.name}:`,
+                    error
+                );
+            });
     });
 });

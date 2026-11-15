@@ -929,38 +929,35 @@ function readStateFromUrl() {
         window.location.search
     );
 
-    const priceMin = params.get('priceMin') ?? '';
-    const priceMax = params.get('priceMax') ?? '';
+    let priceMin = readPriceParam(
+        params.get('priceMin')
+    );
+
+    let priceMax = readPriceParam(
+        params.get('priceMax')
+    );
+
+    if (
+        priceMin !== '' &&
+        priceMax !== '' &&
+        Number(priceMin) > Number(priceMax)
+    ) {
+        priceMin = '';
+        priceMax = '';
+    }
+
     const sort = params.get('sort') ?? 'default';
 
     return {
         category: params.get('category') ?? '',
 
-        materialType: readArrayParam(
-            params,
-            'materialType'
-        ),
+        materialType: readArrayParam(params, 'materialType'),
+        application: readArrayParam(params, 'application'),
+        effect: readArrayParam(params, 'effect'),
+        base: readArrayParam(params, 'base'),
 
-        application: readArrayParam(
-            params,
-            'application'
-        ),
-
-        effect: readArrayParam(
-            params,
-            'effect'
-        ),
-
-        base: readArrayParam(
-            params,
-            'base'
-        ),
-
-        priceMin:
-            /^\d+$/.test(priceMin) ? priceMin : '',
-
-        priceMax:
-            /^\d+$/.test(priceMax) ? priceMax : '',
+        priceMin,
+        priceMax,
 
         sort: [
             'default',
@@ -975,6 +972,18 @@ function readStateFromUrl() {
             ? 'list'
             : 'grid',
     };
+}
+
+function readPriceParam(value) {
+    if (!value || !/^\d+$/.test(value)) {
+        return '';
+    }
+
+    const price = Number(value);
+
+    return Number.isSafeInteger(price)
+        ? value
+        : '';
 }
 
 function readArrayParam(params, key) {

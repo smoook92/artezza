@@ -1,6 +1,5 @@
 import { getCatalogData } from '../data/catalog-data.js';
 import { createCatalogProduct } from '../components/CatalogProduct.js';
-import { FILTERS } from '../data/catalog-filters.js';
 
 const PRODUCTS_PER_PAGE = 6;
 

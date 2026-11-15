@@ -455,14 +455,20 @@ function initAddToCart(product, volumeState) {
             }
             : null;
 
-        addToCart(product.id, 1, variant);
-
-        button.textContent =
-            'Добавлено в корзину';
-
-        button.classList.add('is-added');
-
-        updateCartBadge();
+        const isAdded = addToCart(
+            product.id,
+            1,
+            variant
+        );
+        
+        if (isAdded) {
+            button.textContent = 'Добавлено в корзину';
+            button.classList.add('is-added');
+        
+            updateCartBadge();
+        } else {
+            button.textContent = 'Не удалось добавить';
+        }
 
         window.setTimeout(() => {
             button.textContent =

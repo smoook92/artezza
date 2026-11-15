@@ -41,7 +41,21 @@ export async function initCatalog() {
         return;
     }
 
-	catalogData = await getCatalogData();
+	try {
+	    catalogData = await getCatalogData();
+	} catch (error) {
+	    console.error(
+	        'Не удалось загрузить данные каталога:',
+	        error
+	    );
+	
+	    container.textContent =
+	        'Не удалось загрузить каталог. Обновите страницу или попробуйте позже.';
+	
+	    container.setAttribute('role', 'alert');
+	
+	    return;
+	}
 
    const filterBody = document.querySelector(
       '.catalog-filter__body'

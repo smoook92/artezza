@@ -987,7 +987,9 @@ function readArrayParam(params, key) {
 
     return value
         .split(',')
-        .filter((item) => item in options);
+        .filter((item) =>
+		    Object.prototype.hasOwnProperty.call(options, item)
+		);
 }
 
 // Генерация карточек категорий

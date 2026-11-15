@@ -601,7 +601,20 @@ function handleFilterChange(event) {
     }
 
     if (target.type === 'number') {
-        state[target.name] = target.value;
+        const value = target.value;
+
+        state[target.name] = readPriceParam(value);
+
+        if (
+            state.priceMin !== '' &&
+            state.priceMax !== '' &&
+            Number(state.priceMin) > Number(state.priceMax)
+        ) {
+            state.priceMin = '';
+            state.priceMax = '';
+
+            syncFilterControls();
+        }
     }
 
     updateUrl({

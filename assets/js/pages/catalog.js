@@ -640,14 +640,23 @@ function handleFilterChange(event) {
 }
 
 function resetFilters() {
-    state = createDefaultState();
+    state = {
+        ...state,
+        category: '',
+        materialType: [],
+        application: [],
+        effect: [],
+        base: [],
+        priceMin: '',
+        priceMax: '',
+    };
 
     updateUrl({
         resetPage: true,
     });
 
     syncFilterControls();
-	    syncFilterToggle();
+    syncFilterToggle();
     renderCatalog();
 }
 

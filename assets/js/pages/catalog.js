@@ -210,16 +210,18 @@ function renderCatalog() {
             currentPage
         );
 
-        container.replaceChildren(
-				...products.map((product) =>
-					createCatalogProduct({
-							...product,
-							categoryName: getCategoryName(
-								product.category
-							),
-					})
-				)
-			);
+		const productCards = products
+		    .map((product) =>
+		        createCatalogProduct({
+		            ...product,
+		            categoryName: getCategoryName(
+		                product.category
+		            ),
+		        })
+		    )
+		    .filter((card) => card instanceof HTMLElement);
+		
+		container.replaceChildren(...productCards);
     }
 
     renderPagination(
@@ -236,7 +238,6 @@ function renderCatalog() {
 /* =========================================================
    FILTERING
    ========================================================= */
-
 function getFilteredProducts() {
     return catalogData.products.filter((product) => {
         if (
@@ -280,16 +281,22 @@ function getFilteredProducts() {
             return false;
         }
 
+		const price = Number(product.price);
+
+		if (!Number.isFinite(price) || price < 0) {
+		    return false;
+		}
+
         if (
             state.priceMin !== '' &&
-            product.price < Number(state.priceMin)
+            price < Number(state.priceMin)
         ) {
             return false;
         }
 
         if (
             state.priceMax !== '' &&
-            product.price > Number(state.priceMax)
+            price > Number(state.priceMax)
         ) {
             return false;
         }
@@ -1032,11 +1039,18 @@ function readArrayParam(params, key) {
         return [];
     }
 
-    return value
-        .split(',')
-        .filter((item) =>
-		    Object.prototype.hasOwnProperty.call(options, item)
-		);
+    return [
+        ...new Set(
+            value
+                .split(',')
+                .filter((item) =>
+                    Object.prototype.hasOwnProperty.call(
+                        options,
+                        item
+                    )
+                )
+        ),
+    ];
 }
 
 // Генерация карточек категорий

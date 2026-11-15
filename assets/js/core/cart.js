@@ -86,7 +86,7 @@ export function addToCart(
         !Number.isInteger(quantity) ||
         quantity <= 0
     ) {
-        return;
+        return false;
     }
 
     if (
@@ -101,7 +101,7 @@ export function addToCart(
             variant.unitPrice < 0
         )
     ) {
-        return;
+        return false;
     }
 
     const cart = getCart();

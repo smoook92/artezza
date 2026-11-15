@@ -72,7 +72,9 @@ export async function initCatalog() {
         '.catalog-toolbar__view'
     );
 
-   state = readStateFromUrl();
+    state = readStateFromUrl();
+
+	normalizeCatalogUrl();
 
 	renderCategories();
 
@@ -332,13 +334,17 @@ function sortProducts(products) {
    ========================================================= */
 
 function getCurrentPage() {
-    const page = Number(
-        new URLSearchParams(
-            window.location.search
-        ).get('page')
-    );
+    const value = new URLSearchParams(
+        window.location.search
+    ).get('page');
 
-    return Number.isInteger(page) && page > 0
+    if (!value || !/^[1-9]\d*$/.test(value)) {
+        return 1;
+    }
+
+    const page = Number(value);
+
+    return Number.isSafeInteger(page)
         ? page
         : 1;
 }
@@ -937,6 +943,17 @@ function updatePageUrl(
     );
 }
 
+function normalizeCatalogUrl() {
+    updateUrl({
+        replace: true,
+    });
+
+    updatePageUrl(
+        getCurrentPage(),
+        true
+    );
+}
+
 function readStateFromUrl() {
     const params = new URLSearchParams(
         window.location.search
@@ -961,8 +978,14 @@ function readStateFromUrl() {
 
     const sort = params.get('sort') ?? 'default';
 
+	const category = params.get('category') ?? '';
+
+	const validCategory = catalogData.categories.some(
+	    (item) => item.id === category
+	);
+
     return {
-        category: params.get('category') ?? '',
+		category: validCategory ? category : '',
 
         materialType: readArrayParam(params, 'materialType'),
         application: readArrayParam(params, 'application'),

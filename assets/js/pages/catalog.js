@@ -929,9 +929,12 @@ function readStateFromUrl() {
         window.location.search
     );
 
+    const priceMin = params.get('priceMin') ?? '';
+    const priceMax = params.get('priceMax') ?? '';
+    const sort = params.get('sort') ?? 'default';
+
     return {
-        category:
-            params.get('category') ?? '',
+        category: params.get('category') ?? '',
 
         materialType: readArrayParam(
             params,
@@ -954,18 +957,23 @@ function readStateFromUrl() {
         ),
 
         priceMin:
-            params.get('priceMin') ?? '',
+            /^\d+$/.test(priceMin) ? priceMin : '',
 
         priceMax:
-            params.get('priceMax') ?? '',
+            /^\d+$/.test(priceMax) ? priceMax : '',
 
-        sort:
-            params.get('sort') ?? 'default',
+        sort: [
+            'default',
+            'price-asc',
+            'price-desc',
+            'name',
+        ].includes(sort)
+            ? sort
+            : 'default',
 
-        view:
-            params.get('view') === 'list'
-                ? 'list'
-                : 'grid',
+        view: params.get('view') === 'list'
+            ? 'list'
+            : 'grid',
     };
 }
 

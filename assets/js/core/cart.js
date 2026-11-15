@@ -31,16 +31,15 @@ export function getCart() {
     }
 }
 
-
 /**
  * Saves cart contents.
  *
  * @param {Array} cart
- * @returns {void}
+ * @returns {boolean}
  */
 export function saveCart(cart) {
     if (!Array.isArray(cart)) {
-        return;
+        return false;
     }
 
     const validCart = cart.filter(isValidCartItem);
@@ -56,11 +55,15 @@ export function saveCart(cart) {
                 detail: { cart: validCart },
             })
         );
+
+        return true;
     } catch (error) {
         console.error(
             'Не удалось сохранить корзину:',
             error
         );
+
+        return false;
     }
 }
 
@@ -70,7 +73,7 @@ export function saveCart(cart) {
  * @param {string} productId
  * @param {number} quantity
  * @param {{volume: string, unitPrice: number}|null} variant
- * @returns {void}
+ * @returns {boolean}
  */
 export function addToCart(
     productId,
@@ -118,8 +121,8 @@ export function addToCart(
             ...(variant ?? {}),
         });
     }
-
-    saveCart(cart);
+    
+    return saveCart(cart);
 }
 
 /**

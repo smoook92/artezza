@@ -1,25 +1,32 @@
+
 import {
     addToCart,
     getCartQuantity,
 } from '../core/cart.js';
 
+const FALLBACK_IMAGE = 'assets/images/catalog/decorative-plaster.jpg';
+
 /**
  * Создаёт карточку товара.
  *
  * @param {Object} product
- * @param {string} product.id
- * @param {string} product.url
- * @param {string} product.image
- * @param {string} product.alt
- * @param {string} product.title
- * @param {string} product.description
- * @param {string} [product.categoryName]
- * @param {string} [product.category]
- * @returns {HTMLElement}
+ * @returns {HTMLElement|null}
  */
 export function createCatalogProduct(product) {
-    const article = document.createElement('article');
+    if (
+        !product ||
+        typeof product !== 'object' ||
+        !product.id ||
+        !product.title ||
+        !product.url ||
+        !product.image ||
+        !product.description
+    ) {
+        console.error('Некорректные данные товара:', product);
+        return null;
+    }
 
+    const article = document.createElement('article');
     article.className = 'catalog-product';
 
     const categoryName =
@@ -27,29 +34,36 @@ export function createCatalogProduct(product) {
         product.category ??
         '';
 
-    const formattedPrice =
-        Number.isFinite(Number(product.price)) && Number(product.price) > 0
-            ? `${new Intl.NumberFormat('ru-RU').format(Number(product.price))} ₽`
-            : '';
+    const price = Number(product.price);
 
-    
+    const formattedPrice = Number.isFinite(price) && price > 0
+        ? `${new Intl.NumberFormat('ru-RU').format(price)} ₽`
+        : '';
+
+    const productUrl = getSafeUrl(product.url);
+    const imageUrl = getSafeUrl(product.image);
+
+    if (!productUrl) {
+        console.error('Некорректный URL товара:', product.url);
+        return null;
+    }
+
     article.innerHTML = `
         <a
             class="catalog-product__media"
-            href="${escapeHtml(product.url)}"
+            href="${escapeHtml(productUrl)}"
             aria-label="${escapeHtml(product.title)}"
         >
             <img
-                src="${escapeHtml(product.image)}"
+                src="${escapeHtml(imageUrl || FALLBACK_IMAGE)}"
                 alt="${escapeHtml(product.alt ?? product.title)}"
                 loading="lazy"
                 width="600"
                 height="600"
             >
         </a>
-    
+
         <div class="catalog-product__content">
-    
             ${
                 categoryName
                     ? `
@@ -59,15 +73,15 @@ export function createCatalogProduct(product) {
                     `
                     : ''
             }
-    
+
             <h2 class="catalog-product__title">
                 ${escapeHtml(product.title)}
             </h2>
-    
+
             <p class="catalog-product__description">
                 ${escapeHtml(product.description)}
             </p>
-    
+
             <div class="catalog-product__purchase">
                 ${
                     formattedPrice
@@ -78,7 +92,7 @@ export function createCatalogProduct(product) {
                         `
                         : ''
                 }
-    
+
                 <button
                     class="catalog-product__add-to-cart button button--primary button--small"
                     type="button"
@@ -87,30 +101,33 @@ export function createCatalogProduct(product) {
                     В корзину
                 </button>
             </div>
-    
+
             <a
                 class="catalog-product__link"
-                href="${escapeHtml(product.url)}"
+                href="${escapeHtml(productUrl)}"
             >
                 Подробнее
                 <span aria-hidden="true">↗</span>
             </a>
-    
         </div>
     `;
 
     const addButton = article.querySelector(
         '.catalog-product__add-to-cart'
     );
-    
 
-    addButton?.addEventListener('click', () => {
-        const isAdded = addToCart(product.id);
-    
+    let resetTimer = null;
+
+    addButton.addEventListener('click', () => {
+        const productId = addButton.dataset.productId;
+        const isAdded = addToCart(productId);
+
+        window.clearTimeout(resetTimer);
+
         if (isAdded) {
             addButton.textContent = 'Добавлено в корзину';
             addButton.classList.add('is-added');
-    
+
             document
                 .querySelectorAll('[data-cart-count]')
                 .forEach((badge) => {
@@ -118,17 +135,48 @@ export function createCatalogProduct(product) {
                 });
         } else {
             addButton.textContent = 'Не удалось добавить';
+            addButton.classList.remove('is-added');
         }
-    
-        window.setTimeout(() => {
+
+        resetTimer = window.setTimeout(() => {
             addButton.textContent = 'В корзину';
             addButton.classList.remove('is-added');
         }, 1500);
     });
-    
+
+    const image = article.querySelector('img');
+
+    image.addEventListener('error', () => {
+        image.onerror = null;
+        image.src = FALLBACK_IMAGE;
+    });
+
     return article;
 }
 
+/**
+ * Проверяет URL и разрешает только HTTP(S).
+ *
+ * @param {string} value
+ * @returns {string|null}
+ */
+function getSafeUrl(value) {
+    if (typeof value !== 'string' || !value.trim()) {
+        return null;
+    }
+
+    try {
+        const url = new URL(value, window.location.origin);
+
+        if (!['http:', 'https:'].includes(url.protocol)) {
+            return null;
+        }
+
+        return value;
+    } catch {
+        return null;
+    }
+}
 
 /**
  * Экранирует значение перед вставкой в HTML.

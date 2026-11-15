@@ -103,17 +103,22 @@ export function createCatalogProduct(product) {
         '.catalog-product__add-to-cart'
     );
     
+
     addButton?.addEventListener('click', () => {
-        addToCart(product.id);
+        const isAdded = addToCart(product.id);
     
-        addButton.textContent = 'Добавлено в корзину';
-        addButton.classList.add('is-added');
+        if (isAdded) {
+            addButton.textContent = 'Добавлено в корзину';
+            addButton.classList.add('is-added');
     
-        document
-            .querySelectorAll('[data-cart-count]')
-            .forEach((badge) => {
-                badge.textContent = String(getCartQuantity());
-            });
+            document
+                .querySelectorAll('[data-cart-count]')
+                .forEach((badge) => {
+                    badge.textContent = String(getCartQuantity());
+                });
+        } else {
+            addButton.textContent = 'Не удалось добавить';
+        }
     
         window.setTimeout(() => {
             addButton.textContent = 'В корзину';

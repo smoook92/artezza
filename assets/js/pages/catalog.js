@@ -147,12 +147,14 @@ export async function initCatalog() {
 		});
 	});
 
-    window.addEventListener('popstate', () => {
-        state = readStateFromUrl();
-
-        syncFilterControls();
-        renderCatalog();
-    });
+	window.addEventListener('popstate', () => {
+	    state = readStateFromUrl();
+	
+	    normalizeCatalogUrl();
+	
+	    syncFilterControls();
+	    renderCatalog();
+	});
 
 	 window.addEventListener('resize', () => {
 		syncView();

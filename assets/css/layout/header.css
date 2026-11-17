@@ -171,6 +171,18 @@
     outline-offset: 5px;
 }
 
+.site-header__mobile-cart {
+    display: none;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    color: var(--header-text);
+    text-decoration: none;
+}
 
 /* ==========================================================================
    MOBILE TOGGLE
@@ -705,6 +717,10 @@ body.menu-open {
     .site-header__actions {
         display: none;
     }
+
+	.site-header__main-inner {
+	    display: none;
+	}
 
     .site-header__mobile-cart {
         display: inline-flex;

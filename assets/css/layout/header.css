@@ -251,7 +251,7 @@
 .site-header__navigation {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
 
     width: 100%;
     min-width: 0;
@@ -261,8 +261,8 @@
     display: flex;
     flex: 1;
     align-items: stretch;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: center;
+    gap: clamp(2rem, 5vw, 6rem);
 
     min-width: 0;
     margin: 0;
@@ -651,23 +651,26 @@ body.menu-open {
 
 @media (max-width: 991px) {
     .site-header__top-inner {
-	    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-	    gap: 0.5rem;
-	    min-height: 64px;
-	}
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr) 44px;
+        align-items: center;
+        min-height: 64px;
+        gap: 0.5rem;
+    }
 	
-	.site-header__top-info {
-	    display: none;
-	}
+	.site-header__top-info,
+    .site-header__top-link {
+        display: none;
+    }
 	
-	.site-header__top-inner > .site-header__logo {
-	    grid-column: 2;
-	    justify-self: center;
-	}
+    .site-header__top-inner > .site-header__logo {
+        grid-column: 2;
+        justify-self: center;
+    }
 	
-	.site-header__logo-text {
-	    font-size: 1.35rem;
-	}
+    .site-header__logo-text {
+        font-size: 1.35rem;
+    }
 	
 	.site-header__top-phone {
 	    grid-column: 3;
@@ -676,11 +679,13 @@ body.menu-open {
 	}
 	
 	.site-header__catalog-toggle {
-	    display: inline-flex;
+	    display: none;
 	}
 
     .site-header__menu-toggle {
         display: inline-flex;
+        grid-column: 1;
+        grid-row: 1;
     }
 
     .site-header__navigation {
@@ -688,6 +693,7 @@ body.menu-open {
     }
 
     .site-header__logo {
+        grid-column: 2;
         justify-self: center;
     }
 
@@ -697,7 +703,30 @@ body.menu-open {
     }
 
     .site-header__actions {
-        gap: 0;
+        display: none;
+    }
+
+    .site-header__mobile-cart {
+        display: inline-flex;
+        grid-column: 3;
+        grid-row: 1;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 42px;
+        height: 42px;
+    }
+
+    .site-header__mobile-cart img {
+        display: block;
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+
+    .site-header__mobile-cart .site-header__action-badge {
+        top: 0;
+        right: -2px;
     }
 
     /*
@@ -973,8 +1002,16 @@ body.menu-open {
 
 @media (max-width: 575px) {
     .site-header__main-inner {
+            display: none;
+        }
+
+    .site-header__top-inner {
         min-height: 70px;
         padding-inline: 0.75rem;
+    }
+
+    .site-header__logo-text {
+        font-size: 1.35rem;
     }
 
     .site-header__logo img {

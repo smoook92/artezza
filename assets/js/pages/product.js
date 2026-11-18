@@ -24,8 +24,6 @@ async function initProduct() {
         return;
     }
 
-    setCanonicalUrl('id', product.id);
-
     try {
         const catalogData = await getCatalogData();
 
@@ -37,6 +35,8 @@ async function initProduct() {
             renderProductNotFound();
             return;
         }
+
+        setCanonicalUrl('id', product.id);
 
         renderProduct(
             product,

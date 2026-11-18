@@ -25,14 +25,14 @@ function initPortfolioSingle() {
         return;
     }
 
-    setCanonicalUrl('id', project.id);
-
     const project = findProject(projectId);
 
     if (!project) {
         renderNotFound();
         return;
     }
+
+    setCanonicalUrl('id', project.id);
 
     const product = findRelatedProduct(project.relatedProductId);
 

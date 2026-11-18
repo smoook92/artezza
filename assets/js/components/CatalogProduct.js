@@ -133,8 +133,6 @@ export function createCatalogProduct(product) {
 
         const productId = addButton.dataset.productId;
         const isAdded = addToCart(productId);
-        const productId = addButton.dataset.productId;
-        const isAdded = addToCart(productId);
 
         window.clearTimeout(resetTimer);
 

@@ -1062,6 +1062,7 @@ function readArrayParam(params, key) {
     ];
 }
 
+
 // Генерация карточек категорий
 function renderCategories() {
     const container = document.querySelector(
@@ -1115,7 +1116,14 @@ function renderCategories() {
         })
     );
 
-    catalogData.categories.forEach((category) => {
+    const visibleCategories = catalogData.categories.filter(
+        (category) =>
+            catalogData.products.some(
+                (product) => product.category === category.id
+            )
+    );
+
+    visibleCategories.forEach((category) => {
         const product = catalogData.products.find(
             (item) =>
                 item.category === category.id &&

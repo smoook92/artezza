@@ -1,7 +1,7 @@
 /**
  * Catalog side panel.
  *
- * Opens and closes the catalog panel.
+ * Opens the panel and controls category submenus.
  */
 export function initCatalogPanel() {
     const panel = document.querySelector('#catalog-panel');
@@ -10,6 +10,10 @@ export function initCatalogPanel() {
     const catalogLinks = document.querySelectorAll(
         '.site-header__catalog-toggle.catalog-panel__open'
     );
+    const categories = panel?.querySelectorAll('.catalog-panel__category');
+    const canHover = window.matchMedia(
+        '(hover: hover) and (pointer: fine)'
+    ).matches;
 
     if (!panel || !catalogLinks.length) {
         return;
@@ -17,9 +21,6 @@ export function initCatalogPanel() {
 
     let previousFocus = null;
 
-    /**
-     * Changes the panel visibility.
-     */
     const setPanelState = (open) => {
         panel.setAttribute('aria-hidden', String(!open));
         document.body.classList.toggle('catalog-panel-open', open);
@@ -30,8 +31,70 @@ export function initCatalogPanel() {
             return;
         }
 
+        closeAllSubmenus();
         previousFocus?.focus?.();
     };
+
+    const setSubmenuState = (category, open) => {
+        const trigger = category.querySelector(
+            '.catalog-panel__category-trigger'
+        );
+
+        trigger?.setAttribute('aria-expanded', String(open));
+    };
+
+    const closeAllSubmenus = (except = null) => {
+        categories?.forEach((category) => {
+            if (category !== except) {
+                setSubmenuState(category, false);
+            }
+        });
+    };
+
+    categories?.forEach((category) => {
+        const trigger = category.querySelector(
+            '.catalog-panel__category-trigger'
+        );
+
+        if (!trigger) {
+            return;
+        }
+
+        if (canHover) {
+            category.addEventListener('pointerenter', () => {
+                closeAllSubmenus(category);
+                setSubmenuState(category, true);
+            });
+
+            category.addEventListener('pointerleave', () => {
+                setSubmenuState(category, false);
+            });
+        }
+
+        category.addEventListener('focusin', () => {
+            closeAllSubmenus(category);
+            setSubmenuState(category, true);
+        });
+
+        category.addEventListener('focusout', (event) => {
+            if (!category.contains(event.relatedTarget)) {
+                setSubmenuState(category, false);
+            }
+        });
+
+        trigger.addEventListener('click', (event) => {
+            if (canHover && event.detail !== 0) {
+                return;
+            }
+
+            const isExpanded =
+                trigger.getAttribute('aria-expanded') === 'true';
+
+            closeAllSubmenus();
+
+            setSubmenuState(category, !isExpanded);
+        });
+    });
 
     catalogLinks.forEach((link) => {
         link.addEventListener('click', (event) => {

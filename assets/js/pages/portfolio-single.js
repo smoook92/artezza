@@ -1,5 +1,6 @@
 import { portfolioData } from '../data/portfolio-data.js';
 import { catalogProducts } from '../data/catalog-products.js';
+import { setCanonicalUrl } from '../core/seo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initPortfolioSingle();
@@ -23,6 +24,8 @@ function initPortfolioSingle() {
         renderNotFound();
         return;
     }
+
+    setCanonicalUrl('id', project.id);
 
     const project = findProject(projectId);
 

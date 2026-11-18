@@ -1,3 +1,4 @@
+import { setCanonicalUrl } from '../core/seo.js';
 import { getCatalogData } from '../data/catalog-data.js';
 
 import {
@@ -22,6 +23,8 @@ async function initProduct() {
         renderProductNotFound();
         return;
     }
+
+    setCanonicalUrl('id', product.id);
 
     try {
         const catalogData = await getCatalogData();

@@ -1,3 +1,5 @@
+import { setCanonicalUrl } from '../core/seo.js';
+
 document.addEventListener(
     'DOMContentLoaded',
     initPage
@@ -314,6 +316,8 @@ function initPage() {
         renderNotFound();
         return;
     }
+
+    setCanonicalUrl('page', pageKey);
 
     renderPage(
         pageKey,

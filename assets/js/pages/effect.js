@@ -1,6 +1,7 @@
 import { getCatalogData } from '../data/catalog-data.js';
 import { catalogEffects } from '../data/catalog-effects.js';
 import { createCatalogProduct } from '../components/CatalogProduct.js';
+import { setCanonicalUrl } from '../core/seo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initEffect();
@@ -28,6 +29,8 @@ async function initEffect() {
         renderEffectNotFound();
         return;
     }
+
+    setCanonicalUrl('id', effect.id);
 
     try {
         const catalogData = await getCatalogData();

@@ -4,6 +4,7 @@ const DEFAULT_OPTIONS = {
 };
 
 const MAX_COUNT = 20;
+const imageRequests = new WeakMap();
 
 const TEMPLATES = {
     'product-card': createProductCard,
@@ -179,6 +180,9 @@ async function loadImage(container, image, src, alt = '', fallback = null) {
         throw new TypeError('Skeleton.loadImage(): invalid container or image.');
     }
 
+    const requestId = Symbol('image-request');
+    imageRequests.set(image, requestId);
+
     show(container, { type: 'image' });
 
     image.alt = alt;
@@ -186,25 +190,46 @@ async function loadImage(container, image, src, alt = '', fallback = null) {
     container.append(image);
 
     const load = (url) => new Promise((resolve) => {
-        image.onload = () => resolve(true);
-        image.onerror = () => resolve(false);
+        const cleanup = () => {
+            image.removeEventListener('load', handleLoad);
+            image.removeEventListener('error', handleError);
+        };
+
+        const finish = (loaded) => {
+            cleanup();
+            resolve(loaded);
+        };
+
+        const handleLoad = () => finish(
+            imageRequests.get(image) === requestId
+        );
+
+        const handleError = () => finish(false);
+
+        image.addEventListener('load', handleLoad);
+        image.addEventListener('error', handleError);
         image.src = url;
 
         if (image.complete) {
-            resolve(image.naturalWidth > 0);
+            finish(image.naturalWidth > 0);
         }
     });
 
     let loaded = await load(src);
 
+    if (imageRequests.get(image) !== requestId) {
+        return false;
+    }
+
     if (!loaded && fallback && src !== fallback) {
         loaded = await load(fallback);
     }
 
-    image.onload = null;
-    image.onerror = null;
-    image.hidden = !loaded;
+    if (imageRequests.get(image) !== requestId) {
+        return false;
+    }
 
+    image.hidden = !loaded;
     hide(container);
 
     return loaded;

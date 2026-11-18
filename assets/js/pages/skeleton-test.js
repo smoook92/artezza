@@ -23,3 +23,8 @@ document.querySelectorAll('[data-skeleton-type]').forEach((button) => {
         status.textContent = `Предпросмотр: ${button.textContent}.`;
     });
 });
+
+document.querySelector('[data-skeleton-hide]')?.addEventListener('click', () => {
+    Skeleton.hide(container);
+    status.textContent = 'Предпросмотр очищен.';
+});

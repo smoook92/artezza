@@ -170,7 +170,13 @@
 
 .product__title {
     max-width: 100%;
-    overflow-wrap: anywhere;
+
+    font-size: clamp(2.25rem, 3.6vw, 3.25rem);
+    line-height: 1.1;
+
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
 }
 
 .product__description {
@@ -513,7 +519,12 @@
 
     .product__title {
         max-width: none;
-        font-size: clamp(2.25rem, 12vw, 3.5rem);
+        font-size: clamp(2.25rem, 10vw, 3.25rem);
+        line-height: 1.1;
+
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: manual;
     }
 
     .product__meta-item {

@@ -39,12 +39,15 @@
 }
 
 .catalog-panel__header {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
     padding: 28px 32px;
     border-bottom: 1px solid #deded8;
+    background: #f7f6f2;
 }
 
 .catalog-panel__title {
@@ -83,7 +86,9 @@
     transform: rotate(-45deg);
 }
 
-/* Main categories */
+/* =========================================================
+   CATEGORY LAYOUT
+   ========================================================= */
 
 .catalog-panel__body {
     position: relative;
@@ -94,7 +99,8 @@
 }
 
 .catalog-panel__category {
-    width: 100%;
+    position: static;
+    width: 50%;
     border-bottom: 1px solid #e2e1db;
 }
 
@@ -114,56 +120,18 @@
     font-size: 16px;
     line-height: 1.4;
     cursor: pointer;
+    transition: background 0.2s ease;
 }
 
 .catalog-panel__category-trigger:hover,
-.catalog-panel__category-trigger:focus-visible {
+.catalog-panel__category-trigger:focus-visible,
+.catalog-panel__category-trigger[aria-expanded="true"] {
     background: #eae9e3;
 }
 
 .catalog-panel__arrow {
     flex-shrink: 0;
     font-size: 22px;
-}
-
-.catalog-panel__submenu {
-    display: none;
-    padding: 0 32px 16px;
-}
-
-.catalog-panel__category:hover > .catalog-panel__submenu,
-.catalog-panel__category:focus-within > .catalog-panel__submenu,
-.catalog-panel__category-trigger[aria-expanded="true"] + .catalog-panel__submenu {
-    display: block;
-}
-
-.catalog-panel__category:focus-within > .catalog-panel__submenu,
-.catalog-panel__category-trigger[aria-expanded="true"] + .catalog-panel__submenu {
-    display: block;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .catalog-panel__category:hover > .catalog-panel__submenu {
-        display: block;
-    }
-}
-
-.catalog-panel__submenu a {
-    display: block;
-    padding: 12px 0;
-    border-bottom: 1px solid #e2e1db;
-    color: inherit;
-    font-size: 14px;
-    line-height: 1.4;
-    text-decoration: none;
-}
-
-.catalog-panel__submenu a:hover,
-.catalog-panel__submenu a:focus-visible {
-    color: #68786e;
-}
-
-.catalog-panel__arrow {
     transition: transform 0.2s ease;
 }
 
@@ -171,17 +139,63 @@
     transform: rotate(90deg);
 }
 
+/* =========================================================
+   DESKTOP SUBMENU — RIGHT COLUMN
+   ========================================================= */
+
+.catalog-panel__submenu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 20px 28px;
+    overflow-y: auto;
+    border-left: 1px solid #e2e1db;
+    background: #fff;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, visibility 0.18s ease;
+}
+
+.catalog-panel__category:hover > .catalog-panel__submenu,
+.catalog-panel__category:focus-within > .catalog-panel__submenu,
+.catalog-panel__category-trigger[aria-expanded="true"] + .catalog-panel__submenu {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.catalog-panel__submenu a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid #e2e1db;
+    color: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.catalog-panel__submenu a:hover,
+.catalog-panel__submenu a:focus-visible {
+    color: #68786e;
+}
+
 .catalog-panel__close:focus-visible,
 .catalog-panel__category-trigger:focus-visible {
     outline: 2px solid #68786e;
-    outline-offset: 3px;
+    outline-offset: -2px;
 }
 
 body.catalog-panel-open {
     overflow: hidden;
 }
 
-/* Tablet and mobile */
+/* =========================================================
+   MOBILE — ACCORDION
+   ========================================================= */
 
 @media (max-width: 767px) {
     .catalog-panel__content {
@@ -207,5 +221,34 @@ body.catalog-panel-open {
     .catalog-panel__category-trigger {
         min-height: 64px;
         padding: 18px 20px;
+    }
+
+    .catalog-panel__submenu {
+        position: static;
+        width: 100%;
+        max-height: none;
+        padding: 0 20px 16px;
+        overflow: visible;
+        border-left: 0;
+        background: transparent;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        display: none;
+    }
+
+    .catalog-panel__category:hover > .catalog-panel__submenu {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        display: none;
+    }
+
+    .catalog-panel__category:focus-within > .catalog-panel__submenu,
+    .catalog-panel__category-trigger[aria-expanded="true"] + .catalog-panel__submenu {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
     }
 }

@@ -66,12 +66,21 @@ export function initCatalogPanel() {
                 setSubmenuState(category, true);
             });
 
-            category.addEventListener('pointerleave', () => {
-                setSubmenuState(category, false);
-            });
+        category.addEventListener('pointerleave', (event) => {
+            if (category.contains(event.relatedTarget)) {
+                return;
+            }
+
+            setSubmenuState(category, false);
+        });
+
         }
 
-        category.addEventListener('focusin', () => {
+        category.addEventListener('focusin', (event) => {
+            if (!event.target.matches(':focus-visible')) {
+                return;
+            }
+
             closeAllSubmenus(category);
             setSubmenuState(category, true);
         });
@@ -83,6 +92,10 @@ export function initCatalogPanel() {
         });
 
         trigger.addEventListener('click', (event) => {
+            if (event.detail === 0) {
+                return;
+            }
+            
             if (canHover && event.detail !== 0) {
                 return;
             }

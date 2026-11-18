@@ -32,3 +32,21 @@ export const catalogCategories = [
         name: 'Защитные составы',
     },
 ];
+
+/**
+ * Main groups displayed in the catalog side panel.
+ */
+export const catalogMenuGroups = [
+    {
+        id: 'paints',
+        name: 'Лакокрасочные материалы',
+    },
+    {
+        id: 'heating',
+        name: 'Тёплый пол и системы обогрева',
+    },
+    {
+        id: 'tools',
+        name: 'Инструменты и расходные материалы',
+    },
+];

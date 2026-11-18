@@ -1,6 +1,6 @@
 import { initNavigation } from './navigation.js';
 import { initMobileMenu } from './mobile-menu.js';
-import { initCatalogPanel } from './catalog-panel.js?v=2';
+import { initCatalogPanel } from './catalog-panel.js?v=3';
 
 /**
  * Initialize site header.

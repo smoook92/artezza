@@ -1,5 +1,6 @@
 import { setCanonicalUrl } from '../core/seo.js';
 import { getCatalogData } from '../data/catalog-data.js';
+import { Skeleton } from '../components/skeleton.js';
 
 import {
     addToCart,
@@ -277,8 +278,13 @@ function renderMainImage(product) {
         return;
     }
 
-    image.src = product.image;
-    image.alt = product.alt ?? product.title;
+    Skeleton.loadImage(
+        image.closest('.product__main-image'),
+        image,
+        product.image,
+        product.alt ?? product.title,
+        'assets/images/catalog/decorative-plaster.jpg'
+    );
 }
 
 /**
@@ -373,9 +379,13 @@ function setActiveGalleryImage(
         return;
     }
 
-    mainImage.src = image;
-    mainImage.alt =
-        product.alt ?? product.title;
+    Skeleton.loadImage(
+        mainImage.closest('.product__main-image'),
+        mainImage,
+        image,
+        product.alt ?? product.title,
+        'assets/images/catalog/decorative-plaster.jpg'
+    );
 
     document
         .querySelectorAll('.product__thumbnail')

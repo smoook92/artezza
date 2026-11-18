@@ -1,6 +1,7 @@
 import { portfolioData } from '../data/portfolio-data.js';
 import { catalogProducts } from '../data/catalog-products.js';
 import { setCanonicalUrl } from '../core/seo.js';
+import { Skeleton } from '../components/skeleton.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initPortfolioSingle();
@@ -95,8 +96,13 @@ function renderProject(project, product) {
     const image = document.querySelector('.portfolio-single__image');
 
     if (image) {
-        image.src = project.image;
-        image.alt = project.title;
+        Skeleton.loadImage(
+            image.closest('.portfolio-single__hero'),
+            image,
+            project.image,
+            project.title,
+            'assets/images/catalog/decorative-plaster.jpg'
+        );
     }
 
     renderRelatedProduct(product);

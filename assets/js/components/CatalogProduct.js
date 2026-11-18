@@ -36,6 +36,13 @@ export function createCatalogProduct(product) {
 
     const price = Number(product.price);
 
+    const hasVolumeOptions = Array.isArray(product.volumeOptions)
+        && product.volumeOptions.length > 0;
+
+    const buttonLabel = hasVolumeOptions
+        ? 'Выбрать объём'
+        : 'В корзину';
+
     const formattedPrice = Number.isFinite(price) && price > 0
         ? `${new Intl.NumberFormat('ru-RU').format(price)} ₽`
         : '';
@@ -98,7 +105,7 @@ export function createCatalogProduct(product) {
                     type="button"
                     data-product-id="${escapeHtml(product.id)}"
                 >
-                    В корзину
+                    ${buttonLabel}
                 </button>
             </div>
 
@@ -119,6 +126,13 @@ export function createCatalogProduct(product) {
     let resetTimer = null;
 
     addButton.addEventListener('click', () => {
+        if (hasVolumeOptions) {
+            window.location.href = productUrl;
+            return;
+        }
+
+        const productId = addButton.dataset.productId;
+        const isAdded = addToCart(productId);
         const productId = addButton.dataset.productId;
         const isAdded = addToCart(productId);
 
@@ -139,7 +153,7 @@ export function createCatalogProduct(product) {
         }
 
         resetTimer = window.setTimeout(() => {
-            addButton.textContent = 'В корзину';
+            addButton.textContent = buttonLabel;
             addButton.classList.remove('is-added');
         }, 1500);
     });

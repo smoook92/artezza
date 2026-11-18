@@ -1,0 +1,50 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Основные страницы -->
+    <url><loc>https://smoook92.github.io/artezza/</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/catalog.html</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/contacts.html</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/brands.html</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/promotions.html</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/effects.html</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/instruments.html</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/portfolio.html</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/reviews.html</loc></url>
+
+    <!-- Товары -->
+    <url><loc>https://smoook92.github.io/artezza/product.html?id=decorative-plaster</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/product.html?id=microcement</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/product.html?id=marble</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/product.html?id=venetian-plaster</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/product.html?id=effect-paint</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/product.html?id=tools</loc></url>
+
+    <!-- Декоративные эффекты -->
+    <url><loc>https://smoook92.github.io/artezza/effect.html?id=texture</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/effect.html?id=concrete</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/effect.html?id=marble</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/effect.html?id=gloss</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/effect.html?id=decorative</loc></url>
+
+    <!-- Портфолио -->
+    <url><loc>https://smoook92.github.io/artezza/portfolio-single.html?id=textured-living-room</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/portfolio-single.html?id=microcement-bathroom</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/portfolio-single.html?id=marble-wall</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/portfolio-single.html?id=venetian-interior</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/portfolio-single.html?id=decorative-wall</loc></url>
+
+    <!-- Информационные страницы -->
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=about</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=partners</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=school</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=video</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=services</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=delivery</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=payment</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=faq</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=privacy</loc></url>
+    <url><loc>https://smoook92.github.io/artezza/page.html?page=personal-data</loc></url>
+
+</urlset>

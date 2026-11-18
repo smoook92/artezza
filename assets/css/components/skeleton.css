@@ -110,3 +110,32 @@
         opacity: 0.25;
     }
 }
+
+/* =========================================================
+   IMAGE LOADING CONTAINERS
+   ========================================================= */
+
+.product__main-image,
+.portfolio-single__hero {
+    position: relative;
+}
+
+.product__main-image[aria-busy="true"] > .skeleton-group,
+.portfolio-single__hero[aria-busy="true"] > .skeleton-group {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.product__main-image > .skeleton-group .skeleton-card,
+.portfolio-single__hero > .skeleton-group .skeleton-card {
+    width: 100%;
+    height: 100%;
+}
+
+.product__main-image > .skeleton-group .skeleton--image,
+.portfolio-single__hero > .skeleton-group .skeleton--image {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0;
+}

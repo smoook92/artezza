@@ -29,6 +29,18 @@
     <!-- TOP BAR -->
 	<div class="site-header__top">
 	    <div class="container site-header__top-inner">
+			<button
+			    class="site-header__menu-toggle"
+			    type="button"
+			    aria-expanded="false"
+			    aria-controls="mobile-menu"
+			    aria-label="Открыть меню"
+			>
+			    <span></span>
+			    <span></span>
+			    <span></span>
+			</button>
+			
 	        <div class="site-header__top-info">
 	            <span class="site-header__top-hours">
 	                Ежедневно с 9:00 до 18:00
@@ -45,6 +57,23 @@
 	        >
 	            <span class="site-header__logo-text">Краски&amp;Лепнина</span>
 	        </a>
+
+			<a
+			    class="site-header__mobile-cart"
+			    href="cart.html"
+			    aria-label="Корзина"
+			>
+			    <img
+			        src="assets/images/icons/cart.svg"
+			        alt=""
+			        width="30"
+			        height="30"
+			    >
+			
+			    <span class="site-header__action-badge" data-cart-count="">
+			        0
+			    </span>
+			</a>
 	
 	        <a
 	            class="site-header__top-link"
@@ -65,20 +94,7 @@
     <!-- MAIN HEADER -->
     <div class="site-header__main">
 
-        <div class="container site-header__main-inner">			
-			<!-- MOBILE MENU TOGGLE -->
-			<button
-			    class="site-header__menu-toggle"
-			    type="button"
-			    aria-expanded="false"
-			    aria-controls="mobile-menu"
-			    aria-label="Открыть меню"
-			>
-			    <span></span>
-			    <span></span>
-			    <span></span>
-			</button>
-			
+        <div class="container site-header__main-inner">				
 			<!-- DESKTOP NAVIGATION -->
 			<nav
 			    class="site-header__navigation"
@@ -156,16 +172,6 @@
         id="mobile-menu"
         aria-hidden="true"
     >
-        <!-- CLOSE BUTTON -->
-        <button
-            class="mobile-menu__close"
-            type="button"
-            aria-label="Закрыть меню"
-        >
-            <span></span>
-            <span></span>
-        </button>
-
         <!-- LOCATION AND PHONE -->
         <div class="mobile-menu__location">
             <a href="contacts.html">

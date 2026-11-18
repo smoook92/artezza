@@ -41,6 +41,9 @@ export function initCatalogPanel() {
         );
 
         trigger?.setAttribute('aria-expanded', String(open));
+
+        panel.querySelector('.catalog-panel__content')
+            ?.classList.toggle('has-active-submenu', open);
     };
 
     const closeAllSubmenus = (except = null) => {
@@ -95,7 +98,7 @@ export function initCatalogPanel() {
             if (event.detail === 0) {
                 return;
             }
-            
+
             if (canHover && event.detail !== 0) {
                 return;
             }

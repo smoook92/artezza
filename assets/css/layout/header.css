@@ -171,6 +171,18 @@
     outline-offset: 5px;
 }
 
+.site-header__mobile-cart {
+    display: none;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    color: var(--header-text);
+    text-decoration: none;
+}
 
 /* ==========================================================================
    MOBILE TOGGLE
@@ -706,6 +718,10 @@ body.menu-open {
         display: none;
     }
 
+	.site-header__main-inner {
+	    display: none;
+	}
+
     .site-header__mobile-cart {
         display: inline-flex;
         grid-column: 3;
@@ -992,6 +1008,34 @@ body.menu-open {
     .mobile-menu__secondary-column a:focus-visible {
         outline: 2px solid currentColor;
         outline-offset: 3px;
+    }
+
+	/* Mobile menu toggle animation */
+	.site-header__menu-toggle {
+        z-index: 1100;
+    }
+
+    .site-header__menu-toggle span {
+        transform-origin: center;
+        transition:
+            transform 180ms ease,
+            opacity 180ms ease;
+    }
+
+    .site-header.mobile-menu-is-open
+    .site-header__menu-toggle span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .site-header.mobile-menu-is-open
+    .site-header__menu-toggle span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .site-header.mobile-menu-is-open
+    .site-header__menu-toggle span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
     }
 }
 

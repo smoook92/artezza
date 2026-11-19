@@ -232,6 +232,15 @@ async function loadImage(container, image, src, alt = '', fallback = null) {
     image.hidden = !loaded;
     hide(container);
 
+    if (!loaded) {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'skeleton-image-error';
+        placeholder.setAttribute('role', 'img');
+        placeholder.setAttribute('aria-label', 'Изображение недоступно');
+        placeholder.textContent = 'Изображение недоступно';
+        container.append(placeholder);
+    }
+
     return loaded;
 }
 

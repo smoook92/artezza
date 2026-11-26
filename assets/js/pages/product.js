@@ -796,6 +796,16 @@ function renderCharacteristics(product) {
 
     container.replaceChildren();
 
+    if (product.demoNote) {
+        const panel = container.closest('.product-tabs__panel');
+        const notice = document.createElement('p');
+
+        notice.className = 'product-tabs__notice';
+        notice.textContent = 'Характеристики приведены для демонстрации и будут уточнены после согласования конкретного материала с заказчиком.';
+
+        panel?.insertBefore(notice, container);
+    }
+
     product.characteristics?.forEach(
         ({ name, value }) => {
             const nameElement =

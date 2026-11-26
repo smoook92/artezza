@@ -183,7 +183,7 @@ function renderProduct(product, categories) {
     updateBreadcrumb(product);
     setText('.product__sku-value', product.sku ?? 'Уточняется');
     setText('.product__availability-text', product.availability ?? 'Наличие уточняется');
-    initMaterialCalculator();
+    initMaterialCalculator(product);
 
     const quantityState = initQuantity();
     initAddToCart(product, volumeState, quantityState);
@@ -221,25 +221,60 @@ function renderProductOrigin(product) {
  *
  * @returns {void}
  */
-function initMaterialCalculator() {
+function initMaterialCalculator(product) {
     const calculator = document.querySelector('.product__calculator');
 
     if (!calculator) {
         return;
     }
 
-    const inputs = calculator.querySelectorAll('input');
+    const areaInput = calculator.querySelector('.product__calc-area');
+    const excludedInput = calculator.querySelector('.product__calc-excluded');
+    const layersInput = calculator.querySelector('.product__calc-layers');
     const result = calculator.querySelector('.product__calculator-result');
 
-    inputs.forEach((input) => {
-        input.addEventListener('input', () => {
-            if (result) {
-                result.textContent = 'Расход уточняется';
-            }
-        });
-    });
-}
+    if (!areaInput || !excludedInput || !layersInput || !result) {
+        return;
+    }
 
+    const updateResult = () => {
+        const area = Number(areaInput.value);
+        const excluded = Number(excludedInput.value);
+        const layers = Number(layersInput.value);
+
+        if (!areaInput.value || area <= 0) {
+            result.textContent = 'Введите площадь';
+            return;
+        }
+
+        if (excluded < 0 || excluded >= area || layers < 1) {
+            result.textContent = 'Проверьте введённые данные';
+            return;
+        }
+
+        const workingArea = area - excluded;
+        const totalArea = workingArea * layers;
+
+        if (Number.isFinite(product.consumptionPerM2)) {
+            const requiredAmount = totalArea * product.consumptionPerM2;
+
+            result.textContent = `Потребуется около ${requiredAmount.toLocaleString('ru-RU', {
+                maximumFractionDigits: 2,
+            })} ${product.consumptionUnit ?? 'кг'}`;
+            return;
+        }
+
+        result.textContent = `К обработке: ${totalArea.toLocaleString('ru-RU', {
+            maximumFractionDigits: 1,
+        })} м² · расход уточняется`;
+    };
+
+    [areaInput, excludedInput, layersInput].forEach((input) => {
+        input.addEventListener('input', updateResult);
+    });
+
+    updateResult();
+}
 /**
  * Renders product volume options.
  *

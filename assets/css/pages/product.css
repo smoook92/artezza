@@ -523,3 +523,23 @@
     border: 1px solid var(--color-border);
     color: var(--color-text-secondary);
 }
+
+
+.product__demo-note,
+.product-tabs__notice {
+    margin: var(--space-3) 0 0;
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text-secondary);
+    background: var(--color-background-light);
+    border-left: 3px solid var(--color-primary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+.product__demo-note[hidden] {
+    display: none;
+}
+
+.product-tabs__notice {
+    margin-bottom: var(--space-5);
+}

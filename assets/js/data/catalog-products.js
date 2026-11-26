@@ -9,7 +9,7 @@ export const catalogProducts = [
 		effects: ['texture'],
 		base: 'Уточняется',
 		price: 3500,
-		image: 'assets/images/catalog/decorative-plaster.jpg',
+		image: 'assets/images/products/decorative-plaster-1.png',
 		alt: 'Декоративная штукатурка с рельефной фактурой',
 		brand: 'Бренд не выбран',
 		brandLogo: '',
@@ -59,7 +59,12 @@ export const catalogProducts = [
 			{ name: 'Фасовка', value: 'Уточняется' },
 		],
 
-		gallery: ['assets/images/catalog/decorative-plaster.jpg'],
+		gallery: [
+			'assets/images/products/decorative-plaster-1.png',
+			'assets/images/products/decorative-plaster-2.png',
+			'assets/images/products/decorative-plaster-3.png',
+			'assets/images/products/decorative-plaster-4.png',
+		],
 		url: 'product.html?id=decorative-plaster',
 	},
 

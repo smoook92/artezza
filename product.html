@@ -264,15 +264,22 @@
                 <p class="product__description"></p>
             </header>
 
-            <div class="product__gallery" aria-label="Галерея товара">
-                <div class="product__visual">
-                    <div class="product__main-image">
-                        <img class="product__image" alt="" width="800" height="800">
+            <div class="product__gallery-column">
+                <div class="product__gallery" aria-label="Галерея товара">
+                    <div class="product__visual">
+                        <div class="product__main-image">
+                            <img class="product__image" alt="" width="800" height="800">
+                        </div>
                     </div>
+                    <div class="product__thumbnails" aria-label="Миниатюры изображений товара"></div>
                 </div>
-                <div class="product__thumbnails" aria-label="Миниатюры изображений товара"></div>
+                <div class="product__origin" hidden>
+                    <p><span aria-hidden="true">▦</span> Страна бренда: <strong class="product__brand-country"></strong></p>
+                    <p><span aria-hidden="true">▦</span> Производство: <strong class="product__made-in"></strong></p>
+                </div>
             </div>
 
+            <div class="product__purchase-column">
             <aside class="product__purchase" aria-label="Покупка товара">
                 <div class="product__purchase-top">
                     <span class="product__availability"><span class="product__availability-dot"></span><span class="product__availability-text">Наличие уточняется</span></span>
@@ -293,26 +300,53 @@
                     </div>
 
                     <div class="product__purchase-info">
-                        <div class="product__delivery-line"><span class="product__delivery-icon" aria-hidden="true">⌂</span><span><strong>Самовывоз:</strong> условия уточняются у менеджера</span></div>
-                        <div class="product__delivery-line"><span class="product__delivery-icon" aria-hidden="true">↗</span><span><strong>Доставка:</strong> сроки и стоимость согласовываются при заказе</span></div>
-                        <a class="product__contact-link" href="contacts.html">Уточнить наличие и условия покупки</a>
+                        <section class="product__calculator" aria-label="Расчёт необходимого материала">
+                            <div class="product__calculator-heading">
+                                <strong>Вам потребуется:</strong>
+                                <span class="product__calculator-result">Расход уточняется</span>
+                            </div>
+                            <div class="product__calculator-fields">
+                                <label>Кол-во слоёв<input class="product__calc-layers" type="number" min="1" max="10" value="1"></label>
+                                <label>Площадь, м²<input class="product__calc-area" type="number" min="0" step="0.1" placeholder="0"></label>
+                                <label>Не обрабатываем, м²<input class="product__calc-excluded" type="number" min="0" step="0.1" placeholder="0"></label>
+                            </div>
+                            <p class="product__calculator-note">Точный расход будет рассчитан после подтверждения технических данных материала.</p>
+                        </section>
+                        <div class="product__delivery-lines">
+                            <div class="product__delivery-line"><span class="product__delivery-icon" aria-hidden="true">⌂</span><span><strong>Самовывоз:</strong> условия уточняются у менеджера</span></div>
+                            <div class="product__delivery-line"><span class="product__delivery-icon" aria-hidden="true">↗</span><span><strong>Доставка:</strong> сроки и стоимость согласовываются при заказе</span></div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="product__purchase-bottom">
-                    <div class="product__price-wrap">
-                        <span class="product__purchase-label">Цена</span>
-                        <div class="product__price"></div>
+                    <div class="product__price-row">
+                        <div class="product__price-wrap">
+                            <span class="product__purchase-label">Цена:</span>
+                            <div class="product__price"></div>
+                        </div>
+                        <div class="product__price-actions">
+                            <a href="contacts.html">Для оптовых покупателей<strong>Запросить цену</strong></a>
+                            <a href="contacts.html">Для дизайнеров<strong>Условия сотрудничества</strong></a>
+                        </div>
                     </div>
-                    <div class="product__quantity" aria-label="Количество товара">
-                        <button class="product__quantity-button" type="button" data-quantity-change="-1" aria-label="Уменьшить количество">−</button>
-                        <output class="product__quantity-value" aria-live="polite">1</output>
-                        <button class="product__quantity-button" type="button" data-quantity-change="1" aria-label="Увеличить количество">+</button>
+                    <div class="product__order-row">
+                        <div class="product__quantity" aria-label="Количество товара">
+                            <button class="product__quantity-button" type="button" data-quantity-change="-1" aria-label="Уменьшить количество">−</button>
+                            <output class="product__quantity-value" aria-live="polite">1</output>
+                            <button class="product__quantity-button" type="button" data-quantity-change="1" aria-label="Увеличить количество">+</button>
+                        </div>
+                        <button class="product__add-to-cart button button--primary button--large" type="button">Добавить в корзину</button>
                     </div>
-                    <button class="product__add-to-cart button button--primary button--large" type="button">Добавить в корзину</button>
                 </div>
                 <p class="product__demo-note" hidden></p>
             </aside>
+            <div class="product__quick-links" aria-label="Дополнительная информация">
+                <a href="contacts.html"><span aria-hidden="true">♙</span><strong>Покупателям</strong></a>
+                <a href="contacts.html"><span aria-hidden="true">✦</span><strong>Скидки и условия</strong></a>
+                <a href="contacts.html"><span aria-hidden="true">⌑</span><strong>Дизайнерам</strong></a>
+            </div>
+            </div>
         </section>
 
         <section class="product-tabs" aria-label="Информация о товаре">

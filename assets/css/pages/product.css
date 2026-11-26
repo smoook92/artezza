@@ -1344,12 +1344,14 @@
 }
 
 .product-tabs__content {
-    max-width: 900px;
+    width: 100%;
+    max-width: none;
     padding-block: 24px 8px;
 }
 
 .product-tabs__description {
-    max-width: 760px;
+    width: 100%;
+    max-width: none;
     font-size: 13px;
     line-height: 1.8;
 }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" aria-labelledby="title">
+  <title id="title">Тестовый бренд</title>
+  <rect width="240" height="96" rx="8" fill="#26372f"/>
+  <path d="M24 22h52v52H24z" fill="none" stroke="#e8dfcf" stroke-width="3"/>
+  <path d="M37 36h26M50 36v25" fill="none" stroke="#e8dfcf" stroke-width="4" stroke-linecap="square"/>
+  <text x="91" y="45" fill="#fff" font-family="Arial, sans-serif" font-size="19" font-weight="700">TEST</text>
+  <text x="91" y="67" fill="#e8dfcf" font-family="Arial, sans-serif" font-size="14" letter-spacing="1.5">BRAND</text>
+</svg>

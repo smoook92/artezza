@@ -552,8 +552,15 @@ function renderProductTabs(product) {
         paragraph.textContent = product.description
             || product.shortDescription
             || 'Описание товара пока не добавлено.';
-
         description.appendChild(paragraph);
+
+        product.descriptionSections?.forEach(({ title, text }) => {
+            const heading = document.createElement('h2');
+            const sectionText = document.createElement('p');
+            heading.textContent = title;
+            sectionText.textContent = text;
+            description.append(heading, sectionText);
+        });
 
         if (product.features?.length) {
             const heading = document.createElement('h2');
@@ -568,13 +575,19 @@ function renderProductTabs(product) {
 
             description.append(heading, list);
         }
+
+        if (product.demoNote) {
+            const note = document.createElement('p');
+            note.className = 'product-tabs__notice';
+            note.textContent = product.demoNote;
+            description.appendChild(note);
+        }
     }
 
     renderTechnicalData(product);
     renderReviews(product);
     renderDeliveryInfo();
 }
-
 /**
  * Renders technical data supplied for the product.
  *

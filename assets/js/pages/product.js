@@ -180,7 +180,11 @@ function renderProduct(product, categories) {
     renderGallery(product);
     renderCharacteristics(product);
     updateBreadcrumb(product);
-    initAddToCart(product, volumeState);
+    setText('.product__sku-value', product.sku ?? 'Уточняется');
+    setText('.product__availability-text', product.availability ?? 'Наличие уточняется');
+
+    const quantityState = initQuantity();
+    initAddToCart(product, volumeState, quantityState);
 }
 
 /**
@@ -724,13 +728,36 @@ function renderCharacteristics(product) {
 }
 
 /**
+ * Initializes the product quantity control.
+ *
+ * @returns {{value: number}}
+ */
+function initQuantity() {
+    const state = { value: 1 };
+    const output = document.querySelector('.product__quantity-value');
+
+    document.querySelectorAll('[data-quantity-change]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const change = Number(button.dataset.quantityChange);
+            state.value = Math.max(1, state.value + change);
+
+            if (output) {
+                output.textContent = String(state.value);
+            }
+        });
+    });
+
+    return state;
+}
+
+/**
  * Initializes add-to-cart button.
  *
  * @param {Object} product
  * @param {{selected: Object|null}} volumeState
  * @returns {void}
  */
-function initAddToCart(product, volumeState) {
+function initAddToCart(product, volumeState, quantityState) {
     const button = document.querySelector(
         '.product__add-to-cart'
     );
@@ -752,7 +779,7 @@ function initAddToCart(product, volumeState) {
 
         const isAdded = addToCart(
             product.id,
-            1,
+            quantityState.value,
             variant
         );
         

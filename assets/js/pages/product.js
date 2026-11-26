@@ -141,6 +141,7 @@ function renderProduct(product, categories) {
     );
 
     renderProductBrand(product);
+    renderProductOrigin(product);
     renderProductTabs(product);
     initProductTabs();
 
@@ -182,9 +183,61 @@ function renderProduct(product, categories) {
     updateBreadcrumb(product);
     setText('.product__sku-value', product.sku ?? 'Уточняется');
     setText('.product__availability-text', product.availability ?? 'Наличие уточняется');
+    initMaterialCalculator();
 
     const quantityState = initQuantity();
     initAddToCart(product, volumeState, quantityState);
+}
+
+/**
+ * Renders country of brand and manufacturing origin when supplied.
+ *
+ * @param {Object} product
+ * @returns {void}
+ */
+function renderProductOrigin(product) {
+    const container = document.querySelector('.product__origin');
+
+    if (!container || (!product.brandCountry && !product.madeIn)) {
+        return;
+    }
+
+    const brandCountry = document.querySelector('.product__brand-country');
+    const madeIn = document.querySelector('.product__made-in');
+
+    if (brandCountry) {
+        brandCountry.textContent = product.brandCountry || 'Уточняется';
+    }
+
+    if (madeIn) {
+        madeIn.textContent = product.madeIn || 'Уточняется';
+    }
+
+    container.hidden = false;
+}
+
+/**
+ * Keeps the material calculator honest until manufacturer consumption is known.
+ *
+ * @returns {void}
+ */
+function initMaterialCalculator() {
+    const calculator = document.querySelector('.product__calculator');
+
+    if (!calculator) {
+        return;
+    }
+
+    const inputs = calculator.querySelectorAll('input');
+    const result = calculator.querySelector('.product__calculator-result');
+
+    inputs.forEach((input) => {
+        input.addEventListener('input', () => {
+            if (result) {
+                result.textContent = 'Расход уточняется';
+            }
+        });
+    });
 }
 
 /**

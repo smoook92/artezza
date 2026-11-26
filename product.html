@@ -254,104 +254,84 @@
             ></span>
         </nav>
 		
-		<section class="product">
-		
-		    <!-- 1. GALLERY THUMBNAILS -->
-		    <div
-		        class="product__gallery"
-		        aria-label="Галерея товара"
-		    >
-		        <div
-		            class="product__thumbnails"
-		            aria-label="Миниатюры изображений товара"
-		        ></div>
-		    </div>
-		
-		    <!-- 2. MAIN IMAGE -->
-		    <div class="product__visual">
-		        <div class="product__main-image">
-		            <img
-		                class="product__image"
-		                alt=""
-		                width="800"
-		                height="800"
-		            >
-		        </div>
-		    </div>
-		
-		    <!-- 3. PRODUCT INFORMATION -->
-		    <div class="product__main-column">
-		
-		        <div class="product__content">
-		
-		            <span class="product__category"></span>
-		
-		            <h1 class="product__title"></h1>
-		
-		            <p class="product__description"></p>
-		
-		            <!-- PRODUCT VOLUME -->
-					<div class="product__volume" hidden>
-					    <span class="product__volume-label">
-					        Объём
-					    </span>
-					
-					    <div class="product__volume-options"></div>
-					</div>
-		
-		            <div class="product__meta">
-		
-		                <div class="product__meta-item">
-		                    <span>Основа</span>
-		                    <strong class="product__base"></strong>
-		                </div>
-		
-		                <div class="product__meta-item">
-		                    <span>Применение</span>
-		                    <strong class="product__applications"></strong>
-		                </div>
-		
-		                <div class="product__meta-item">
-		                    <span>Эффект</span>
-		                    <strong class="product__effects"></strong>
-		                </div>
-		
-		            </div>
-		
-		        </div>
-		
-		        <!-- PRODUCT CHARACTERISTICS -->
-		        <section class="product-details">
-		
-		            <h2 class="product-details__title">
-		                Характеристики
-		            </h2>
-		
-		            <dl class="product-details__list"></dl>
-		
-		        </section>
-		
-		    </div>
-		
-		    <!-- 4. PURCHASE -->
-		    <aside class="product__purchase">
-		
-		        <span class="product__purchase-label">
-		            Стоимость товара
-		        </span>
-		
-		        <div class="product__price"></div>
-		
-		        <button
-		            class="product__add-to-cart button button--primary button--large"
-		            type="button"
-		        >
-		            Добавить в корзину
-		        </button>
-		
-		    </aside>
-		
-		</section>
+        <section class="product" aria-labelledby="product-title">
+            <div class="product__heading">
+                <div class="product__brand" hidden>
+                    <img class="product__brand-logo" alt="" width="120" height="48">
+                    <span class="product__brand-name"></span>
+                </div>
+                <h1 class="product__title" id="product-title"></h1>
+                <p class="product__description"></p>
+            </div>
+
+            <div class="product__gallery" aria-label="Галерея товара">
+                <div class="product__thumbnails" aria-label="Миниатюры изображений товара"></div>
+            </div>
+
+            <div class="product__visual">
+                <div class="product__main-image">
+                    <img class="product__image" alt="" width="800" height="800">
+                </div>
+            </div>
+
+            <div class="product__main-column">
+                <div class="product__meta">
+                    <div class="product__meta-item">
+                        <span>Основа</span>
+                        <strong class="product__base"></strong>
+                    </div>
+                    <div class="product__meta-item">
+                        <span>Применение</span>
+                        <strong class="product__applications"></strong>
+                    </div>
+                    <div class="product__meta-item">
+                        <span>Эффект</span>
+                        <strong class="product__effects"></strong>
+                    </div>
+                </div>
+
+                <div class="product__volume" hidden>
+                    <span class="product__volume-label">Объём</span>
+                    <div class="product__volume-options"></div>
+                </div>
+            </div>
+
+            <aside class="product__purchase" aria-label="Покупка товара">
+                <span class="product__purchase-label">Стоимость товара</span>
+                <div class="product__price"></div>
+                <button class="product__add-to-cart button button--primary button--large" type="button">
+                    Добавить в корзину
+                </button>
+            </aside>
+        </section>
+
+        <section class="product-tabs" aria-label="Информация о товаре">
+            <div class="product-tabs__navigation" role="tablist" aria-label="Разделы информации о товаре">
+                <button class="product-tabs__tab is-active" id="product-tab-description" type="button" role="tab" aria-selected="true" aria-controls="product-panel-description" tabindex="0">Описание</button>
+                <button class="product-tabs__tab" id="product-tab-characteristics" type="button" role="tab" aria-selected="false" aria-controls="product-panel-characteristics" tabindex="-1">Характеристики</button>
+                <button class="product-tabs__tab" id="product-tab-technical" type="button" role="tab" aria-selected="false" aria-controls="product-panel-technical" tabindex="-1">Технические данные</button>
+                <button class="product-tabs__tab" id="product-tab-reviews" type="button" role="tab" aria-selected="false" aria-controls="product-panel-reviews" tabindex="-1">Отзывы</button>
+                <button class="product-tabs__tab" id="product-tab-delivery" type="button" role="tab" aria-selected="false" aria-controls="product-panel-delivery" tabindex="-1">Доставка и оплата</button>
+            </div>
+
+            <div class="product-tabs__content">
+                <section class="product-tabs__panel is-active" id="product-panel-description" role="tabpanel" aria-labelledby="product-tab-description">
+                    <div class="product-tabs__description"></div>
+                </section>
+                <section class="product-tabs__panel" id="product-panel-characteristics" role="tabpanel" aria-labelledby="product-tab-characteristics" hidden>
+                    <dl class="product-tabs__characteristics"></dl>
+                </section>
+                <section class="product-tabs__panel" id="product-panel-technical" role="tabpanel" aria-labelledby="product-tab-technical" hidden>
+                    <p class="product-tabs__empty">Техническая информация пока не добавлена.</p>
+                </section>
+                <section class="product-tabs__panel" id="product-panel-reviews" role="tabpanel" aria-labelledby="product-tab-reviews" hidden>
+                    <p class="product-tabs__empty">Отзывы о товаре пока не добавлены.</p>
+                </section>
+                <section class="product-tabs__panel" id="product-panel-delivery" role="tabpanel" aria-labelledby="product-tab-delivery" hidden>
+                    <p class="product-tabs__empty">Условия доставки и оплаты можно уточнить у менеджера.</p>
+                </section>
+            </div>
+        </section>
 
     </div>
 

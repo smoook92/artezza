@@ -140,6 +140,10 @@ function renderProduct(product, categories) {
         product.shortDescription
     );
 
+    renderProductBrand(product);
+    renderProductTabs(product);
+    initProductTabs();
+
     setText(
         '.product__price',
         `${product.price.toLocaleString('ru-RU')} ₽`
@@ -406,6 +410,106 @@ function setActiveGalleryImage(
 }
 
 /**
+ * Renders the optional product brand.
+ *
+ * @param {Object} product
+ * @returns {void}
+ */
+function renderProductBrand(product) {
+    const container = document.querySelector('.product__brand');
+    const logo = document.querySelector('.product__brand-logo');
+    const name = document.querySelector('.product__brand-name');
+
+    if (!container || !logo || !name || !product.brand) {
+        return;
+    }
+
+    name.textContent = product.brand;
+
+    if (product.brandLogo) {
+        logo.src = product.brandLogo;
+        logo.alt = product.brand;
+        logo.hidden = false;
+    } else {
+        logo.hidden = true;
+    }
+
+    container.hidden = false;
+}
+
+/**
+ * Populates information panels from available product data.
+ *
+ * @param {Object} product
+ * @returns {void}
+ */
+function renderProductTabs(product) {
+    setText('.product-tabs__description', product.description || product.shortDescription || 'Описание товара пока не добавлено.');
+}
+
+/**
+ * Initializes accessible product information tabs.
+ *
+ * @returns {void}
+ */
+function initProductTabs() {
+    const tabs = [...document.querySelectorAll('.product-tabs__tab')];
+
+    tabs.forEach((tab) => {
+        tab.addEventListener('click', () => activateProductTab(tab, tabs));
+
+        tab.addEventListener('keydown', (event) => {
+            if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+                return;
+            }
+
+            event.preventDefault();
+
+            const currentIndex = tabs.indexOf(tab);
+            let nextIndex = currentIndex;
+
+            if (event.key === 'ArrowRight') {
+                nextIndex = (currentIndex + 1) % tabs.length;
+            } else if (event.key === 'ArrowLeft') {
+                nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+            } else if (event.key === 'Home') {
+                nextIndex = 0;
+            } else if (event.key === 'End') {
+                nextIndex = tabs.length - 1;
+            }
+
+            activateProductTab(tabs[nextIndex], tabs);
+            tabs[nextIndex].focus();
+        });
+    });
+}
+
+/**
+ * Activates a product information tab and its panel.
+ *
+ * @param {HTMLButtonElement} activeTab
+ * @param {HTMLButtonElement[]} tabs
+ * @returns {void}
+ */
+function activateProductTab(activeTab, tabs) {
+    tabs.forEach((tab) => {
+        const isActive = tab === activeTab;
+        const panel = document.getElementById(
+            tab.getAttribute('aria-controls')
+        );
+
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+
+        if (panel) {
+            panel.hidden = !isActive;
+            panel.classList.toggle('is-active', isActive);
+        }
+    });
+}
+
+/**
  * Renders product characteristics.
  *
  * @param {Object} product
@@ -413,7 +517,7 @@ function setActiveGalleryImage(
  */
 function renderCharacteristics(product) {
     const container = document.querySelector(
-        '.product-details__list'
+        '.product-tabs__characteristics'
     );
 
     if (!container) {

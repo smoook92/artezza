@@ -534,3 +534,23 @@
 .product-tabs__notice {
     margin-bottom: var(--space-5);
 }
+
+/* NOT FOUND */
+.product-not-found {
+    padding-block: var(--space-30);
+    text-align: center;
+}
+.product-not-found h1 {
+    max-width: none;
+    margin-inline: auto;
+}
+.product-not-found p {
+    margin: var(--space-5) auto 0;
+    color: var(--color-text-secondary);
+}
+.product-not-found a {
+    display: inline-flex;
+    margin-top: var(--space-8);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+}

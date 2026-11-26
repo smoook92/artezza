@@ -962,3 +962,32 @@
     color: var(--color-primary);
     font-weight: var(--font-weight-semibold);
 }
+
+
+.product__brand-logo[hidden] {
+    display: none;
+}
+
+.product__purchase-meta {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 28px);
+}
+
+.product__questions {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.product__questions:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+    .product__purchase-meta {
+        flex-wrap: wrap;
+    }
+}

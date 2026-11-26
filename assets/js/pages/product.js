@@ -444,7 +444,172 @@ function renderProductBrand(product) {
  * @returns {void}
  */
 function renderProductTabs(product) {
-    setText('.product-tabs__description', product.description || product.shortDescription || 'Описание товара пока не добавлено.');
+    const description = document.querySelector('.product-tabs__description');
+
+    if (description) {
+        description.replaceChildren();
+
+        const paragraph = document.createElement('p');
+        paragraph.textContent = product.description
+            || product.shortDescription
+            || 'Описание товара пока не добавлено.';
+
+        description.appendChild(paragraph);
+
+        if (product.features?.length) {
+            const heading = document.createElement('h2');
+            heading.textContent = 'Преимущества';
+            const list = document.createElement('ul');
+
+            product.features.forEach((feature) => {
+                const item = document.createElement('li');
+                item.textContent = feature;
+                list.appendChild(item);
+            });
+
+            description.append(heading, list);
+        }
+    }
+
+    renderTechnicalData(product);
+    renderReviews(product);
+    renderDeliveryInfo();
+}
+
+/**
+ * Renders technical data supplied for the product.
+ *
+ * @param {Object} product
+ * @returns {void}
+ */
+function renderTechnicalData(product) {
+    const container = document.querySelector('.product-tabs__technical');
+
+    if (!container) {
+        return;
+    }
+
+    container.replaceChildren();
+
+    if (!product.technicalData?.length) {
+        renderEmptyState(
+            container,
+            'Технические данные для этого товара пока не предоставлены.'
+        );
+        return;
+    }
+
+    const heading = document.createElement('h2');
+    heading.textContent = 'Технические данные';
+
+    const list = document.createElement('dl');
+    list.className = 'product-tabs__characteristics';
+
+    product.technicalData.forEach(({ name, value }) => {
+        appendDefinition(list, name, value);
+    });
+
+    container.append(heading, list);
+}
+
+/**
+ * Renders customer reviews supplied for the product.
+ *
+ * @param {Object} product
+ * @returns {void}
+ */
+function renderReviews(product) {
+    const container = document.querySelector('.product-tabs__reviews');
+
+    if (!container) {
+        return;
+    }
+
+    container.replaceChildren();
+
+    if (!product.reviews?.length) {
+        renderEmptyState(
+            container,
+            'Пока нет отзывов об этом товаре. Вы можете уточнить информацию у наших специалистов.'
+        );
+        return;
+    }
+
+    const heading = document.createElement('h2');
+    heading.textContent = 'Отзывы покупателей';
+    container.appendChild(heading);
+
+    product.reviews.forEach((review) => {
+        const article = document.createElement('article');
+        article.className = 'product-tabs__review';
+
+        const author = document.createElement('h3');
+        author.textContent = review.author || 'Покупатель';
+
+        const text = document.createElement('p');
+        text.textContent = review.text;
+
+        article.append(author, text);
+
+        if (review.date) {
+            const date = document.createElement('time');
+            date.textContent = review.date;
+            article.appendChild(date);
+        }
+
+        container.appendChild(article);
+    });
+}
+
+/**
+ * Keeps delivery and payment details factual until store terms are provided.
+ *
+ * @returns {void}
+ */
+function renderDeliveryInfo() {
+    const container = document.querySelector('.product-tabs__delivery');
+
+    if (!container) {
+        return;
+    }
+
+    const phone = container.querySelector('a[href^="tel:"]');
+
+    if (phone) {
+        phone.textContent = '8 966 187-32-02';
+    }
+}
+
+/**
+ * Adds a definition pair to a description list.
+ *
+ * @param {HTMLDListElement} list
+ * @param {string} name
+ * @param {string} value
+ * @returns {void}
+ */
+function appendDefinition(list, name, value) {
+    const term = document.createElement('dt');
+    const description = document.createElement('dd');
+
+    term.textContent = name;
+    description.textContent = value;
+
+    list.append(term, description);
+}
+
+/**
+ * Renders a consistent empty state.
+ *
+ * @param {HTMLElement} container
+ * @param {string} message
+ * @returns {void}
+ */
+function renderEmptyState(container, message) {
+    const paragraph = document.createElement('p');
+    paragraph.className = 'product-tabs__empty';
+    paragraph.textContent = message;
+    container.appendChild(paragraph);
 }
 
 /**

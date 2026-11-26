@@ -149,6 +149,13 @@ function renderProduct(product, categories) {
         `${product.price.toLocaleString('ru-RU')} ₽`
     );
 
+    const demoNote = document.querySelector('.product__demo-note');
+
+    if (demoNote && product.demoNote) {
+        demoNote.textContent = product.demoNote;
+        demoNote.hidden = false;
+    }
+
     setText(
         '.product__base',
         formatProductValue(product.base)
@@ -502,6 +509,12 @@ function renderTechnicalData(product) {
     const heading = document.createElement('h2');
     heading.textContent = 'Технические данные';
 
+    const note = document.createElement('p');
+    note.className = 'product-tabs__notice';
+    note.textContent = product.demoNote
+        ? 'Демонстрационные сведения для согласования. Перед публикацией их необходимо сверить с технической документацией конкретного материала.'
+        : 'Характеристики приведены по данным производителя.';
+
     const list = document.createElement('dl');
     list.className = 'product-tabs__characteristics';
 
@@ -509,7 +522,7 @@ function renderTechnicalData(product) {
         appendDefinition(list, name, value);
     });
 
-    container.append(heading, list);
+    container.append(heading, note, list);
 }
 
 /**

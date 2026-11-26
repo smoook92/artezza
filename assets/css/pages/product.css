@@ -1356,6 +1356,18 @@
     line-height: 1.8;
 }
 
+/* Allow product information to use the full tabs width. */
+.product-tabs__panel p,
+.product-tabs__panel h2,
+.product-tabs__panel h3 {
+    max-width: none;
+}
+
+.product-tabs__description ul {
+    width: 100%;
+    max-width: none;
+}
+
 .product-tabs__panel h2 {
     margin-bottom: 12px;
     font-size: 17px;
